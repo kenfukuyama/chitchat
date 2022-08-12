@@ -1,3 +1,7 @@
+/**********************************************
+		  Styles For All Pages/Fonts
+**********************************************/
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -10,26 +14,90 @@ html,body {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.58;
-    color: #333;
-    background-color: #f4f4f4;
-    height: 100%;
+	background: rgb(69,59,89);
+    background: linear-gradient(0deg, rgba(69,59,89,1) 4%, rgba(38,49,66,1) 13%, rgba(0,0,0,1) 39%);
 }
 
-body:before {
-    height: 50%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #128ff2;
-    content: "";
-    z-index: 0;
+@font-face {
+	font-family: "Alliance1Light";
+	src: url(/assets/fonts/AllianceNo1-Light.ttf);
+}
+
+@font-face {
+	font-family: "Alliance1ExtraBold";
+	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
+}
+
+@font-face {
+	font-family: "Alliance1Regular";
+	src: url(/assets/fonts/AllianceNo1-Regular.ttf);
+}
+
+/**********************************************
+				Landing Page
+**********************************************/
+
+.landing-title{
+	font-family: "Alliance1ExtraBold";
+	margin-bottom: 5px;
+	color: white;
+}
+
+.landing-text{
+	font-family: "Alliance1Light";
+	color: gray;
+}
+
+.fade-in {
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        position: relative;
+        transform: translateY(150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSent {
+	from {
+        opacity: 0;
+        position: relative;
+        transform: translateX(-150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeReceived {
+	from {
+        opacity: 0;
+        position: relative;
+        transform: translateX(150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/**********************************************
+		       End Landing Page
+**********************************************/
+
+/**********************************************
+		        Chatrooms Page
+**********************************************/
+
+.title {
+	font-family: "Alliance1Light";
 }
 
 .clearfix:after {
@@ -40,13 +108,6 @@ body:before {
 
 .hidden {
     display: none;
-}
-
-.form-control {
-    width: 100%;
-    min-height: 38px;
-    font-size: 15px;
-    border: 1px solid #c8c8c8;
 }
 
 .form-group {
@@ -86,78 +147,26 @@ button {
     min-height: 38px;
 }
 
-button.default {
-    background-color: #e8e8e8;
-    color: #333;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-}
-
-button.primary {
-    background-color: #128ff2;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}
-
-button.accent {
-    background-color: #ff4743;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}
-
-#username-page {
-    text-align: center;
-}
-
 .username-page-container {
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    width: 100%;
-    max-width: 500px;
-    display: inline-block;
-    margin-top: 42px;
-    vertical-align: middle;
-    position: relative;
-    padding: 35px 55px 35px;
-    min-height: 250px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    margin-top: -160px;
+    padding: 1% 2%;
+    font-family: "Alliance1Regular";
 }
-
-.username-page-container .username-submit {
-    margin-top: 10px;
-}
-
 
 #chat-page {
-    position: relative;
-    height: 100%;
+	height: 80vh;    
+	margin-top: 5%;
 }
 
 .chat-container {
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    margin-top: 30px;
-    height: calc(100% - 60px);
-    max-height: 600px;
-    position: relative;
+    width: 55%;
 }
 
 #chat-page ul {
     list-style-type: none;
-    background-color: #FFF;
     margin: 0;
-    overflow: auto;
-    overflow-y: scroll;
+   	overflow-y: scroll;
     padding: 0 20px 0px 20px;
-    height: calc(100% - 150px);
+    height: 50vh;
 }
 
 #chat-page #messageForm {
@@ -168,7 +177,7 @@ button.accent {
     line-height: 1.5rem;
     padding: 10px 20px;
     margin: 0;
-    border-bottom: 1px solid #f4f4f4;
+    margin-bottom: 3px;
 }
 
 #chat-page ul li p {
@@ -187,35 +196,15 @@ button.accent {
     word-wrap: break-word;
 }
 
-#chat-page .chat-message {
-    padding-left: 68px;
-    position: relative;
-}
-
-#chat-page .chat-message i {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-    overflow: hidden;
-    left: 10px;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    line-height: 42px;
-    color: #fff;
-    text-align: center;
-    border-radius: 50%;
-    font-style: normal;
-    text-transform: uppercase;
-}
 
 #chat-page .chat-message span {
-    color: #333;
+    color: black;
     font-weight: 600;
 }
 
 #chat-page .chat-message p {
-    color: #43464b;
+    color: black;
+    font-weight: 300;
 }
 
 #messageForm .input-group input {
@@ -233,7 +222,6 @@ button.accent {
 .chat-header {
     text-align: center;
     padding: 15px;
-    border-bottom: 1px solid #ececec;
 }
 
 .chat-header h2 {
