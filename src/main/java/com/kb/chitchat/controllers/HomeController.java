@@ -8,6 +8,13 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "index.jsp";
+		return "/views/index.jsp";
 	}
+	
+	@GetMapping("/chatrooms")
+	public String chatroom() {
+		return "/views/chatrooms.jsp";
+	}
+	
+	
 }

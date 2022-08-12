@@ -31,8 +31,8 @@ function connect(event) {
 
     if(username) {
         // change the approqaite html elements
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
+        usernamePage.classList.replace("d-flex", "d-none");
+        chatPage.classList.replace("d-none", "d-flex");
         var roomName = document.querySelector('#room-name');
         roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
         document.querySelector('#username').innerHTML = "Welcome " + username + "!";
@@ -178,6 +178,7 @@ function onMessageReceived(payload) {
             
             messageElement.style['background-color'] = '#ee706e';
             messageElement.style['text-align'] = 'right';
+            messageElement.style['animation'] = 'fadeSent .5s';
             // messageElement.style['display'] = 'flex';
             // messageElement.style['margin-left'] = 'auto';
             // messageElement.style['margin-right'] = '0';
@@ -189,6 +190,7 @@ function onMessageReceived(payload) {
         }
         else {
             messageElement.style['background-color'] = 'rgb(116, 220, 129)';
+            messageElement.style['animation'] = 'fadeReceived .5s';
              // avator pic and first initial
             var avatarElement = document.createElement('i');
 
