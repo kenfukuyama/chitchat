@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import com.kb.chitchat.models.ChatMessage;
 
-/**
- * Created by rajeevkumarsingh on 24/07/17.
- */
 @Controller
 public class ChatController {
 
@@ -31,7 +28,6 @@ public class ChatController {
         return chatMessage;
     }
 
-
     @MessageMapping("/chat.sendMessageroom1")
     @SendTo("/topic/room1")
     public ChatMessage sendMessagePrivateRoom1(@Payload ChatMessage chatMessage) { 
@@ -43,20 +39,6 @@ public class ChatController {
     public ChatMessage sendMessagePrivateRoom2(@Payload ChatMessage chatMessage) { 
         return chatMessage;
     }
-
-    // // to specific room
-    // @MessageMapping("/chat.sendMessageroom1")
-    // @SendTo("/topic/room1")
-    // public ChatMessage sendMessagePrivateRoom1(@Payload ChatMessage chatMessage) { 
-    //     return chatMessage;
-    // }
-
-    // @MessageMapping("/chat.sendMessageroom2")
-    // @SendTo("/topic/room2")
-    // public ChatMessage sendMessagePrivateRoom2(@Payload ChatMessage chatMessage) { 
-    //     return chatMessage;
-    // }
-
     
     // this route handles adding user
     @MessageMapping("/chat.addUser")

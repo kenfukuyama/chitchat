@@ -23,175 +23,176 @@ var colors = [
 ];
 
 // ! connection and subscription to the socket =================================
-// this allows us to connect to the server
-function connect(event) {
-    username = document.querySelector('#name').value.trim();
+// // this allows us to connect to the server
+// function connect(event) {
+//     username = document.querySelector('#userName').value.trim();
 
-    if(username) {
-        // change the approqaite html elements
-        usernamePage.classList.replace("d-flex", "d-none");
-        chatPage.classList.replace("d-none", "d-flex");
-        var roomName = document.querySelector('#room-name');
-        roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
-        document.querySelector('#username').innerHTML = "Welcome " + username + "!";
+//     if(username) {
+//         // change the approqaite html elements
+//         // usernamePage.classList.replace("d-flex", "d-none");
+//         // chatPage.classList.replace("d-none", "d-flex");
+//         // var roomName = document.querySelector('#room-name');
+//         // roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
+//         // document.querySelector('#username').innerHTML = "Welcome " + username + "!";
 
-        // connect to the socket
-        var socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
-}
+//         // connect to the socket
+//         var socket = new SockJS('/ws');
+//         stompClient = Stomp.over(socket);
+//         stompClient.connect({}, onConnected, onError);
+//     }
+//     event.preventDefault();
 
-
-function onConnected() {
-    // ! change here for the subscription channels
-    // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
-    // * subsribe to differnt channels
-
-    var roomSelection = document.querySelector('input[name="room"]:checked').value;
-    if (roomSelection) {
-        stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
-    }
-
-    // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
-        {},
-        JSON.stringify({sender: username, type: 'JOIN'})
-    )
-
-    connectingElement.classList.add('hidden');
-}
+// }
 
 
-// ! error handlers =============================================================
-function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
-}
+// function onConnected() {
+//     // ! change here for the subscription channels
+//     // Subscribe to the Public Topic
+//     stompClient.subscribe('/topic/public', onMessageReceived);
+    
+//     // * subsribe to differnt channels
+//     // var roomSelection = document.querySelector('input[name="room"]:checked').value;
+//     // if (roomSelection) {
+//     //     stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
+//     // }
+
+//     // Tell your username to the server
+//     stompClient.send("/app/chat.addUser",
+//         {},
+//         JSON.stringify({sender: username, type: 'JOIN'})
+//     )
+
+//     // connectingElement.classList.add('hidden');
+// }
 
 
-// ! send message ===============================================================
-function sendMessage(event) {
-    var messageContent = messageInput.value.trim();
+// // ! error handlers =============================================================
+// function onError(error) {
+//     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+//     connectingElement.style.color = 'red';
+// }
 
-    if(messageContent && stompClient) {
-        // ! change this for send message channel
-        // public chat
-        // var chatMessage = {
-        //     sender: username,
-        //     content: messageInput.value,
-        //     type: 'CHAT'
-        // };
-        // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
-        // room send message
-        var roomSelection = document.querySelector('input[name="room"]:checked').value;
-        var chatMessageRoom = {
-            sender: username,
-            content: messageInput.value,
-            type: 'CHAT'
-        };
+// // ! send message ===============================================================
+// function sendMessage(event) {
+//     var messageContent = messageInput.value.trim();
 
-        stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
+//     if(messageContent && stompClient) {
+//         // ! change this for send message channel
+//         // public chat
+//         // var chatMessage = {
+//         //     sender: username,
+//         //     content: messageInput.value,
+//         //     type: 'CHAT'
+//         // };
+//         // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+
+//         // room send message
+//         var roomSelection = document.querySelector('input[name="room"]:checked').value;
+//         var chatMessageRoom = {
+//             sender: username,
+//             content: messageInput.value,
+//             type: 'CHAT'
+//         };
+
+//         stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
 
         
-        messageInput.value = ''; // empty the inputn value
-    }
-    event.preventDefault();
-}
+//         messageInput.value = ''; // empty the inputn value
+//     }
+//     event.preventDefault();
+// }
 
-// ! handles incoming messages ===============================================
-function onMessageReceived(payload) {
-    // message is only one at a time
-    var message = JSON.parse(payload.body);
+// // ! handles incoming messages ===============================================
+// function onMessageReceived(payload) {
+//     // message is only one at a time
+//     var message = JSON.parse(payload.body);
 
-    // create list element
-    var messageElement = document.createElement('li');
+//     // create list element
+//     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
-        // if a user joins
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
-
-
-        // change the number of number of connections.
-        // TODO we want to something here and update the online numbers, but this is currently stateless
-        const span = document.querySelector('#number-connected');
-        span.innerHTML = ++span.innerHTML;
+//     if(message.type === 'JOIN') {
+//         // if a user joins
+//         messageElement.classList.add('event-message');
+//         message.content = message.sender + ' joined!';
 
 
-    } else if (message.type === 'LEAVE') {
-        // if a user leaves
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
-
-        // TODO we want to something here and update the online numbers
-        const span = document.querySelector('#number-connected');
-        span.innerHTML = --span.innerHTML;
+//         // change the number of number of connections.
+//         // TODO we want to something here and update the online numbers, but this is currently stateless
+//         const span = document.querySelector('#number-connected');
+//         span.innerHTML = ++span.innerHTML;
 
 
-    } else {
-        // else display a message
-        messageElement.classList.add('chat-message');
+//     } else if (message.type === 'LEAVE') {
+//         // if a user leaves
+//         messageElement.classList.add('event-message');
+//         message.content = message.sender + ' left!';
 
-        if (username == message.sender) {
-            // if it is the user
+//         // TODO we want to something here and update the online numbers
+//         const span = document.querySelector('#number-connected');
+//         span.innerHTML = --span.innerHTML;
+
+
+//     } else {
+//         // else display a message
+//         messageElement.classList.add('chat-message');
+
+//         if (username == message.sender) {
+//             // if it is the user
             
-            messageElement.style['background-color'] = '#ee706e';
-            messageElement.style['text-align'] = 'right';
-            messageElement.style['animation'] = 'fadeSent .5s';
+//             messageElement.style['background-color'] = '#ee706e';
+//             messageElement.style['text-align'] = 'right';
+//             messageElement.style['animation'] = 'fadeSent .5s';
             
-            // username and text element
-            var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode('Me');
+//             // username and text element
+//             var usernameElement = document.createElement('span');
+//             var usernameText = document.createTextNode('Me');
 
-        }
-        else {
-            messageElement.style['background-color'] = 'rgb(116, 220, 129)';
-            messageElement.style['animation'] = 'fadeReceived .5s';
-             // avator pic and first initial
-            var avatarElement = document.createElement('i');
+//         }
+//         else {
+//             messageElement.style['background-color'] = 'rgb(116, 220, 129)';
+//             messageElement.style['animation'] = 'fadeReceived .5s';
+//              // avator pic and first initial
+//             var avatarElement = document.createElement('i');
 
-            var avatarText = document.createTextNode(message.sender[0]);
-            avatarElement.appendChild(avatarText);
-            avatarElement.style['background-color'] = getAvatarColor(message.sender);
+//             var avatarText = document.createTextNode(message.sender[0]);
+//             avatarElement.appendChild(avatarText);
+//             avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-            messageElement.appendChild(avatarElement);
+//             messageElement.appendChild(avatarElement);
 
-            var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode(message.sender);
-        }
-        usernameElement.appendChild(usernameText);
+//             var usernameElement = document.createElement('span');
+//             var usernameText = document.createTextNode(message.sender);
+//         }
+//         usernameElement.appendChild(usernameText);
 
-        messageElement.appendChild(usernameElement);
-    }
+//         messageElement.appendChild(usernameElement);
+//     }
 
-    // create and element and also seeting the textNode
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
+//     // create and element and also seeting the textNode
+//     var textElement = document.createElement('p');
+//     var messageText = document.createTextNode(message.content);
+//     textElement.appendChild(messageText);
 
-    messageElement.appendChild(textElement);
+//     messageElement.appendChild(textElement);
 
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
-}
+//     messageArea.appendChild(messageElement);
+//     messageArea.scrollTop = messageArea.scrollHeight;
+// }
 
 
 // ! avatar color =================================================================
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
-    }
+// function getAvatarColor(messageSender) {
+//     var hash = 0;
+//     for (var i = 0; i < messageSender.length; i++) {
+//         hash = 31 * hash + messageSender.charCodeAt(i);
+//     }
 
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
-}
+//     var index = Math.abs(hash % colors.length);
+//     return colors[index];
+// }
 
 
 // ! eventhandler for submit buttons ===============================================
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+// usernameForm.addEventListener('submit', connect, true)
+// messageForm.addEventListener('submit', sendMessage, true)

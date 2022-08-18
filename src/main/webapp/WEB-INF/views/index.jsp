@@ -12,7 +12,7 @@
 	<p class="lead landing-text">the messaging app for you</p>
 	
 	<div class="d-flex">
-		<a class="btn btn-light btn-lg mt-2" href="/chatrooms"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
+		<a class="btn btn-light btn-lg mt-2" href="/guests/new"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
 	</div>
 </div>   
 
