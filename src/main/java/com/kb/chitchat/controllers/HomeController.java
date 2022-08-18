@@ -11,10 +11,4 @@ public class HomeController {
 		return "/views/index.jsp";
 	}
 	
-	@GetMapping("/chatrooms")
-	public String chatroom() {
-		return "/views/chatrooms.jsp";
-	}
-	
-	
 }

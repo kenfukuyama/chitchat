@@ -11,9 +11,10 @@
 	<h3 class="display-3 styled-heading">Chit Chat</h3>
 	<p class="lead styled-text">the messaging app for you</p>
 	
+
 	<div class="d-flex gap-2">
 		<a class="btn btn-light btn-lg mt-2" href="/accounts/register"><strong>Sign Up</strong> <i class="bi-arrow-right-short"></i></a>
-		<a class="btn btn-light btn-lg mt-2" href="/chatrooms"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
+		<a class="btn btn-light btn-lg mt-2" href="/guests/new"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
 	</div>
 </div>   
 
