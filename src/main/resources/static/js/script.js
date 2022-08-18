@@ -22,8 +22,6 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-
-
 // ! connection and subscription to the socket =================================
 // this allows us to connect to the server
 function connect(event) {
@@ -37,14 +35,7 @@ function connect(event) {
         roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
         document.querySelector('#username').innerHTML = "Welcome " + username + "!";
 
-
-
-        // numOfConnections++; // add number of connection
-        // change the number of number of connections.
-        // const span = document.querySelector('#number-connected');
-        // span.innerHTML = numOfConnections;
-        // console.log('Number of connections changed to ' + numOfConnections);
-
+        // connect to the socket
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
@@ -58,19 +49,11 @@ function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
     // * subsribe to differnt channels
-    
-    // if (username == "kenny") {
-    //     stompClient.subscribe('/topic/private', onMessageReceived);
-    // }
-    // stompClient.subscribe('/topic/private', onMessageReceived);
-    // stompClient.subscribe('/topic/room1', onMessageReceived);
+
     var roomSelection = document.querySelector('input[name="room"]:checked').value;
-    // console.log(roomSelection);
     if (roomSelection) {
         stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
     }
-    // stompClient.subscribe('/topic/room1', onMessageReceived);
-
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
@@ -103,18 +86,6 @@ function sendMessage(event) {
         // };
         // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
-        // send mesasge to specifi channels
-        // var chatMessagePrivate = {
-        //     sender: username,
-        //     content: messageInput.value + " private",
-        //     type: 'CHAT'
-        // };
-
-        // stompClient.send("/app/chat.sendMessagePrivate", {}, JSON.stringify(chatMessagePrivate));
-        // stompClient.send("/app/chat.sendMessageroom1", {}, JSON.stringify(chatMessagePrivate));
-        // stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessagePrivate));
-
-        
         // room send message
         var roomSelection = document.querySelector('input[name="room"]:checked').value;
         var chatMessageRoom = {
@@ -130,9 +101,6 @@ function sendMessage(event) {
     }
     event.preventDefault();
 }
-
-
-
 
 // ! handles incoming messages ===============================================
 function onMessageReceived(payload) {
@@ -166,11 +134,6 @@ function onMessageReceived(payload) {
 
     } else {
         // else display a message
-
-        // console.log(username)
-        // console.log(message.sender)
-
-
         messageElement.classList.add('chat-message');
 
         if (username == message.sender) {
@@ -179,10 +142,7 @@ function onMessageReceived(payload) {
             messageElement.style['background-color'] = '#ee706e';
             messageElement.style['text-align'] = 'right';
             messageElement.style['animation'] = 'fadeSent .5s';
-            // messageElement.style['display'] = 'flex';
-            // messageElement.style['margin-left'] = 'auto';
-            // messageElement.style['margin-right'] = '0';
-
+            
             // username and text element
             var usernameElement = document.createElement('span');
             var usernameText = document.createTextNode('Me');
@@ -200,12 +160,9 @@ function onMessageReceived(payload) {
 
             messageElement.appendChild(avatarElement);
 
-
             var usernameElement = document.createElement('span');
             var usernameText = document.createTextNode(message.sender);
         }
-
-        
         usernameElement.appendChild(usernameText);
 
         messageElement.appendChild(usernameElement);
