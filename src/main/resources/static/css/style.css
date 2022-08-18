@@ -24,28 +24,38 @@ body {
 }
 
 @font-face {
-	font-family: "Alliance1ExtraBold";
-	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
+	font-family: "Alliance1Regular";
+	src: url(/assets/fonts/AllianceNo1-Regular.ttf);
 }
 
 @font-face {
-	font-family: "Alliance1Regular";
-	src: url(/assets/fonts/AllianceNo1-Regular.ttf);
+	font-family: "Alliance1Bold";
+	src: url(/assets/fonts/AllianceNo2-Bold.ttf);
+}
+
+@font-face {
+	font-family: "Alliance1ExtraBold";
+	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
 }
 
 /**********************************************
 				Landing Page
 **********************************************/
 
-.landing-title{
+.styled-heading{
 	font-family: "Alliance1ExtraBold";
 	margin-bottom: 5px;
 	color: white;
 }
 
-.landing-text{
+.styled-text{
 	font-family: "Alliance1Light";
 	color: gray;
+}
+
+.styled-button{
+	font-family: "Alliance1Bold";
+	color: black;
 }
 
 .fade-in {

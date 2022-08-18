@@ -5,13 +5,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "t" tagdir="/WEB-INF/tags" %>
 
-<title>chit-chat</title>
+<title>Chit Chat</title>
 <t:base> 
 <div class="d-flex vh-100 align-items-center justify-content-center flex-column fade-in">
-	<h3 class="display-3 landing-title">Chit Chat</h3>
-	<p class="lead landing-text">the messaging app for you</p>
+	<h3 class="display-3 styled-heading">Chit Chat</h3>
+	<p class="lead styled-text">the messaging app for you</p>
 	
-	<div class="d-flex">
+
+	<div class="d-flex gap-2">
+		<a class="btn btn-light btn-lg mt-2" href="/accounts/register"><strong>Sign Up</strong> <i class="bi-arrow-right-short"></i></a>
 		<a class="btn btn-light btn-lg mt-2" href="/guests/new"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
 	</div>
 </div>   

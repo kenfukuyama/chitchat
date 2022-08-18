@@ -18,46 +18,44 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table (name="users")
+@Table(name="users")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotEmpty(message="Please enter a username")
-	@Size(min=3, max=30, message="Username must be between 3 and 30 characters")
-	private String username;
-	
-	@NotEmpty(message="Please enter an email")
-	@Email(message="Email invalid")
-	private String email;
-	
-	@NotEmpty(message="Please enter password")
-	@Size(min=8, max=255, message="Password must be at least 8 characters")
-	private String password;
-	
-	@Transient 
-	@NotEmpty(message="Please confirm password")
-	private String confirm;
-	
-	 @Column(updatable=false)
-	 @DateTimeFormat(pattern="yyyy-MM-dd")
-	 private Date createdAt;
-	 @DateTimeFormat(pattern="yyyy-MM-dd")
-	 private Date updatedAt;
-	 
-	 public User() {}
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Size(min=3, max=30, message="Username must be between 3 and 30 characters")
+    private String username;
+    
+    @NotEmpty(message="Email is required!")
+    @Email(message="Please enter a valid email!")
+    private String email;
+    
+    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+    private String password;
+    
+    @Transient
+    private String confirm;
+    
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
+    
+    @PrePersist
+    protected void onCreate(){
+    	this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate(){
+    	this.updatedAt = new Date();
+    }
+    
+	public User() {}
 	    
-	 @PrePersist
-	 protected void onCreate(){
-	    this.createdAt = new Date();
-	 }
-	 
-	 @PreUpdate
-	 protected void onUpdate(){
-	     this.updatedAt = new Date();
-	 }
 
 	public Long getId() {
 		return id;
