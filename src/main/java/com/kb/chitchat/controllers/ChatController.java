@@ -34,11 +34,12 @@ public class ChatController {
         return chatMessage;
     }
 
-    @MessageMapping("/chat.sendMessageroom2")
-    @SendTo("/topic/room2")
-    public ChatMessage sendMessagePrivateRoom2(@Payload ChatMessage chatMessage) { 
-        return chatMessage;
-    }
+    // @MessageMapping("/chat.sendMessage{room2}")
+    // @SendTo("/topic/{room2}")
+    // public ChatMessage sendMessagePrivateRoom2(@Payload ChatMessage chatMessage) { 
+    //     return chatMessage;
+    // }
+
     
     // this route handles adding user
     @MessageMapping("/chat.addUser")

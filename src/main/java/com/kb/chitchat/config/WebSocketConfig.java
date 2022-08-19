@@ -16,7 +16,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     // configure the webSocketMessageBrokerStat;
 	// you might not able to have this b/c of circular imports
-    @Autowired
+//    @Autowired
 //    private WebSocketMessageBrokerStats webSocketMessageBrokerStats;
 
     @PostConstruct
@@ -28,12 +28,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     // we are implementing  WebSocketMessageBrokerConfigurer, the default methond
     @Override
     // Simple (or Streaming) Text Oriented Message Protocol (STOMP), formerly known as TTMP, is a simple text-based protocol, designed for working with message-oriented middleware (MOM).
-
     // we register a websocket endpoint that the clients will use to connect to our websocket server.
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // client can have access to /ws endpoint
         registry.addEndpoint("/ws").withSockJS();
-
 
         // WebSocketMessageBrokerStats stats = new WebSocketMessageBrokerStats();
         // // set loggin status to every 3000 milliseconds

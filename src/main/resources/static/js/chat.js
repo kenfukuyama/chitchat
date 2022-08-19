@@ -28,7 +28,7 @@ var colors = [
 $(document).ready(function () {
     // console.log("connectin!!!");
     // console.log(stompClient);
-    if (!stompClient) {connect()}
+    if (!stompClient) {connect();}
 });
 
 // ! event listeners
@@ -58,6 +58,7 @@ messageForm.addEventListener('submit', sendMessage, true)
 
 function connect() {
     username = document.querySelector('#userName').innerHTML;
+    console.log(username);
 
     if(username) {
         // change the approqaite html elements
@@ -72,8 +73,6 @@ function connect() {
         stompClient.connect({}, onConnected, onError);
     }
 }
-
-
 
 function onConnected() {
     // ! change here for the subscription channels
