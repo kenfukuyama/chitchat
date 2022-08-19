@@ -38,6 +38,10 @@ body {
 	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
 }
 
+.navbar{
+	--bs-navbar-toggler-padding-x: 0;
+}
+
 /**********************************************
 				Landing Page
 **********************************************/
@@ -167,31 +171,16 @@ button {
 	margin-top: 5%;
 }
 
-.chat-container {
-    width: 55%;
-}
-
 #chat-page ul {
     list-style-type: none;
     margin: 0;
    	overflow-y: scroll;
-    padding: 0 20px 0px 20px;
-    height: 50vh;
-}
-
-#chat-page #messageForm {
-    padding: 20px;
-}
-
-#chat-page ul li {
-    line-height: 1.5rem;
-    padding: 10px 20px;
-    margin: 0;
-    margin-bottom: 3px;
+    padding: 0 20px;
+    height: 65vh;
 }
 
 #chat-page ul li p {
-    margin: 0;
+    margin-bottom: 2px;
 }
 
 #chat-page .event-message {
@@ -217,17 +206,6 @@ button {
     font-weight: 300;
 }
 
-#messageForm .input-group input {
-    float: left;
-    width: calc(100% - 85px);
-}
-
-#messageForm .input-group button {
-    float: left;
-    width: 80px;
-    height: 38px;
-    margin-left: 5px;
-}
 
 .chat-header {
     text-align: center;
@@ -248,61 +226,128 @@ button {
     width: 100%;
 }
 
-
-@media screen and (max-width: 730px) {
-
-    .chat-container {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .chat-container {
-        height: calc(100% - 30px);
-    }
-
-    .username-page-container {
-        width: auto;
-        margin-left: 15px;
-        margin-right: 15px;
-        padding: 25px;
-    }
-
-    #chat-page ul {
-        height: calc(100% - 120px);
-    }
-
-    #messageForm .input-group button {
-        width: 65px;
-    }
-
-    #messageForm .input-group input {
-        width: calc(100% - 70px);
-    }
-
-    .chat-header {
-        padding: 10px;
-    }
-
-    .connecting {
-        top: 60px;
-    }
-
-    .chat-header h2 {
-        font-size: 1.1em;
-    }
-}
-
-
 /* online number */
 .online-number {
     color: green;
 }
 
-.right{
-    background-color:#ee706e;
-    /* float:right; */
+/* Sizing utility classes */
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+.w-sm-100 {
+width:100%!important;
+}
+.w-sm-75 {
+width:75%!important;
+}
+.w-sm-50 {
+width:50%!important;
+}
+.w-sm-25 {
+width:25%!important;
+}
+.h-sm-100 {
+height:100%!important;
+}
+.h-sm-75 {
+height:75%!important;
+}
+.h-sm-50 {
+height:50%!important;
+}
+.h-sm-25 {
+height:25%!important;
+}
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+.w-md-100 {
+width:100%!important;
+}
+.w-md-75 {
+width:75%!important;
+}
+.w-md-50 {
+width:50%!important;
+}
+.w-md-25 {
+width:25%!important;
+}
+.h-md-100 {
+height:100%!important;
+}
+.h-md-75 {
+height:75%!important;
+}
+.h-md-50 {
+height:50%!important;
+}
+.h-md-25 {
+height:25%!important;
+}
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+.w-lg-100 {
+width:100%!important;
+}
+.w-lg-75 {
+width:75%!important;
+}
+.w-lg-62 {
+width:62%!important;
+}
+.w-lg-50 {
+width:50%!important;
+}
+.w-lg-32 {
+width:32%!important;
+}
+.w-lg-25 {
+width:25%!important;
+}
+.h-lg-100 {
+height:100%!important;
+}
+.h-lg-75 {
+height:75%!important;
+}
+.h-lg-50 {
+height:50%!important;
+}
+.h-lg-25 {
+height:25%!important;
+}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+.w-xl-100 {
+width:100%!important;
+}
+.w-xl-75 {
+width:75%!important;
+}
+.w-xl-50 {
+width:50%!important;
+}
+.w-xl-25 {
+width:25%!important;
+}
+.h-xl-100 {
+height:100%!important;
+}
+.h-xl-75 {
+height:75%!important;
+}
+.h-xl-50 {
+height:50%!important;
+}
+.h-xl-25 {
+height:25%!important;
+}
 }
 

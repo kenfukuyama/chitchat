@@ -12,18 +12,18 @@
     </noscript>
     
     <!-- enter the user page -->
-    <div id="username-page" class="fade-in d-flex vh-100 align-items-center text-white">
+    <div id="username-page" class="container g-5 d-flex vh-100 justify-content-center mt-3 flex-column fade-in">
         <div class="container username-page-container text-center">
-            <h1 class="title">Let's Get Started!</h1>
-            <form action="/guests/new" method="post" id="usernameForm" name="usernameForm" class="d-flex justify-content-center align-items-center flex-column">
-                <div class="form-group w-25">
+            <h1 class="styled-text">Let's Get Started!</h1>
+            <form action="/guests/new" method="post" id="usernameForm" name="usernameForm" class="d-flex justify-content-center align-items-center flex-column ">
+                <div class="form-group w-75 w-md-50 w-lg-32">
                     <input type="text" id="userId" name="userId" placeholder="userid" autocomplete="off" class="form-control" />
                 </div>
-                <div class="form-group w-25">
+                <div class="form-group w-75 w-md-50 w-lg-32">
                     <input type="text" id="userName" name="userName" placeholder="User Name (Public)" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="username-submit mt-3">Start Chatting</button>
+                    <button type="submit" class="username-submit mt-3 styled-button">Start Chatting</button>
                 </div>
             </form>
         </div>
