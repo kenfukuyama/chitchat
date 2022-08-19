@@ -7,27 +7,27 @@
 
 <title>Sign Up • Chit Chat</title>
 <t:base>
-<div class="container d-flex vh-100 w-25 justify-content-center flex-column fade-in">
-	<h6 class="display-6 styled-heading">Join the Conversation</h6>
+<div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center mt-5 mt-sm-3 flex-column fade-in">
+	<h6 class="display-6 styled-heading">Join the Convo</h6>
 	<form:form action="/register" method="post" modelAttribute="newUser" class="styled-text">
 		<div class="mb-3">
 			<form:label for="username" path="username" class="form-label">Username:</form:label>
-			<form:errors path="username" class="text-danger" />
+			<small><form:errors path="username" class="text-danger"/></small>
 			<form:input type="text" class="form-control" path="username" />
 		</div>
 		<div class="mb-3">
 			<form:label for="email" path="email" class="form-label">Email:</form:label>
-			<form:errors path="email" class="text-danger" />
+			<small><form:errors path="email" class="text-danger" /></small>
 			<form:input type="text" class="form-control" path="email" />
 		</div>
 		<div class="mb-3">
 			<form:label for="password" path="password" class="form-label">Password:</form:label>
-			<form:errors path="password" class="text-danger" />
+			<small><form:errors path="password" class="text-danger" /></small>
 			<form:input type="password" class="form-control" path="password" />
 		</div>
 		<div class="mb-3">
 			<form:label for="confirm" path="confirm" class="form-label">Confirm:</form:label>
-			<form:errors path="confirm" class="text-danger" />
+			<small><form:errors path="confirm" class="text-danger" /></small>
 			<form:input type="password" class="form-control" path="confirm" />
 		</div>
 		<button type="submit" class="btn btn-light btn-lg mt-2 styled-button">Register</button>

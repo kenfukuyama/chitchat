@@ -12,8 +12,8 @@
         <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
 
-    <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center text-white">
-        <div class="chat-container ">
+    <div id="chat-page" class="fade-in d-flex align-items-start justify-content-center w-100 text-white">
+        <div class="chat-container w-100 w-sm-75 w-lg-62">
             <div class="chat-header">
                     <h2 id="room-name">- ${chatroomName} - </h2>
                     <p>Welcome <span id="userName">${userName}!</span> </p>
@@ -28,7 +28,7 @@
 
             </ul>
             <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
+                <div class="form-group mx-3">
                     <div class="input-group clearfix text-center">
                         <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
                         <button type="submit" class="primary">Send</button>

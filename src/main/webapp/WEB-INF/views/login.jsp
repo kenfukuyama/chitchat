@@ -5,20 +5,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "t" tagdir="/WEB-INF/tags" %>
 
-<title>The WatchList</title>
+<title>Sign In • Chit Chat</title>
 <t:base>
-<div class="container d-flex vh-100 w-25 justify-content-center flex-column fade-in">
+<div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center mt-3 flex-column fade-in">
 	<h6 class="display-6 styled-heading">Sign In</h6>
 
 	<form:form action="/login" method="post" modelAttribute="newLogin" class="styled-text">
 		<div class="mb-3">
 			<form:label for="email" path="email" class="form-label">Email:</form:label>
-			<form:errors path="email" class="text-danger" />
+			<small><form:errors path="email" class="text-danger" /></small>
 			<form:input type="text" path="email" class="form-control" />
 		</div>
 		<div class="mb-3">
 			<form:label for="password" path="password" class="form-label">Password:</form:label>
-			<form:errors path="password" class="text-danger" />
+			<small><form:errors path="password" class="text-danger" /></small>
 			<form:input type="password" path="password" class="form-control" />
 		</div>
 		<button type="submit" class="btn btn-light btn-lg mt-2 styled-button">Sign In</button>
