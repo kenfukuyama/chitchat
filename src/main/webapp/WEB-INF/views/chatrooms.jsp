@@ -16,7 +16,7 @@
             <h1 class="title">Select Your Room</h1>
             <p id="userName">Welcome, ${userName}!</p>
             <form action="/chatrooms/enter" method="post" chatroomNameForm" name="chatroomNameForm" class="d-flex justify-content-center align-items-center flex-column">
-                <div class="d-flex gap-3">
+                <!-- <div class="d-flex gap-3"> -->
                         <!-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="chatRoomName" id="room" value="room1" checked>
                             <label class="form-check-label" for="room1">Room 1</label>
@@ -25,12 +25,47 @@
                             <input class="form-check-input" type="radio" name="chatRoomName" id="room" value="room2">
                             <label class="form-check-label" for="room2">Room 2</label>
                         </div> -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="chatroomName">Chat Room</label>
                             <input type="text" class="form-control" id="chatroomName" name="chatroomName" placeholder="Enter Room Name">
-                        </div>
-                        
+                        </div> -->
+                <!-- </div> -->
+
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chatroomName" id="room" value="basketball" checked>
+                                <label class="form-check-label" for="basketball">Basketball</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chatroomName" id="room" value="music">
+                                <label class="form-check-label" for="music">Music</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chatroomName" id="room" value="games">
+                                <label class="form-check-label" for="games">Games</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chatroomName" id="room" value="politics">
+                                <label class="form-check-label" for="politics">Politics</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chatroomName" id="room" value="cars">
+                                <label class="form-check-label" for="cars">Cars</label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="form-group">
                     <button type="submit" class="username-submit mt-3">Enter</button>
                 </div>

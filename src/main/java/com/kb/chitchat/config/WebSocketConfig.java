@@ -2,8 +2,6 @@ package com.kb.chitchat.config;
 
 
 import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

@@ -80,10 +80,11 @@ function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
     
     // * subsribe to differnt channels
-    // var roomSelection = document.querySelector('input[name="room"]:checked').value;
-    // if (roomSelection) {
-    //     stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
-    // }
+    // var roomSelection = document.querySelector('input[name="chatroomName"]:checked').value;
+    var roomSelection = document.querySelector('#chatroomName').innerHTML;
+    if (roomSelection) {
+        stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
+    }
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
@@ -111,22 +112,23 @@ function sendMessage(event) {
     if(messageContent && stompClient) {
         // ! change this for send message channel
         // public chat
-        var chatMessage = {
-            sender: username,
-            content: messageInput.value,
-            type: 'CHAT'
-        };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-
-        // room send message
-        // var roomSelection = document.querySelector('input[name="room"]:checked').value;
-        // var chatMessageRoom = {
+        // var chatMessage = {
         //     sender: username,
         //     content: messageInput.value,
         //     type: 'CHAT'
         // };
+        // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
-        // stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
+        // room send message
+        // var roomSelection = document.querySelector('input[name="room"]:checked').value;
+        var roomSelection = document.querySelector('#chatroomName').innerHTML;
+        var chatMessageRoom = {
+            sender: username,
+            content: messageInput.value,
+            type: 'CHAT'
+        };
+
+        stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
 
         
         messageInput.value = ''; // empty the inputn value
