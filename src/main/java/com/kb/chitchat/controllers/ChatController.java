@@ -1,6 +1,6 @@
 package com.kb.chitchat.controllers;
 
-
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -21,25 +21,14 @@ public class ChatController {
         return chatMessage;
     }
 
-    // get all the messages to private "/topic/private"
-    @MessageMapping("/chat.sendMessagePrivate")
-    @SendTo("/topic/private")
-    public ChatMessage sendMessagePrivate(@Payload ChatMessage chatMessage) { 
+    // routes for rooms 
+    @MessageMapping("/chat.sendMessage{roomSelection}")
+    @SendTo("/topic/{roomSelection}")
+    public ChatMessage sendMessageRoom(@Payload ChatMessage chatMessage, @DestinationVariable String roomSelection) { 
         return chatMessage;
     }
 
-    @MessageMapping("/chat.sendMessageroom1")
-    @SendTo("/topic/room1")
-    public ChatMessage sendMessagePrivateRoom1(@Payload ChatMessage chatMessage) { 
-        return chatMessage;
-    }
 
-    @MessageMapping("/chat.sendMessageroom2")
-    @SendTo("/topic/room2")
-    public ChatMessage sendMessagePrivateRoom2(@Payload ChatMessage chatMessage) { 
-        return chatMessage;
-    }
-    
     // this route handles adding user
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
@@ -49,5 +38,6 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
+    
 
 }

@@ -13,10 +13,10 @@
     </noscript>
 
     <div id="chat-page" class="fade-in d-flex align-items-start justify-content-center w-100 text-white">
-        <div class="chat-container w-100 w-sm-75 w-lg-62">
+        <div class="chat-contxainer w-100 w-sm-75 w-lg-62">
             <div class="chat-header">
-                    <h2 id="room-name">- ${chatroomName} - </h2>
-                    <p>Welcome <span id="userName">${userName}!</span> </p>
+                    <h2>- <span id="chatroomName">${chatroomName}</span> - </h2>
+                    <p>Welcome <span id="userName">${userName}</span>!</p>
                 <div class="online-number">
                     <span id="number-connected">0</span> Online
                 </div>

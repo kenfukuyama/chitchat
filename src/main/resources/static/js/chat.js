@@ -28,7 +28,7 @@ var colors = [
 $(document).ready(function () {
     // console.log("connectin!!!");
     // console.log(stompClient);
-    if (!stompClient) {connect()}
+    if (!stompClient) {connect();}
 });
 
 // ! event listeners
@@ -58,6 +58,7 @@ messageForm.addEventListener('submit', sendMessage, true)
 
 function connect() {
     username = document.querySelector('#userName').innerHTML;
+    console.log(username);
 
     if(username) {
         // change the approqaite html elements
@@ -73,18 +74,17 @@ function connect() {
     }
 }
 
-
-
 function onConnected() {
     // ! change here for the subscription channels
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
     
     // * subsribe to differnt channels
-    // var roomSelection = document.querySelector('input[name="room"]:checked').value;
-    // if (roomSelection) {
-    //     stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
-    // }
+    // var roomSelection = document.querySelector('input[name="chatroomName"]:checked').value;
+    var roomSelection = document.querySelector('#chatroomName').innerHTML;
+    if (roomSelection) {
+        stompClient.subscribe(`/topic/${roomSelection}`, onMessageReceived);
+    }
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
@@ -113,22 +113,23 @@ function sendMessage(event) {
     if(messageContent && stompClient) {
         // ! change this for send message channel
         // public chat
-        var chatMessage = {
-            sender: username,
-            content: messageInput.value,
-            type: 'CHAT'
-        };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-
-        // room send message
-        // var roomSelection = document.querySelector('input[name="room"]:checked').value;
-        // var chatMessageRoom = {
+        // var chatMessage = {
         //     sender: username,
         //     content: messageInput.value,
         //     type: 'CHAT'
         // };
+        // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
-        // stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
+        // room send message
+        // var roomSelection = document.querySelector('input[name="room"]:checked').value;
+        var roomSelection = document.querySelector('#chatroomName').innerHTML;
+        var chatMessageRoom = {
+            sender: username,
+            content: messageInput.value,
+            type: 'CHAT'
+        };
+
+        stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
 
         
         messageInput.value = ''; // empty the inputn value

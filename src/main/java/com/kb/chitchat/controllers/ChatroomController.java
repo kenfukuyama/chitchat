@@ -33,6 +33,7 @@ public class ChatroomController {
         model.addAttribute("userName", (String)session.getAttribute("userName"));
         model.addAttribute("chatroomName",  (String)session.getAttribute("chatroomName"));
         System.out.println("entering:" + chatroomName);
+        System.out.println(model.getAttribute("userName"));
         return "views/chatroom.jsp";
     } 
 
