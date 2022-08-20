@@ -38,9 +38,17 @@ body {
 	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
 }
 
+/**********************************************
+				   Navbar
+**********************************************/
+
 .navbar{
 	--bs-navbar-toggler-padding-x: 0;
 }
+
+/**********************************************
+				 End Navbar
+**********************************************/
 
 /**********************************************
 				Landing Page
@@ -107,7 +115,7 @@ body {
 **********************************************/
 
 /**********************************************
-		        Chatrooms Page
+		        Chatroom Page
 **********************************************/
 
 .title {
@@ -164,6 +172,7 @@ button {
 .username-page-container {
     padding: 1% 2%;
     font-family: "Alliance1Regular";
+    overflow-y: scroll;
 }
 
 #chat-page {
@@ -230,6 +239,76 @@ button {
 .online-number {
     color: green;
 }
+
+/**********************************************
+		      End Chatroom Page
+**********************************************/
+
+/**********************************************
+		       Chatrooms Page
+**********************************************/
+
+.petsAnimals{background-image:url("https://s28151.pcdn.co/wp-content/uploads/sites/2/2022/03/Coyote-animal-sentience-research.jpg");}
+.healthNutrition{background-image:url("https://lancaster.unl.edu/styles/unl_hero_large/public/images/hero/iStock-615522818_0.jpg?itok=OaB1Ci-f")}
+.anime{background-image:url("https://play-lh.googleusercontent.com/nCVVCbeSI14qEvNnvvgkkbvfBJximn04qoPRw8GZjC7zeoKxOgEtjqsID_DDtNfkjyo")}
+.foodRecipes{background-image:url("https://www.tasteofhome.com/wp-content/uploads/2018/01/Turkey-Shepherd-s-Pie_EXPS_FT21_20678_F_0730_1.jpg?fit=700,700")}
+.videogames{background-image:url("https://image.api.playstation.com/vulcan/ap/rnd/202010/1512/8ThoZrE519SBuOMpYKFunYS0.png")}
+.horticulture{background-image:url("https://www.zimbabwesituation.com/wp-content/uploads/2022/03/Interior-view-commercial-horticulture-greenhouse.jpg")}
+.music{background-image:url("https://media.wired.com/photos/60301ad14b4db703b8c6db1c/16:9/w_2399,h_1349,c_limit/Gear-Music-Apps-Subscrips-1141254399.jpg")}
+.gayPride{background-image:url("https://www.foodbanknyc.org/wp-content/uploads/2018/06/pride1_sm.jpg")}
+.photography{background-image:url("https://dvyvvujm9h0uq.cloudfront.net/com/articles/1543483387-reinhart-julian-1145947-unsplash.jpg")}
+.sports{background-image:url("https://static01.nyt.com/images/2021/12/11/multimedia/11sp-sports-year-inyt3/11sp-sports-year-inyt3-superJumbo.jpg")}
+.comedy{background-image:url("https://static.independent.co.uk/2021/10/08/13/newFile-7.jpg?quality=75&width=1200&auto=webp")}
+.veterans{background-image:url("https://www.rider.edu/sites/default/files/2021-07/110719_veterans_057.JPG")}
+.crypto{background-image:url("https://paxful.com/university/static/bf70ef23f8db52c26a4ee0da4782e069/0f3a6/What-is-Ethereum.webp")}
+.history{background-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Parthenon_%2830276156187%29.jpg/1200px-Parthenon_%2830276156187%29.jpg")}
+.parenthood{background-image:url("https://media.npr.org/assets/img/2021/09/16/gettyimages-1306684625_wide-cc63f58d46e9e45f840a64299d7944d9cc4abf10-s1100-c50.jpg")}
+
+.category-selector{
+	margin-bottom: 50px;
+}
+
+.category-selector input{
+	margin: 0;
+	padding: 0;
+    appearance:none;
+    -moz-appearance:none;
+	-webkit-appearance:none;
+}
+
+.category-image{
+	cursor:pointer;
+	
+    background-size:cover;
+    background-repeat:no-repeat;
+    display:inline-block;
+    border-radius: 20px;
+    width:200px;height:200px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1) grayscale(1) opacity(.7);
+            filter: brightness(1) grayscale(1) opacity(.7);
+      
+}
+
+.category-selector input:active +.category-image{opacity: .9;}
+.category-selector input:checked +.category-image{
+    -webkit-filter: drop-shadow(5px 5px 5px #18bef9);
+       -moz-filter: drop-shadow(5px 5px 5px #18bef9);
+            filter: drop-shadow(3px 3px 3px #18bef9);
+}
+
+.category-image:hover{
+    transform: scale(1.05);
+    filter: brightness(1) grayscale(.1) opacity(.8);
+}
+
+.label-text:hover{
+	display: block;
+}
+
 
 /* Sizing utility classes */
 
