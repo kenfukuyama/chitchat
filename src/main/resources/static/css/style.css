@@ -173,7 +173,14 @@ button {
     padding: 1% 2%;
     font-family: "Alliance1Regular";
     overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
 }
+
+.username-page-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 
 #chat-page {
 	height: 80vh;    
@@ -278,7 +285,6 @@ button {
 
 .category-image{
 	cursor:pointer;
-	
     background-size:cover;
     background-repeat:no-repeat;
     display:inline-block;
