@@ -13,7 +13,7 @@
 
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
         <div class="container username-page-container text-center pt-5 pb-3 vh-100">
-            <h1 class="mb-5">Select your room</h1>
+            <h1 class="my-5">Select your room</h1>
             <form action="/chatrooms/enter" method="post" chatroomNameForm" name="chatroomNameForm" class="chatroomSelection">
                 <!-- <div class="d-flex gap-3"> -->
                         <!-- <div class="form-check">

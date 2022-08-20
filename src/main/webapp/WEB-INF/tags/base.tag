@@ -68,12 +68,12 @@
           <span class="navbar-toggler-icon"><i class="bi bi-list text-white h1 m-0"></i></span>
         </button>
 
-        <div class="collapse navbar-collapse ps-3" id="navmenu">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+        <div class="collapse navbar-collapse ps-3 pe-2" id="navmenu">
+          <ul class="navbar-nav ms-auto bg-sm-transparent">
+            <li class="nav-item ps-2">
               <a href="#learn" class="nav-link text-white">Chatrooms</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ps-2">
               <a href="/accounts/login" class="nav-link text-white">Log In</a>
             </li>
           </ul>

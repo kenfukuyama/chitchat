@@ -46,6 +46,19 @@ body {
 	--bs-navbar-toggler-padding-x: 0;
 }
 
+.navbar-nav{
+	background-color: #ffffff80;
+	border-radius: 10px;
+}
+
+.navbar-nav .nav-item{
+	border-radius: 10px;
+}
+
+.navbar-nav .nav-item:hover{
+	background-color: #2125297d;
+}
+
 /**********************************************
 				 End Navbar
 **********************************************/
@@ -344,6 +357,14 @@ height:50%!important;
 .h-sm-25 {
 height:25%!important;
 }
+
+.bg-sm-transparent{
+	background-color: transparent;
+}
+.navbar-nav .nav-item:hover{
+	background-color: transparent;
+}
+
 }
 
 /* Medium devices (tablets, 768px and up)*/
