@@ -88,6 +88,7 @@ function onConnected() {
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
+    	// ?????? What is first argument
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )

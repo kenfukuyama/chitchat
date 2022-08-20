@@ -14,16 +14,16 @@
     <!-- enter the user page -->
     <div id="username-page" class="container g-5 d-flex vh-100 justify-content-center mt-3 flex-column fade-in">
         <div class="container username-page-container text-center">
-            <h1 class="styled-text">Let's Get Started</h1>
+            <h1 class="styled-text text-white">Let's get started</h1>
             <form action="/guests/new" method="post" id="usernameForm" name="usernameForm" class="d-flex justify-content-center align-items-center flex-column ">
                 <div class="form-group w-75 w-md-50 w-lg-32">
-                    <input type="text" id="userId" name="userId" placeholder="userid" autocomplete="off" class="form-control" />
+                    <input type="text" id="userId" name="userId" placeholder="Username (user id)" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group w-75 w-md-50 w-lg-32">
-                    <input type="text" id="userName" name="userName" placeholder="User Name (Public)" autocomplete="off" class="form-control" />
+                    <input type="text" id="userName" name="userName" placeholder="Nickname (username - public)" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="username-submit mt-3 styled-button">Start Chatting</button>
+                    <button type="submit" class="username-submit mt-2 styled-button btn btn-light btn-lg">Next <i class="bi-arrow-right-short"></i></button>
                 </div>
             </form>
         </div>
