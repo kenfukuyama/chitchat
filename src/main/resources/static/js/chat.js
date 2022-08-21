@@ -144,8 +144,8 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
-        
-
+        //messageElement.style['list-style-type'] = message.sender[1];
+ 
         if (username == message.sender) {
 	
             // if it is the user
@@ -154,6 +154,8 @@ function onMessageReceived(payload) {
             messageElement.style['text-align'] = 'right';
             messageElement.style['padding-right'] = '15px';
             messageElement.style['animation'] = 'fadeSent .5s';
+            //messageElement.style['direction'] = 'rtl';
+            
             
             // username and text element
             var usernameElement = document.createElement('span');

@@ -33,7 +33,7 @@
 							<p>${channel.channelNickname}</p>
 
 							<c:choose>
-								<c:when test="${channel.channelNickname.equals(\"Health & Nutrition\")}">
+								<c:when test="${channel == publicChannels[0]}">
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
 								</c:when>
 								<c:otherwise>
