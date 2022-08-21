@@ -37,7 +37,7 @@ public class WebSocketEventListener {
         // WebSocketMessageBrokerStats stats = new WebSocketMessageBrokerStats();
 
         // TODO disable for deployment since it prints everytime user connects and disconnects
-        System.out.println(webSocketMessageBrokerStats.getWebSocketSessionStatsInfo());
+        System.out.println("        " + webSocketMessageBrokerStats.getWebSocketSessionStatsInfo());
     }
 
 
@@ -62,6 +62,6 @@ public class WebSocketEventListener {
             
 
         }
-        System.out.println(webSocketMessageBrokerStats.getWebSocketSessionStatsInfo());
+        System.out.println("        " + webSocketMessageBrokerStats.getWebSocketSessionStatsInfo());
     }
 }

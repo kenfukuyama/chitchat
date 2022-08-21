@@ -161,6 +161,7 @@ function onMessageReceived(payload) {
         else {
             
             messageElement.style['animation'] = 'fadeReceived .5s';
+            messageElement.style['background-color'] = 'green';
              // avator pic and first initial
             var avatarElement = document.createElement('i');
 
