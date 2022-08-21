@@ -12,8 +12,8 @@
     </noscript>
     
     <!-- enter the user page -->
-    <div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center mt-5 mt-sm-3 flex-column fade-in">
-	<h6 class="display-6 styled-heading">Let's Get Started</h6>
+    <div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center mt-3 flex-column fade-in">
+	<h6 class="display-6 styled-heading">Guest Sign In</h6>
 	<form:form action="/guests/new" method="post" modelAttribute="newUser" class="styled-text">
 		<form:input type="hidden" path="registered" value="0"></form:input>
 		<div class="mb-3">
