@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kb.chitchat.models.PublicChannel;
-import com.kb.chitchat.repositories.PublicChannelRepository;
 import com.kb.chitchat.services.PublicChannelService;
 import com.kb.chitchat.services.UserService;
 
@@ -60,6 +59,7 @@ public class ChatroomController {
         model.addAttribute("username", (String)session.getAttribute("username"));
         model.addAttribute("nickname", (String)session.getAttribute("nickname"));
         model.addAttribute("chatroomName", (String)session.getAttribute("chatroomName"));
+        model.addAttribute("channel", publicChannelService.findPublicChannelByName((String)session.getAttribute("chatroomName")));
         return "views/chatroom.jsp";
     } 
 
@@ -77,10 +77,11 @@ public class ChatroomController {
 
     // ! Post Methods
     @PostMapping("/chatrooms/enter") 
-    public String guestSignup(@RequestParam("chatroomName") String chatroomName, HttpSession session) {
+    public String chatroomEnter(@RequestParam("chatroomName") String chatroomName, HttpSession session) {
         session.setAttribute("chatroomName", chatroomName);
         return "redirect:/chatrooms/" + chatroomName;
     }
+
 
     @PostMapping("/channels/new")
     public String createChannel(@Valid @ModelAttribute("channel") PublicChannel channel,

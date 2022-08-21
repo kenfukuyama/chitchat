@@ -30,12 +30,14 @@ public class ChatController {
 
 
     // this route handles adding user
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
+    @MessageMapping("/chat.addUser{roomSelection}")
+    @SendTo("/topic/{roomSelection}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
-                               SimpMessageHeaderAccessor headerAccessor) {
+                               SimpMessageHeaderAccessor headerAccessor,
+                               @DestinationVariable String roomSelection) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("roomSelection", roomSelection);
         return chatMessage;
     }
     

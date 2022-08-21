@@ -47,6 +47,7 @@ public class WebSocketEventListener {
         // headerAccessor finds metadata
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String username = (String) headerAccessor.getSessionAttributes().get("username");
+        String roomSelection = (String) headerAccessor.getSessionAttributes().get("roomSelection");
 
         if(username != null) {
             logger.info("User Disconnected : " + username);
@@ -58,7 +59,8 @@ public class WebSocketEventListener {
 
             // board cast to everyone
             // this is similar to            @SendTo("/topic/public"), return chatMessage
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            // System.out.println(session.getAttribute("chatroomName"));
+            messagingTemplate.convertAndSend("/topic/" + roomSelection, chatMessage);
             
 
         }

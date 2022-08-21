@@ -148,17 +148,16 @@ a {
 
 .event-message {
 	color: grey;
-	list-style-type: none;
 }
 
 .chat-message {
 	padding: 5px;
 	margin-bottom: 15px;
 	border-radius: 15px;
-	list-style-type: none;
 }
 
 #chat-page ul {
+	list-style-type: none;
     margin: 0;
    	overflow-y: scroll;
     padding: 0 20px;
