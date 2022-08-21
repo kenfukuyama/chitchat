@@ -144,10 +144,12 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
+        
 
         if (username == message.sender) {
+	
             // if it is the user
-            messageElement.style['background-color'] = '#435f7a';
+            messageElement.style['background-color'] = '#2f3134';
             messageElement.style['color'] = 'white';
             messageElement.style['text-align'] = 'right';
             messageElement.style['padding-right'] = '15px';
@@ -159,8 +161,8 @@ function onMessageReceived(payload) {
 
         }
         else {
-            messageElement.style['background-color'] = 'white';
-            messageElement.style['color'] = 'black';
+            messageElement.style['background-color'] = '#435f7a';
+            messageElement.style['color'] = 'white';
             messageElement.style['padding-left'] = '15px';
             messageElement.style['animation'] = 'fadeReceived .5s';
              // avator pic and first initial
