@@ -125,7 +125,6 @@ function onMessageReceived(payload) {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined';
 
-
         // change the number of number of connections.
         // TODO we want to something here and update the online numbers, but this is currently stateless
         const span = document.querySelector('#number-connected');
@@ -145,12 +144,15 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
+        
 
         if (username == message.sender) {
+	
             // if it is the user
-            messageElement.style['background-color'] = '#435f7a';
+            messageElement.style['background-color'] = '#2f3134';
             messageElement.style['color'] = 'white';
             messageElement.style['text-align'] = 'right';
+            messageElement.style['padding-right'] = '15px';
             messageElement.style['animation'] = 'fadeSent .5s';
             
             // username and text element
@@ -159,17 +161,18 @@ function onMessageReceived(payload) {
 
         }
         else {
-            
+            messageElement.style['background-color'] = '#435f7a';
+            messageElement.style['color'] = 'white';
+            messageElement.style['padding-left'] = '15px';
             messageElement.style['animation'] = 'fadeReceived .5s';
-            messageElement.style['background-color'] = 'green';
              // avator pic and first initial
-            var avatarElement = document.createElement('i');
+            //var avatarElement = document.createElement('i');
 
-            var avatarText = document.createTextNode(message.sender[0]);
-            avatarElement.appendChild(avatarText);
-            avatarElement.style['background-color'] = getAvatarColor(message.sender);
+            //var avatarText = document.createTextNode(message.sender[1]);
+            //avatarElement.appendChild(avatarText);
+            //avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-            messageElement.appendChild(avatarElement);
+            //messageElement.appendChild(avatarElement);
 
             var usernameElement = document.createElement('span');
             var usernameText = document.createTextNode(message.sender);
@@ -181,10 +184,19 @@ function onMessageReceived(payload) {
 
     // create and element and also seeting the textNode
     var textElement = document.createElement('p');
+    textElement.style['margin-bottom']='0';
     var messageText = document.createTextNode(message.content);
+    
+    
+    var textElement2 = document.createElement('p');
+    var date = document.createTextNode(formatAMPM());
+    textElement2.style['color']='orange';
+    
     textElement.appendChild(messageText);
+    textElement2.appendChild(date);
 
     messageElement.appendChild(textElement);
+    messageElement.appendChild(textElement2);
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
@@ -201,6 +213,23 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
+function getDate(){
+	const pad = (n, s=2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+	const d = new Date();
+	
+	return `${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
+}
 
-
+function formatAMPM() {
+	const date = new Date();
+  	var hours = date.getHours();
+  	var minutes = date.getMinutes();
+  	var seconds = date.getSeconds();
+  	var ampm = hours >= 12 ? 'PM' : 'AM';
+  	hours = hours % 12;
+  	hours = hours ? hours : 12; // the hour '0' should be '12'
+  	minutes = minutes < 10 ? '0'+minutes : minutes;
+  	var strTime = hours + ':' + minutes + ' ' + ampm;
+  	return strTime;
+}
 

@@ -25,7 +25,7 @@ body {
 
 @font-face {
 	font-family: "Alliance1Bold";
-	src: url(/assets/fonts/AllianceNo2-Bold.ttf);
+	src: url(/assets/fonts/AllianceNo1-Bold.ttf);
 }
 
 @font-face {
@@ -151,7 +151,9 @@ a {
 }
 
 .chat-message {
-	background-color: white;
+	padding: 5px;
+	margin-bottom: 15px;
+	border-radius: 15px;
 }
 
 #chat-page ul {
@@ -161,13 +163,14 @@ a {
     padding: 0 20px;
     height: 65vh;
 }
-
+	
 #chat-page .chat-message span{
 	font-family: "Alliance1Bold";
 }
 
 #chat-page .chat-message p {
     font-weight: 300;
+    margin-bottom: 0;
 }
 
 /**********************************************

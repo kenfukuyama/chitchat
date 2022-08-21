@@ -31,10 +31,19 @@
 					<c:forEach var="channel" items="${publicChannels}">
 						<div class="col-sm-6 col-md-4 col-lg-3 category-selector">
 							<p>${channel.channelNickname}</p>
-							<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
-							<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>                       
+
+							<c:choose>
+								<c:when test="${channel.channelNickname.equals(\"Health & Nutrition\")}">
+									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
+								</c:when>
+								<c:otherwise>
+									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}">
+								</c:otherwise>
+							</c:choose>
+							<label class="category-image ${channel.channelName}" for="${channel.channelName}"></label>                                          
 						</div>
 					</c:forEach>
+				</div>
 					
                 <div class="form-group fixed-bottom mb-3">
                     <button type="submit" class="username-submit styled-button btn btn-light btn-lg w-md-21 w-lg-16 w-xl-14 w-xxl-12">Let's Chat <i class="bi-arrow-right-short"></i></button>
