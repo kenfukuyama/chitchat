@@ -1,12 +1,15 @@
 package com.kb.chitchat.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -58,6 +61,12 @@ public class User {
     protected void onUpdate(){
     	this.updatedAt = new Date();
     }
+
+	// relationships
+	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
+    private List<PublicChannel> createdChannels;
+
+
     
 	public User() {}
 	    
@@ -132,5 +141,13 @@ public class User {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public List<PublicChannel> getCreatedChannels() {
+		return this.createdChannels;
+	}
+
+	public void setCreatedChannels(List<PublicChannel> createdChannels) {
+		this.createdChannels = createdChannels;
 	}
 }
