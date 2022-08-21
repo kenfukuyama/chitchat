@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -20,56 +23,73 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Size(min=3, max=30, message="Must be 3 to 30 characters")
-    private String username;
 
-	@Size(min=2, max=30, message="Must be 2 to 30 characters")
-    private String nickname;
-    
-    // @NotEmpty(message="Email is required")
-    // @Email(message="Please enter a valid email")
-    private String email;
-    
-    // @Size(min=8, max=128, message="Must be 8 to 128 characters")
-    private String password;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Size(min = 3, max = 30, message = "Must be 3 to 30 characters")
+	private String username;
+
+	@Size(min = 2, max = 30, message = "Must be 2 to 30 characters")
+	private String nickname;
+
+	// @NotEmpty(message="Email is required")
+	// @Email(message="Please enter a valid email")
+	private String email;
+
+	// @Size(min=8, max=128, message="Must be 8 to 128 characters")
+	private String password;
 
 	@NotNull
-	private int registered;
-    
-    @Transient
-    private String confirm;
-    
-    @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
-    
-    @PrePersist
-    protected void onCreate(){
-    	this.createdAt = new Date();
-    }
-    
-    @PreUpdate
-    protected void onUpdate(){
-    	this.updatedAt = new Date();
-    }
+	private Integer registered;
 
-	// relationships
-	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
-    private List<PublicChannel> createdChannels;
+	@Transient
+	private String confirm;
 
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
 
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
+
+	// ! relationships
+	// channel created
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private List<PublicChannel> createdChannels;
+
+	// friendships
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "friendships", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    private List<User> friendingUsers;
     
-	public User() {}
-	    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "friendships", 
+        joinColumns = @JoinColumn(name = "friend_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> friendedUsers;
+
+
+	public User() {
+	}
 
 	public Long getId() {
 		return id;
@@ -119,11 +139,12 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public int getRegistered() {
+
+	public Integer getRegistered() {
 		return this.registered;
 	}
 
-	public void setRegistered(int registered) {
+	public void setRegistered(Integer registered) {
 		this.registered = registered;
 	}
 
@@ -150,4 +171,22 @@ public class User {
 	public void setCreatedChannels(List<PublicChannel> createdChannels) {
 		this.createdChannels = createdChannels;
 	}
+
+
+	public List<User> getFriendingUsers() {
+		return this.friendingUsers;
+	}
+
+	public void setFriendingUsers(List<User> friendingUsers) {
+		this.friendingUsers = friendingUsers;
+	}
+
+	public List<User> getFriendedUsers() {
+		return this.friendedUsers;
+	}
+
+	public void setFriendedUsers(List<User> friendedUsers) {
+		this.friendedUsers = friendedUsers;
+	}
+
 }

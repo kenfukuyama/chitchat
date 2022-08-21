@@ -19,7 +19,18 @@
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
     
     		<div class="d-flex justify-content-center align-items-end gap-2 mb-2">
-        		<h2 id="chatroomName" class="text-center m-0">${chatroomName}</h2> 
+				<c:choose>
+					<c:when test="${channel != null}">
+						<h2 id="chatroomNickname" class="text-center m-0">${channel.channelNickname}</h2> 
+						<span id="chatroomName" class="hidden">${channel.channelName}</span> 
+					</c:when>
+					<c:otherwise>
+						<!-- TODO: change it so that it shows the other person's nickname and username -->
+						<h2 id="chatroomName" class="text-center m-0">${chatroomName}</h2> 
+					</c:otherwise>
+
+				</c:choose>
+        		
         		<p class="text-center text-success m-0"><span id="number-connected">0</span> Online</p>
         	</div>
             

@@ -16,6 +16,12 @@
             <h1 class="my-5">Select your room</h1>
 			<h2>Welcome ${id}, ${username}, ${nickname}</h2>
 
+            <div class="input-group my-3">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
+
             <c:choose>
                 <c:when test="${user.registered == 1}">
                     <div class="d-flex justify-content-end align-items-center gap-3 mb-3">
@@ -34,13 +40,13 @@
 
 							<c:choose>
 								<c:when test="${channel.channelNickname.equals(\"Health & Nutrition\")}">
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
+									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}" checked="checked">
 								</c:when>
 								<c:otherwise>
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}">
+									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
 								</c:otherwise>
 							</c:choose>
-							<label class="category-image ${channel.channelName}" for="${channel.channelName}"></label>                                          
+							<label class="category-image bg-primary ${channel.channelName}" for="${channel.channelName}"></label>                                          
 						</div>
 					</c:forEach>
 				</div>

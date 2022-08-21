@@ -1,5 +1,7 @@
 package com.kb.chitchat.services;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -74,5 +76,63 @@ public class UserService {
 		String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 		return Pattern.compile(emailRegex).matcher(email).matches();
 	}
+
+	// CRUD
+	// read all
+	public List<User> allUsers(){ 
+		return userRepository.findAll();
+	}
+
+	// read all registered users
+	public List<User> allRegisteredUsers(){ 
+		return userRepository.findByRegistered(1);
+	}
+
+	
+	
+	// Create and Update
+	public User saveUser(User user) {
+		return userRepository.save(user);
+	}
+	
+	// delete
+	public void deleteUser(User user) {
+		userRepository.delete(user);
+	}
+	
+	// read one
+	public User findUser(Long id) {
+		Optional<User> optionalUser = userRepository.findById(id);
+		
+		if (optionalUser.isPresent()) { return optionalUser.get(); } 
+		else { return null;}
+	}
+
+
+	// // many to many relationship service
+	// public User addConnect(Long loggedInUserId, Long userId) {
+	// 	// retrieve an instance of a user using another method in the service.
+	// 	User thisUser = findUser(loggedInUserId);
+	// 	User OtherUser = findUser(userId);
+	// 	// add the user to this user's list of users
+	// 	thisUser.getFriendedUsers().add(OtherUser);
+
+	// 	// Save thisUser, since you made changes to its user list.
+	// 	return userRepository.save(thisUser);
+
+	// }
+
+	// public User removeConnect(Long userId, Long userId) {
+	// 	// retrieve an instance of a user using another method in the service.
+	// 	User thisUser = findUser(userId);
+	// 	User thisUser = userService.findUser(userId);
+	// 	// add the user to this user's list of users
+	// 	thisUser.getUpvotedUsers().remove(thisUser);
+
+	// 	// Save thisUser, since you made changes to its user list.
+	// 	// TODO: don't forget this!!
+	// 	return userRepo.save(thisUser);
+
+	// }
 }
 
