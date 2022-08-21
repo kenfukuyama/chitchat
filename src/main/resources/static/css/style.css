@@ -8,11 +8,6 @@
     box-sizing: border-box;
 }
 
-html,body {
-    height: 100%;
-    overflow: hidden;
-}
-
 body {
 	background: rgb(69,59,89);
     background: linear-gradient(0deg, rgba(69,59,89,1) 4%, rgba(38,49,66,1) 13%, rgba(0,0,0,1) 39%);
@@ -131,73 +126,32 @@ body {
 		        Chatroom Page
 **********************************************/
 
-.title {
-	font-family: "Alliance1Light";
-}
-
-.clearfix:after {
-    display: block;
-    content: "";
-    clear: both;
-}
-
 .hidden {
     display: none;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-input {
-    padding-left: 10px;
-    outline: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 1.7em;
 }
 
 a {
     color: #128ff2;
 }
 
-button {
-    box-shadow: none;
-    border: 1px solid transparent;
-    font-size: 14px;
-    outline: none;
-    line-height: 100%;
-    white-space: nowrap;
-    vertical-align: middle;
-    padding: 0.6rem 1rem;
-    border-radius: 2px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    min-height: 38px;
-}
-
 .username-page-container {
     padding: 1% 2%;
     font-family: "Alliance1Regular";
     overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
     -ms-overflow-style: none; 
 }
 
 .username-page-container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+    display: none;
 }
 
+.event-message {
+	color: grey;
+}
 
-#chat-page {
-	height: 80vh;    
-	margin-top: 5%;
+.chat-message {
+	background-color: white;
 }
 
 #chat-page ul {
@@ -208,56 +162,12 @@ button {
     height: 65vh;
 }
 
-#chat-page ul li p {
-    margin-bottom: 2px;
-}
-
-#chat-page .event-message {
-    width: 100%;
-    text-align: center;
-    clear: both;
-}
-
-#chat-page .event-message p {
-    color: #777;
-    font-size: 14px;
-    word-wrap: break-word;
-}
-
-
-#chat-page .chat-message span {
-    color: black;
-    font-weight: 600;
+#chat-page .chat-message span{
+	font-family: "Alliance1Bold";
 }
 
 #chat-page .chat-message p {
-    color: black;
     font-weight: 300;
-}
-
-
-.chat-header {
-    text-align: center;
-    padding: 15px;
-}
-
-.chat-header h2 {
-    margin: 0;
-    font-weight: 500;
-}
-
-.connecting {
-    padding-top: 5px;
-    text-align: center;
-    color: #777;
-    position: absolute;
-    top: 65px;
-    width: 100%;
-}
-
-/* online number */
-.online-number {
-    color: green;
 }
 
 /**********************************************
@@ -303,24 +213,29 @@ button {
     display:inline-block;
     border-radius: 20px;
     width:200px;height:200px;
+    
     -webkit-transition: all 100ms ease-in;
-       -moz-transition: all 100ms ease-in;
-            transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+    
     -webkit-filter: brightness(1) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1) grayscale(1) opacity(.7);
-            filter: brightness(1) grayscale(1) opacity(.7);
+    -moz-filter: brightness(1) grayscale(1) opacity(.7);
+    filter: brightness(1) grayscale(1) opacity(.7);
       
 }
 
 .category-selector input:active +.category-image{opacity: .9;}
 .category-selector input:checked +.category-image{
     -webkit-filter: drop-shadow(5px 5px 5px #18bef9);
-       -moz-filter: drop-shadow(5px 5px 5px #18bef9);
-            filter: drop-shadow(3px 3px 3px #18bef9);
+    -moz-filter: drop-shadow(5px 5px 5px #18bef9);
+    filter: drop-shadow(3px 3px 3px #18bef9);
 }
 
 .category-image:hover{
     transform: scale(1.05);
+    
+    -webkit-filter: brightness(1) grayscale(.1) opacity(.8);
+    -moz-filter: brightness(1) grayscale(.1) opacity(.8);
     filter: brightness(1) grayscale(.1) opacity(.8);
 }
 
@@ -328,132 +243,174 @@ button {
 	display: block;
 }
 
+/**********************************************
+		     End Chatrooms Page
+**********************************************/
 
-/* Sizing utility classes */
+/**********************************************
+		   Sizing Utility Classes
+**********************************************/
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
-.w-sm-100 {
-width:100%!important;
-}
-.w-sm-75 {
-width:75%!important;
-}
-.w-sm-50 {
-width:50%!important;
-}
-.w-sm-25 {
-width:25%!important;
-}
-.h-sm-100 {
-height:100%!important;
-}
-.h-sm-75 {
-height:75%!important;
-}
-.h-sm-50 {
-height:50%!important;
-}
-.h-sm-25 {
-height:25%!important;
-}
-
-.bg-sm-transparent{
-	background-color: transparent;
-}
-.navbar-nav .nav-item:hover{
-	background-color: transparent;
-}
-
+	.w-sm-100 {
+		width:100%!important;
+	}
+	.w-sm-75 {
+		width:75%!important;
+	}
+	.w-sm-50 {
+		width:50%!important;
+	}
+	.w-sm-25 {
+		width:25%!important;
+	}
+	.h-sm-100 {
+		height:100%!important;
+	}
+	.h-sm-75 {
+		height:75%!important;
+	}
+	.h-sm-50 {
+		height:50%!important;
+	}
+	.h-sm-25 {
+		height:25%!important;
+	}
+	
+	.bg-sm-transparent{
+		background-color: transparent;
+	}
+	.navbar-nav .nav-item:hover{
+		background-color: transparent;
+	}
 }
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
-.w-md-100 {
-width:100%!important;
-}
-.w-md-75 {
-width:75%!important;
-}
-.w-md-50 {
-width:50%!important;
-}
-.w-md-25 {
-width:25%!important;
-}
-.h-md-100 {
-height:100%!important;
-}
-.h-md-75 {
-height:75%!important;
-}
-.h-md-50 {
-height:50%!important;
-}
-.h-md-25 {
-height:25%!important;
-}
+	.w-md-100 {
+		width:100%!important;
+	}
+	.w-md-75 {
+		width:75%!important;
+	}
+	.w-md-50 {
+		width:50%!important;
+	}
+	.w-md-25 {
+		width:25%!important;
+	}
+	.w-md-21 {
+		width:21%!important;
+	}
+	.h-md-100 {
+		height:100%!important;
+	}
+	.h-md-75 {
+		height:75%!important;
+	}
+	.h-md-50 {
+		height:50%!important;
+	}
+	.h-md-25 {
+		height:25%!important;
+	}
 }
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
-.w-lg-100 {
-width:100%!important;
-}
-.w-lg-75 {
-width:75%!important;
-}
-.w-lg-62 {
-width:62%!important;
-}
-.w-lg-50 {
-width:50%!important;
-}
-.w-lg-32 {
-width:32%!important;
-}
-.w-lg-25 {
-width:25%!important;
-}
-.h-lg-100 {
-height:100%!important;
-}
-.h-lg-75 {
-height:75%!important;
-}
-.h-lg-50 {
-height:50%!important;
-}
-.h-lg-25 {
-height:25%!important;
-}
+	.w-lg-100 {
+		width:100%!important;
+	}
+	.w-lg-75 {
+		width:75%!important;
+	}
+	.w-lg-62 {
+		width:62%!important;
+	}
+	.w-lg-50 {
+		width:50%!important;
+	}
+	.w-lg-32 {
+		width:32%!important;
+	}
+	.w-lg-25 {
+		width:25%!important;
+	}
+	.w-lg-16 {
+		width:16%!important;
+	}
+	.h-lg-100 {
+		height:100%!important;
+	}
+	.h-lg-75 {
+		height:75%!important;
+	}
+	.h-lg-50 {
+		height:50%!important;
+	}
+	.h-lg-25 {
+		height:25%!important;
+	}
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-.w-xl-100 {
-width:100%!important;
-}
-.w-xl-75 {
-width:75%!important;
-}
-.w-xl-50 {
-width:50%!important;
-}
-.w-xl-25 {
-width:25%!important;
-}
-.h-xl-100 {
-height:100%!important;
-}
-.h-xl-75 {
-height:75%!important;
-}
-.h-xl-50 {
-height:50%!important;
-}
-.h-xl-25 {
-height:25%!important;
-}
+	.w-xl-100 {
+		width:100%!important;
+	}
+	.w-xl-75 {
+		width:75%!important;
+	}
+	.w-xl-50 {
+		width:50%!important;
+	}
+	.w-xl-25 {
+		width:25%!important;
+	}
+	.w-xl-14 {
+		width:14%!important;
+	}
+	.h-xl-100 {
+		height:100%!important;
+	}
+	.h-xl-75 {
+		height:75%!important;
+	}
+	.h-xl-50 {
+		height:50%!important;
+	}
+	.h-xl-25 {
+		height:25%!important;
+	}
 }
 
+@media (min-width: 1400px) {
+	.w-xxl-100 {
+		width:100%!important;
+	}
+	.w-xxl-75 {
+		width:75%!important;
+	}
+	.w-xxl-50 {
+		width:50%!important;
+	}
+	.w-xxl-25 {
+		width:25%!important;
+	}
+	.w-xxl-12 {
+		width:12%!important;
+	}
+	.h-xxl-100 {
+		height:100%!important;
+	}
+	.h-xxl-75 {
+		height:75%!important;
+	}
+	.h-xxl-50 {
+		height:50%!important;
+	}
+	.h-xxl-25 {
+		height:25%!important;
+	}
+}
