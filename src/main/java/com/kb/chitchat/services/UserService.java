@@ -1,5 +1,7 @@
 package com.kb.chitchat.services;
 
+import java.util.regex.Pattern;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,17 @@ public class UserService {
 	
 	public User register(User newUser, BindingResult result) {
 		
+		if(userRepository.findByUsername(newUser.getUsername()) != null)
+			result.rejectValue("username", "Exists", "Username is taken, please try again");
+		if (!isValidEmail(newUser.getEmail())) 
+			result.rejectValue("email", "Email is not valid", "Email is not valid");
 		if(userRepository.findByEmailIs(newUser.getEmail())!=null) 
 			result.rejectValue("email", "Exists", "Email belongs to an account");
+		if(newUser.getPassword().length() < 8)
+			// TODO check for stronger password
+			result.rejectValue("password", "Weak", "Password needs to be at least 8 characters");
 		if(!(newUser.getPassword().equals(newUser.getConfirm()))) 
-			result.rejectValue("confirm", "Matches", "Confirm does not match");
+			result.rejectValue("confirm", "Matches", "Confirm Password does not match");
 			
 		if (result.hasErrors())
 			return null;
@@ -30,6 +39,17 @@ public class UserService {
 		return userRepository.save(newUser);
 	}
 	
+	public User registerGuest(User newUser, BindingResult result) {
+		if(userRepository.findByUsername(newUser.getUsername()) != null)
+			result.rejectValue("username", "Exists", "Username is taken, please try again");
+			
+		if (result.hasErrors())
+			return null;
+		
+		return userRepository.save(newUser);
+
+
+	}
 	public User login(LoginUser newLoginObject, BindingResult result) {
 
 		if(userRepository.findByEmailIs(newLoginObject.getEmail())==null) {
@@ -49,5 +69,10 @@ public class UserService {
 	public User findUserById(Long id) {
 		return userRepository.findByIdIs(id);
     }
+
+	public boolean isValidEmail(String email) {
+		String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+		return Pattern.compile(emailRegex).matcher(email).matches();
+	}
 }
 

@@ -11,8 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,13 +26,19 @@ public class User {
     
     @Size(min=3, max=30, message="Must be 3 to 30 characters")
     private String username;
+
+	@Size(min=2, max=30, message="Must be 2 to 30 characters")
+    private String nickname;
     
-    @NotEmpty(message="Email is required")
-    @Email(message="Please enter a valid email")
+    // @NotEmpty(message="Email is required")
+    // @Email(message="Please enter a valid email")
     private String email;
     
-    @Size(min=8, max=128, message="Must be 8 to 128 characters")
+    // @Size(min=8, max=128, message="Must be 8 to 128 characters")
     private String password;
+
+	@NotNull
+	private int registered;
     
     @Transient
     private String confirm;
@@ -73,6 +78,14 @@ public class User {
 		this.username = username;
 	}
 
+	public String getNickname() {
+		return this.nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -95,6 +108,14 @@ public class User {
 
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
+	}
+
+	public int getRegistered() {
+		return this.registered;
+	}
+
+	public void setRegistered(int registered) {
+		this.registered = registered;
 	}
 
 	public Date getCreatedAt() {

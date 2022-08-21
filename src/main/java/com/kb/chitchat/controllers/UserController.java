@@ -20,7 +20,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+	// ! For registered users ==========================================
 	/******************************************************************/
 	
 	@GetMapping("/accounts/register")
@@ -64,7 +64,8 @@ public class UserController {
 		else {
 			session.setAttribute("id", registerUser.getId());
 			session.setAttribute("username", registerUser.getUsername());
-			return "redirect:/dashboard";
+			session.setAttribute("nickname", registerUser.getNickname());
+			return "redirect:/chatrooms";
 		}
 	}
 	
@@ -83,7 +84,8 @@ public class UserController {
 		else {
 			session.setAttribute("id", loginUser.getId());
 			session.setAttribute("username", loginUser.getUsername());
-			return "redirect:/dashboard";
+			session.setAttribute("nickname", loginUser.getNickname());
+			return "redirect:/chatrooms";
 		}
 	}
 	
@@ -94,4 +96,32 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
+
+
+	// ! For guest users ==========================================
+    // guest page
+    @GetMapping("/guests/new")
+    public String newGuestPage(Model model) {
+		model.addAttribute("newUser", new User());
+        return "/views/guest.jsp";
+    }
+
+	// create new guest
+	@PostMapping("/guests/new")
+	public String guestSignup(@Valid @ModelAttribute("newUser") User newUser, BindingResult result,
+	Model model, HttpSession session) {
+	
+		User guestUser = userService.registerGuest(newUser, result);
+
+		if(result.hasErrors()) {
+			return "/views/guest.jsp";
+		}
+		else {
+			session.setAttribute("id", guestUser.getId());
+			session.setAttribute("username", guestUser.getUsername());
+			session.setAttribute("nickname", guestUser.getNickname());
+			return "redirect:/chatrooms";
+		}
+	}
+	
 }

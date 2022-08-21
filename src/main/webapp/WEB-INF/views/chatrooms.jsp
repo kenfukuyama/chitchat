@@ -14,6 +14,7 @@
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
         <div class="container username-page-container text-center pt-5 pb-3 vh-100">
             <h1 class="my-5">Select your room</h1>
+			<h2>Welcome ${id}, ${username}, ${nickname}</h2>
             <form action="/chatrooms/enter" method="post" chatroomNameForm" name="chatroomNameForm" class="chatroomSelection">
                 <!-- <div class="d-flex gap-3"> -->
                         <!-- <div class="form-check">
@@ -29,6 +30,11 @@
                             <input type="text" class="form-control" id="chatroomName" name="chatroomName" placeholder="Enter Room Name">
                         </div> -->
                 <!-- </div> -->
+				
+                <div class="form-group">
+                    <button type="submit" class="username-submit styled-button btn btn-light btn-lg">Let's Chat <i class="bi-arrow-right-short"></i></button>
+                </div>
+				
                 <div class="row styled-text text-white mt-1">
 					<div class="col-sm-6 col-md-4 col-lg-3 category-selector">
 						<p>Pets & Animals</p>
@@ -108,9 +114,12 @@
 				</div>
           
 
+<<<<<<< HEAD
                 <div class="form-group fixed-bottom mb-3">
                     <button type="submit" class="username-submit styled-button btn btn-light btn-lg w-md-21 w-lg-16 w-xl-14 w-xxl-12">Let's Chat <i class="bi-arrow-right-short"></i></button>
                 </div>
+=======
+>>>>>>> d385e6c9687a62ea5384587cfccb3cccdf4d2de8
     
             </form>
         </div>
