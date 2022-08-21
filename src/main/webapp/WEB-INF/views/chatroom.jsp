@@ -12,8 +12,8 @@
         <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
 
-<<<<<<< HEAD
-	<span id="userName" class="d-none">${userName}</span>
+	<span id="username" class="d-none">${username}</span>
+	<span id="nickname" class="d-none">${nickname}</span>
 	
     <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
@@ -39,32 +39,6 @@
         			</div>
      			</div>
   			</form>
-=======
-    <div id="chat-page" class="fade-in d-flex align-items-start justify-content-center w-100 text-white">
-        <div class="chat-container w-100 w-sm-75 w-lg-62">
-            <div class="chat-header">
-                    <h2 id="chatroomName">${chatroomName}</h2>
-                    <p>Welcome, <span id="nickname">${nickname}</span></p>
-                    <span class="hidden" id="username">${username}</span>
-                <div class="online-number">
-                    <span id="number-connected">0</span> Online
-                </div>
-            </div>
-            <div class="connecting">
-                Connecting...
-            </div>
-            <ul id="messageArea">
-
-            </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group mx-3">
-                    <div class="input-group clearfix text-center">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                        <button type="submit" class="primary">Send</button>
-                    </div>
-                </div>
-            </form>
->>>>>>> d385e6c9687a62ea5384587cfccb3cccdf4d2de8
         </div>
     </div>
     
