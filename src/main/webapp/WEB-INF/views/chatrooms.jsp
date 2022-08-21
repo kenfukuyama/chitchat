@@ -5,6 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "t" tagdir="/WEB-INF/tags" %>
 
+
+
 <t:base>
 
     <noscript>
@@ -12,14 +14,15 @@
     </noscript>
 
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
-        <div class="container username-page-container text-center pt-5 pb-3 vh-100">
-            <h1 class="my-5">Select your room</h1>
-			<h2>Welcome ${id}, ${username}, ${nickname}</h2>
-
-            <div class="input-group my-3">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                    aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
+        <div class="container username-page-container text-center pt-5 vh-100">
+            <h1 class="mt-5">Select your room, ${id} ${username} ${nickname}</h1>
+			
+			<div class="d-flex justify-content-center">
+            	<div class="input-group py-5 px-4 w-lg-50">
+                	<input type="text" class="form-control rounded live-search-box" placeholder="Search Channels" aria-label="Search Channels"
+                   		aria-describedby="search-addon" />
+                	<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            	</div>
             </div>
 
             <c:choose>
@@ -35,17 +38,12 @@
             <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
                 <div class="row styled-text text-white mt-1">
 					<c:forEach var="channel" items="${publicChannels}">
-						<div class="col-sm-6 col-md-4 col-lg-3 category-selector">
+						<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
 							<p>${channel.channelNickname}</p>
 
 							<c:choose>
-<<<<<<< HEAD
 								<c:when test="${channel == publicChannels[0]}">
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
-=======
-								<c:when test="${channel.channelNickname.equals(\"Health & Nutrition\")}">
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}" checked="checked">
->>>>>>> aa46c2758e5f5b09e0e06e95801b95a02392bd2f
 								</c:when>
 								<c:otherwise>
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
@@ -56,7 +54,7 @@
 					</c:forEach>
 				</div>
 					
-                <div class="form-group fixed-bottom mb-3">
+                <div class="form-group fixed-bottom mb-5">
                     <button type="submit" class="username-submit styled-button btn btn-light btn-lg w-md-21 w-lg-16 w-xl-14 w-xxl-12">Let's Chat <i class="bi-arrow-right-short"></i></button>
                 </div>
     
