@@ -14,7 +14,7 @@
 
 	<div class="d-flex gap-2">
 		<a class="btn btn-light btn-lg mt-2" href="/accounts/register"><strong>Sign Up</strong> <i class="bi-arrow-right-short"></i></a>
-		<a class="btn btn-light btn-lg mt-2" href="/guests/new"><strong>Start Chatting</strong> <i class="bi-arrow-right-short"></i></a>
+		<a class="btn btn-light btn-lg mt-2" href="/guests/new"><strong>Chat as Guest</strong> <i class="bi-arrow-right-short"></i></a>
 	</div>
 </div>   
 

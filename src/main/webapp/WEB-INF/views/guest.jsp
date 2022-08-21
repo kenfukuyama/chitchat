@@ -15,7 +15,7 @@
     <div id="username-page" class="container g-5 d-flex vh-100 justify-content-center mt-3 flex-column fade-in">
         <div class="container username-page-container text-center">
             <h1 class="styled-text text-white">Let's get started</h1>
-            <form action="/guests/new" method="post" id="usernameForm" name="usernameForm" class="d-flex justify-content-center align-items-center flex-column ">
+            <form action="/guests/new" method="post" id="usernameForm" name="usernameForm" class="d-flex justify-content-center align-items-center flex-column gap-2">
                 <div class="form-group w-75 w-md-50 w-lg-32">
                     <input type="text" id="userId" name="userId" placeholder="Username (user id)" autocomplete="off" class="form-control" />
                 </div>

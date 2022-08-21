@@ -148,7 +148,7 @@ function onMessageReceived(payload) {
     if(message.type === 'JOIN') {
         // if a user joins
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
+        message.content = message.sender + ' joined';
 
 
         // change the number of number of connections.
@@ -160,7 +160,7 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         // if a user leaves
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
+        message.content = message.sender + ' left';
 
         // TODO we want to something here and update the online numbers
         const span = document.querySelector('#number-connected');
@@ -173,8 +173,8 @@ function onMessageReceived(payload) {
 
         if (username == message.sender) {
             // if it is the user
-            
-            messageElement.style['background-color'] = '#ee706e';
+            messageElement.style['background-color'] = '#435f7a';
+            messageElement.style['color'] = 'white';
             messageElement.style['text-align'] = 'right';
             messageElement.style['animation'] = 'fadeSent .5s';
             
@@ -184,7 +184,7 @@ function onMessageReceived(payload) {
 
         }
         else {
-            messageElement.style['background-color'] = 'rgb(116, 220, 129)';
+            
             messageElement.style['animation'] = 'fadeReceived .5s';
              // avator pic and first initial
             var avatarElement = document.createElement('i');
