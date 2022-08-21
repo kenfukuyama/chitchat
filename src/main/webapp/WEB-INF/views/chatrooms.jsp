@@ -31,7 +31,7 @@
 					<c:forEach var="channel" items="${publicChannels}">
 						<div class="col-sm-6 col-md-4 col-lg-3 category-selector">
 							<p>${channel.channelNickname}</p>
-<<<<<<< HEAD
+
 							<c:choose>
 								<c:when test="${channel.channelNickname.equals(\"Health & Nutrition\")}">
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
@@ -40,11 +40,7 @@
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}">
 								</c:otherwise>
 							</c:choose>
-							<label class="category-image ${channel.channelName}" for="${channel.channelName}"></label>                       
-=======
-							<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
-							<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>                       
->>>>>>> 4d9a4e3a9872ed15758f2526386bcb63d5de2ffe
+							<label class="category-image ${channel.channelName}" for="${channel.channelName}"></label>                                          
 						</div>
 					</c:forEach>
 				</div>
