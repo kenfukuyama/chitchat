@@ -16,7 +16,8 @@
         <div class="chat-container w-100 w-sm-75 w-lg-62">
             <div class="chat-header">
                     <h2 id="chatroomName">${chatroomName}</h2>
-                    <p>Welcome, <span id="userName">${userName}</span></p>
+                    <p>Welcome, <span id="nickname">${nickname}</span></p>
+                    <span class="hidden" id="username">${username}</span>
                 <div class="online-number">
                     <span id="number-connected">0</span> Online
                 </div>

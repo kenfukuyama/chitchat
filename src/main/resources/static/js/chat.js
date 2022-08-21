@@ -11,6 +11,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
+var nickname = null;
 var connected = false;
 
 // ? this won't work becasue each connection is independent
@@ -26,8 +27,6 @@ var colors = [
 
 // call the connect functions
 $(document).ready(function () {
-    // console.log("connectin!!!");
-    // console.log(stompClient);
     if (!stompClient) {connect();}
 });
 
@@ -35,38 +34,15 @@ $(document).ready(function () {
 // connectForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
 
-// ! connection and subscription to the socket =================================
-// this allows us to connect to the server
-// function connect(event) {
-//     username = document.querySelector('#userName').innerHTML;
-
-//     if(username) {
-//         // change the approqaite html elements
-//         // usernamePage.classList.replace("d-flex", "d-none");
-//         // chatPage.classList.replace("d-none", "d-flex");
-//         // var roomName = document.querySelector('#room-name');
-//         // roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
-//         // document.querySelector('#username').innerHTML = "Welcome " + username + "!";
-//         // connect to the socket
-//         var socket = new SockJS('/ws');
-//         stompClient = Stomp.over(socket);
-//         stompClient.connect({}, onConnected, onError);
-//     }
-//     event.preventDefault();
-
-// }
+// ! connection and subscription to the socket ================================
 
 function connect() {
-    username = document.querySelector('#userName').innerHTML;
-    console.log(username);
+    nickname = document.querySelector('#nickname').innerHTML;
+    username = "@" + document.querySelector('#username').innerHTML;
+    console.log("username:" + username );
+    console.log("nickname:" + nickname );
 
     if(username) {
-        // change the approqaite html elements
-        // usernamePage.classList.replace("d-flex", "d-none");
-        // chatPage.classList.replace("d-none", "d-flex");
-        // var roomName = document.querySelector('#room-name');
-        // roomName.innerHTML = document.querySelector('input[name="room"]:checked').value;
-        // document.querySelector('#username').innerHTML = "Welcome " + username + "!";
         // connect to the socket
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
@@ -121,7 +97,6 @@ function sendMessage(event) {
         // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
         // room send message
-        // var roomSelection = document.querySelector('input[name="room"]:checked').value;
         var roomSelection = document.querySelector('#chatroomName').innerHTML;
         var chatMessageRoom = {
             sender: username,

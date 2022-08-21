@@ -8,12 +8,18 @@
 <title>Sign Up • Chit Chat</title>
 <t:base>
 <div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center mt-5 mt-sm-3 flex-column fade-in">
-	<h6 class="display-6 styled-heading">Join the Convo</h6>
+	<h6 class="display-6 styled-heading">Join the Conversation</h6>
 	<form:form action="/register" method="post" modelAttribute="newUser" class="styled-text">
+		<form:input type="hidden" path="registered" value="1"></form:input>
 		<div class="mb-3">
 			<form:label for="username" path="username" class="form-label">Username:</form:label>
 			<small><form:errors path="username" class="text-danger"/></small>
 			<form:input type="text" class="form-control" path="username" />
+		</div>
+		<div class="mb-3">
+			<form:label for="nickname" path="nickname" class="form-label">Nickname:</form:label>
+			<small><form:errors path="nickname" class="text-danger"/></small>
+			<form:input type="text" class="form-control" path="nickname" />
 		</div>
 		<div class="mb-3">
 			<form:label for="email" path="email" class="form-label">Email:</form:label>

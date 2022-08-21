@@ -13,7 +13,7 @@ public class ChatMessage {
         JOIN,
         LEAVE
     }
-
+    
     // getters and setters
     public MessageType getType() {
         return type;

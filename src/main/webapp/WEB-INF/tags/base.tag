@@ -71,11 +71,17 @@
         <div class="collapse navbar-collapse ps-3 pe-2" id="navmenu">
           <ul class="navbar-nav ms-auto bg-sm-transparent">
             <li class="nav-item ps-2">
-              <a href="#learn" class="nav-link text-white">Chatrooms</a>
+              <a href="/chatrooms" class="nav-link text-white">Chatrooms</a>
+            </li>
+        
+            
+            <li class="nav-item ps-2">
+                <a href="/accounts/login" class="nav-link text-white">Log In</a>
             </li>
             <li class="nav-item ps-2">
-              <a href="/accounts/login" class="nav-link text-white">Log In</a>
+                <a href="/logout" class="nav-link text-danger">Logout</a>
             </li>
+
           </ul>
         </div>
       </div>
