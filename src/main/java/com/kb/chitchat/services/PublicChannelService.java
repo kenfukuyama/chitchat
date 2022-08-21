@@ -24,6 +24,10 @@ public class PublicChannelService {
 	public List<PublicChannel> allPublicChannels(){ 
 		return publicchannelRepository.findAll();
 	}
+	
+	public List<PublicChannel> AllPublicChannelsByCreator(Long creatorId) { 
+		return publicchannelRepository.findByCreatorId(creatorId);
+	}
 
 	
 	// Create and Update
@@ -52,6 +56,7 @@ public class PublicChannelService {
 		else { return null;}
 	}
 	
+
 	
 	
 	// // TODO: many to many relationship service
