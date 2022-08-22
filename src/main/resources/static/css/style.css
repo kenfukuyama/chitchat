@@ -136,7 +136,7 @@ a {
 
 .username-page-container {
     padding: 1% 2%;
-    font-family: "Alliance1Regular";
+    /*  font-family: "Alliance1Regular"; */
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none; 
@@ -171,6 +171,10 @@ a {
 #chat-page .chat-message p {
     font-weight: 300;
     margin-bottom: 0;
+}
+
+#message, .username{
+	font-family: "Alliance1Regular";
 }
 
 /**********************************************
@@ -247,9 +251,40 @@ a {
 	display: block;
 }
 
+.chatrooms-submit {
+	color: white;
+	background-color: #4153fdb0;
+}
+
+.chatrooms-submit:hover{
+	background-color: #4153fdb0;
+}
+
+.user-submit {
+	color: white;
+	background-color: #055160;
+}
+.user-submit:hover{
+	background-color: #055160;
+}
+
+
 /**********************************************
 		     End Chatrooms Page
 **********************************************/
+
+/**********************************************
+		         Friends Page
+**********************************************/
+
+.list-group {
+	--bs-list-group-item-padding-x: .5rem;
+}
+
+/**********************************************
+		       End Friends Page
+**********************************************/
+
 
 /**********************************************
 		   Sizing Utility Classes

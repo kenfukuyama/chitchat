@@ -11,7 +11,7 @@
     <div class="container username-page-container text-center pt-5 pb-3 vh-100">
         <div class="row">
             <div class="card">
-                <h4 class="card-header text-primary p-4">Create Your Chatroom</h4>
+                <h4 class="card-header text-primary p-4">Create a Chatroom</h4>
                 <div class="card-body">
                     <form:form action="/channels/new" method="post" modelAttribute="channel">
                         <form:input type="hidden" path="creator" value="${userId}"></form:input>

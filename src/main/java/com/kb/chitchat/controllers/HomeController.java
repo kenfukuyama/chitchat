@@ -11,4 +11,9 @@ public class HomeController {
 		return "/views/index.jsp";
 	}
 	
+	@GetMapping("/dashboard")
+	public String dashboard() {
+		return "/views/dashboard.jsp";
+	}
+	
 }

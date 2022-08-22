@@ -119,6 +119,7 @@ function onMessageReceived(payload) {
 
     // create list element
     var messageElement = document.createElement('li');
+    messageElement.style['padding-left'] = '10px';
 
     if(message.type === 'JOIN') {
         // if a user joins
@@ -164,8 +165,8 @@ function onMessageReceived(payload) {
         }
         else {
             messageElement.style['background-color'] = '#435f7a';
-            messageElement.style['color'] = 'white';
             messageElement.style['padding-left'] = '15px';
+            messageElement.style['color'] = 'white';
             messageElement.style['animation'] = 'fadeReceived .5s';
              // avator pic and first initial
             //var avatarElement = document.createElement('i');
