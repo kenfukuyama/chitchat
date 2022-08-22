@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
     <!-- css -->
     <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="icon" type="image/x-icon" href=/assets/images/favicon/chitchat.png>
         
     <!-- bootstrap javascript -->
     <script defer src="/webjars/jquery/jquery.min.js"></script>
