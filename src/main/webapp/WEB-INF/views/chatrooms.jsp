@@ -16,7 +16,8 @@
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
         <div class="container username-page-container text-center pt-5 vh-100 styled-text text-white">
             <h2 class="mt-5">Select your room, ${id} ${username} ${nickname}</h2>
-			
+			<!-- TODO: fix the alignment of online number -->
+            <p class="text-success"> <span  class="" style="">•</span> 1203 online</p>
 			<div class="d-flex justify-content-center">
             	<div class="input-group p-4 w-md-75 w-lg-50">
                 	<input type="text" class="form-control rounded live-search-box" placeholder="Search Channels" aria-label="Search Channels"
@@ -33,8 +34,7 @@
                     </div>
                 </c:when>
             </c:choose>
-
-			<!-- TODO: JSP delcartion not really working, we want to check the first element -->
+            
             <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
                 <div class="row styled-text text-white mt-1">
 					<c:forEach var="channel" items="${publicChannels}">

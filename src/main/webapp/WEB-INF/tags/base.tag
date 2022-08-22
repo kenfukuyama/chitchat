@@ -79,8 +79,6 @@
             <li class="nav-item ps-2">
               <a href="/chatrooms" class="nav-link text-white">Chatrooms</a>
             </li>
-        
-            
             <li class="nav-item ps-2">
                 <a href="/accounts/login" class="nav-link text-white">Log In</a>
             </li>
