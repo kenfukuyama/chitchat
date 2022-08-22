@@ -38,6 +38,8 @@ public class ChatController {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         headerAccessor.getSessionAttributes().put("roomSelection", roomSelection);
+        chatMessage.setOnlineNumber(WebSocketEventListener.connectionSet.size());
+        System.out.println("connection set: " + WebSocketEventListener.connectionSet.size());
         return chatMessage;
     }
     

@@ -53,7 +53,7 @@ function connect() {
 function onConnected() {
     // ! change here for the subscription channels
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    // stompClient.subscribe('/topic/public', onMessageReceived);
     
     // * subsribe to differnt channels
     // var roomSelection = document.querySelector('input[name="chatroomName"]:checked').value;
@@ -105,8 +105,6 @@ function sendMessage(event) {
         };
 
         stompClient.send(`/app/chat.sendMessage${roomSelection}`, {}, JSON.stringify(chatMessageRoom));
-
-        
         messageInput.value = ''; // empty the inputn value
     }
     event.preventDefault();
@@ -115,7 +113,17 @@ function sendMessage(event) {
 // ! handles incoming messages ===============================================
 function onMessageReceived(payload) {
     // message is only one at a time
+    console.log(stompClient.counter);
     var message = JSON.parse(payload.body);
+
+    if (message.type == "UPDATEONLINE") {
+        if (message.onlineNumber > 0) {
+            console.log("running");
+            const span = document.querySelector('#number-connected');
+            span.innerHTML = message.onlineNumber;
+        }
+        return;
+    }
 
     // create list element
     var messageElement = document.createElement('li');
@@ -128,8 +136,8 @@ function onMessageReceived(payload) {
 
         // change the number of number of connections.
         // TODO we want to something here and update the online numbers, but this is currently stateless
-        const span = document.querySelector('#number-connected');
-        span.innerHTML = ++span.innerHTML;
+        // const span = document.querySelector('#number-connected');
+        // span.innerHTML = ++span.innerHTML;
 
 
     } else if (message.type === 'LEAVE') {
@@ -138,9 +146,8 @@ function onMessageReceived(payload) {
         message.content = message.sender + ' left';
 
         // TODO we want to something here and update the online numbers
-        const span = document.querySelector('#number-connected');
-        span.innerHTML = --span.innerHTML;
-
+        // const span = document.querySelector('#number-connected');
+        // span.innerHTML = --span.innerHTML;
 
     } else {
         // else display a message
@@ -181,7 +188,6 @@ function onMessageReceived(payload) {
             var usernameText = document.createTextNode(message.sender);
         }
         usernameElement.appendChild(usernameText);
-
         messageElement.appendChild(usernameElement);
     }
 
@@ -203,6 +209,12 @@ function onMessageReceived(payload) {
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
+
+    if (message.onlineNumber > 0) {
+        console.log("running");
+        const span = document.querySelector('#number-connected');
+        span.innerHTML = message.onlineNumber;
+    }
 }
 
 // ! avatar color =================================================================

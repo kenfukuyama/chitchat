@@ -43,7 +43,7 @@
 
 							<c:choose>
 								<c:when test="${channel == publicChannels[0]}">
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
+									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}" checked="checked">
 								</c:when>
 								<c:otherwise>
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">

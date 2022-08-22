@@ -22,7 +22,7 @@
 				<c:choose>
 					<c:when test="${channel != null}">
 						<h2 id="chatroomNickname" class="text-center m-0">${channel.channelNickname}</h2> 
-						<span id="chatroomName" class="hidden">${channel.channelName}</span> 
+						<span id="chatroomName" class="hidden">${channel.channelName}</span>
 					</c:when>
 					<c:otherwise>
 						<!-- TODO: change it so that it shows the other person's nickname and username -->

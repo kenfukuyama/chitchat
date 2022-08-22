@@ -6,6 +6,10 @@ public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String senderUsername;
+    private String senderNickname;
+    private int onlineNumber = -1;
+    
 
     // these are custom data types
     public enum MessageType {
@@ -38,4 +42,29 @@ public class ChatMessage {
     public void setSender(String sender) {
         this.sender = sender;
     }
+
+    public String getSenderUsername() {
+        return this.senderUsername;
+    }
+
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
+    }
+
+    public String getSenderNickname() {
+        return this.senderNickname;
+    }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public int getOnlineNumber() {
+        return this.onlineNumber;
+    }
+
+    public void setOnlineNumber(int onlineNumber) {
+        this.onlineNumber = onlineNumber;
+    }
+
 }
