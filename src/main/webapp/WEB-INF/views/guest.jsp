@@ -27,7 +27,7 @@
 			<form:input type="text" class="form-control" path="nickname" />
 		</div>
         <div class="form-group">
-            <button type="submit" class="username-submit mt-2 styled-button btn btn-light btn-lg">Next <i class="bi-arrow-right-short"></i></button>
+            <button type="submit" class="mt-2 styled-button btn btn-light btn-lg">Next <i class="bi-arrow-right-short"></i></button>
         </div>
 	</form:form>	
 </div>

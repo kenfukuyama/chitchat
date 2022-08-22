@@ -18,7 +18,7 @@
             <h2 class="mt-5">Select your room, ${id} ${username} ${nickname}</h2>
 			
 			<div class="d-flex justify-content-center">
-            	<div class="input-group py-4 px-4 w-md-75 w-lg-50">
+            	<div class="input-group p-4 w-md-75 w-lg-50">
                 	<input type="text" class="form-control rounded live-search-box" placeholder="Search Channels" aria-label="Search Channels"
                    		aria-describedby="search-addon" />
                 	<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
