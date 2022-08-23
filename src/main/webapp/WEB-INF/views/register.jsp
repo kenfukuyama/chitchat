@@ -11,30 +11,30 @@
 	<h6 class="display-6 styled-heading pt-5">Join the Chat</h6>
 	<form:form action="/register" method="post" modelAttribute="newUser" class="styled-text">
 		<form:input type="hidden" path="registered" value="1"></form:input>
-		<div class="input-group-sm mb-2">
+		<div class="mb-2">
 			<form:label for="username" path="username" class="form-label">Username:</form:label>
 			<small><form:errors path="username" class="text-danger"/></small>
-			<form:input type="text" class="form-control" path="username" autocomplete="off"/>
+			<form:input type="text" class="form-control regular" path="username" autocomplete="off"/>
 		</div>
-		<div class="input-group-sm mb-2">
+		<div class="mb-2">
 			<form:label for="nickname" path="nickname" class="form-label">Nickname:</form:label>
 			<small><form:errors path="nickname" class="text-danger"/></small>
-			<form:input type="text" class="form-control" path="nickname" autocomplete="off"/>
+			<form:input type="text" class="form-control regular" path="nickname" autocomplete="off"/>
 		</div>
-		<div class="input-group-sm mb-2">
+		<div class="mb-2">
 			<form:label for="email" path="email" class="form-label">Email:</form:label>
 			<small><form:errors path="email" class="text-danger" /></small>
-			<form:input type="text" class="form-control" path="email" autocomplete="off"/>
+			<form:input type="text" class="form-control regular" path="email" autocomplete="off"/>
 		</div>
-		<div class="input-group-sm mb-2">
+		<div class="mb-2">
 			<form:label for="password" path="password" class="form-label">Password:</form:label>
 			<small><form:errors path="password" class="text-danger" /></small>
-			<form:input type="password" class="form-control" path="password" autocomplete="off"/>
+			<form:input type="password" class="form-control regular" path="password" autocomplete="off"/>
 		</div>
-		<div class="input-group-sm mb-2">
+		<div class="mb-2">
 			<form:label for="confirm" path="confirm" class="form-label">Confirm:</form:label>
 			<small><form:errors path="confirm" class="text-danger" /></small>
-			<form:input type="password" class="form-control" path="confirm" autocomplete="off"/>
+			<form:input type="password" class="form-control regular" path="confirm" autocomplete="off"/>
 		</div>
 		<button type="submit" class="btn btn-light btn-lg mt-2 styled-button">Register</button>
 	</form:form>	

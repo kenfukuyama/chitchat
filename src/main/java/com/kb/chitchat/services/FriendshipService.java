@@ -48,6 +48,8 @@ public class FriendshipService {
 		return friendshipRepository.findByUserIdAndFriendId(userId, friendId);
 	}
 
-
+	public List<Friendship> allFriendshipsByUserId(Long userId){
+		return friendshipRepository.findAllByUserId(userId);
+	}
 
 }

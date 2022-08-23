@@ -193,7 +193,7 @@ a {
     margin-bottom: 0;
 }
 
-#message, .username{
+#message, .username, .regular{
 	font-family: "Alliance1Regular";
 }
 
@@ -299,6 +299,46 @@ a {
 
 .list-group {
 	--bs-list-group-item-padding-x: .5rem;
+}
+
+.tab-form .tab-header {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	font-size: 16px;
+}
+
+.tab-form .tab-header > div {
+	padding: 10px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+	background-color: #383b3da7;
+	border-radius: 5px;
+}
+
+.tab-form .tab-header > div:hover {
+    color: white;
+    
+}
+
+.tab-form .tab-header > div.active {
+    color: white;
+    background-color: #0c0cd4b3;
+}
+
+.tab-form .tab-body > div {
+	position: absolute;
+	width: 100%;
+	top: -7000vh;
+	opacity: 0;
+	transition: opacity 500ms ease-in-out 0ms;
+}
+
+.tab-form .tab-body > div.active {
+	position: static;
+	opacity: 1;
+	transition: opacity 500ms ease-in-out 0ms;
 }
 
 /**********************************************

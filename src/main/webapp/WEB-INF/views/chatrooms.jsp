@@ -20,7 +20,7 @@
             <p class="text-success"> <span  class="" style="">•</span> 1203 online</p>
 			<div class="d-flex justify-content-center">
             	<div class="input-group p-4 w-md-75 w-lg-50">
-                	<input type="text" class="form-control rounded live-search-box" placeholder="Search Channels" aria-label="Search Channels"
+                	<input type="text" class="form-control rounded live-search-box regular" placeholder="Search Channels" aria-label="Search Channels"
                    		aria-describedby="search-addon" />
                 	<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
             	</div>
