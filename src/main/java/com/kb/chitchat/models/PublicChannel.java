@@ -36,9 +36,6 @@ public class PublicChannel {
 
     private String isPublic;
 
-
-
-
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="creator_id")
     private User creator;

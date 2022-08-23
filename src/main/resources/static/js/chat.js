@@ -201,7 +201,7 @@ function onMessageReceived(payload) {
     var textElement2 = document.createElement('p');
     var date = document.createTextNode(formatAMPM());
    
-    textElement2.style['color']='orange';
+    textElement2.style['color']='gray';
     textElement2.style['font-size']='.8em';
     
     textElement.appendChild(messageText);

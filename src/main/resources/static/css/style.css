@@ -166,8 +166,8 @@ a {
     display: none;
 }
 
-.event-message {
-	color: grey;
+.event-message, .connecting {
+	color: orange;
 }
 
 .chat-message {
@@ -186,6 +186,7 @@ a {
 	
 #chat-page .chat-message span{
 	font-family: "Alliance1Bold";
+	color: white;
 }
 
 #chat-page .chat-message p {
@@ -262,9 +263,9 @@ a {
 .category-image:hover{
     transform: scale(1.05);
     
-    -webkit-filter: brightness(1) grayscale(.1) opacity(.8);
-    -moz-filter: brightness(1) grayscale(.1) opacity(.8);
-    filter: brightness(1) grayscale(.1) opacity(.8);
+    -webkit-filter: brightness(.5) grayscale(.1) opacity(.8);
+    -moz-filter: brightness(.5) grayscale(.1) opacity(.8);
+    filter: brightness(.5) grayscale(.1) opacity(.8);
 }
 
 .label-text:hover{
@@ -288,6 +289,10 @@ a {
 	background-color: #055160;
 }
 
+.description {
+	display: none;
+	font-family: 
+}
 
 /**********************************************
 		     End Chatrooms Page
@@ -345,6 +350,44 @@ a {
 		       End Friends Page
 **********************************************/
 
+/**********************************************
+		       User Channels Page
+**********************************************/
+
+#privacy-switch {
+	margin:10px;
+  	position:relative;
+  	width:45px;
+  	height:15px;
+  	-webkit-appearance: none;
+  	-outline: none;
+  	border-radius: 5px;
+  	color: white;
+  	border: 3px solid white;
+}
+
+#privacy-switch:checked {
+	background: black;
+  	color: white;
+}
+
+#privacy-switch:before {
+	content:'';
+  	position:absolute;
+  	top:0;
+  	left:0;
+  	width:16px;
+  	height:11px;
+    background:white;
+  	border-radius: 3px;
+  	transform: scale(.98,.95);
+  	transition:.5s;
+}
+
+#privacy-switch:checked:before {
+	left: 25px;
+	border-radius: 3px;
+}
 
 /**********************************************
 		   Sizing Utility Classes

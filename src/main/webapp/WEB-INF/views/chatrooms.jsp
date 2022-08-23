@@ -39,7 +39,7 @@
                 <div class="row styled-text text-white mt-1">
 					<c:forEach var="channel" items="${publicChannels}">
 						<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
-							<p>${channel.channelNickname}</p>
+							<p class="channelNickname">${channel.channelNickname}</p>
 
 							<c:choose>
 								<c:when test="${channel == publicChannels[0]}">
@@ -49,7 +49,7 @@
 									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
 								</c:otherwise>
 							</c:choose>
-							<label class="category-image bg-primary ${channel.channelName}" for="${channel.channelName}"></label>                                          
+							<label class="category-image channel bg-primary ${channel.channelName}" for="${channel.channelName}"></label>  
 						</div>
 					</c:forEach>
 				</div>

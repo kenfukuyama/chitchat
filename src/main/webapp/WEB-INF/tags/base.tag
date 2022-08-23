@@ -37,6 +37,9 @@
     
     <!-- Tabs -->
     <script defer type="text/javascript" src="/js/tabs.js"></script>
+    
+    <!-- Channel Previews -->
+    <script defer type="text/javascript" src="/js/preview.js"></script>
 </head>
 <body>
 <!-- Navbar -->

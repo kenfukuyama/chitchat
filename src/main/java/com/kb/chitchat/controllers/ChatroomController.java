@@ -85,7 +85,7 @@ public class ChatroomController {
 
     @PostMapping("/channels/new")
     public String createChannel(@Valid @ModelAttribute("channel") PublicChannel channel,
-            BindingResult result, Model model, HttpSession session) {
+            BindingResult result, Model model, HttpSession session, @RequestParam("privacySwitch") String privacySwitch) {
 
         PublicChannel channelTemp = publicChannelService.findPublicChannelByName(channel.getChannelName());
         if (channelTemp != null) {
@@ -98,6 +98,13 @@ public class ChatroomController {
             model.addAttribute("userChannels", publicChannelService.AllPublicChannelsByCreator((Long)session.getAttribute("id")));
             return "views/userChannels.jsp";
         }
+        
+        if (privacySwitch.equals(",0")) {
+        	channel.setIsPublic("0");
+        }
+        
+        System.out.println(channel.getIsPublic());
+        
         publicChannelService.savePublicChannel(channel);
         return "redirect:/users/chatrooms";
 
