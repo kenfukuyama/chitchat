@@ -14,6 +14,9 @@
 
 	<span id="username" class="d-none">${username}</span>
 	<span id="nickname" class="d-none">${nickname}</span>
+
+	<span class="d-none" id="userId">${id}</span>
+	<span class="d-none" id="channelId">${channelId}</span>
 	
     <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">

@@ -126,6 +126,4 @@ public class Friendship {
     public void setApproved(Integer approved) {
         this.approved = approved;
     }
-
-
 }
