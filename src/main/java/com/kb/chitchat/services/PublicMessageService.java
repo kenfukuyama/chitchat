@@ -42,4 +42,13 @@ public class PublicMessageService {
 		if (optionalPublicMessage.isPresent()) { return optionalPublicMessage.get(); } 
 		else { return null;}
 	}
+
+	// read recent 50 by public channel id
+	public List<PublicMessage> find50RecentPublicChannelMessages(Long publicChannelId) {
+		Optional<List<PublicMessage>> optionalPublicMessages = publicmessageRepository.findRecent50MessagesByChannelId(publicChannelId);
+		if (optionalPublicMessages.isPresent()) { return optionalPublicMessages.get(); } 
+		else { System.out.println("null"); return null;}
+	}
+
+
 }

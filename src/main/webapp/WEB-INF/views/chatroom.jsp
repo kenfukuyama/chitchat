@@ -39,7 +39,18 @@
             
    			<div class="connecting">Connecting...</div>
     	        
-    		<ul id="messageArea"></ul>
+    		<ul id="messageArea">
+				<c:choose>
+					<c:when test="${messages != null}">
+						<c:forEach var="message" items="${messages}">
+							<!-- TODO: format it correclty and show 'me' if users sent it and remove date if it it sent today (check yesterday if you want) -->
+							<li style="padding-left: 10px">${message.content} <br> @${message.user.username} <br> <fmt:formatDate pattern = "MMM dd h:mm a" 
+								value = "${message.createdAt}" /><hr> </li>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+				
+			</ul>
             
     		<form id="messageForm" name="messageForm" nameForm="messageForm">
     			<div class="form-group mx-3">
