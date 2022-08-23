@@ -6,6 +6,8 @@ public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String senderId;
+    private String channelId;
     private String senderUsername;
     private String senderNickname;
     private int onlineNumber = -1;
@@ -65,6 +67,34 @@ public class ChatMessage {
 
     public void setOnlineNumber(int onlineNumber) {
         this.onlineNumber = onlineNumber;
+    }
+
+    public String getSenderId() {
+        return this.senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getChannelId() {
+        return this.channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    @Override
+    public String toString() {
+        return "type: " + this.type + "\n" +
+                "content: " + this.content + "\n" +
+                "sender: " + this.sender + "\n" +
+                "senderId: " + this.senderId + "\n" +
+                "channelId: " + this.channelId + "\n" +
+                "senderUsername: " + this.senderUsername + "\n" +
+                "senderNickname: " + this.senderNickname + "\n" +
+                "onlineNumber: " + this.onlineNumber + "\n";
     }
 
 }

@@ -9,6 +9,10 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
+// id and channelId
+var senderId = document.querySelector('#userId');
+var channelId = document.querySelector('#channelId');
+
 var stompClient = null;
 var username = null;
 var nickname = null;
@@ -38,7 +42,7 @@ messageForm.addEventListener('submit', sendMessage, true)
 
 function connect() {
     nickname = document.querySelector('#nickname').innerHTML;
-    username = "@" + document.querySelector('#username').innerHTML;
+    username = document.querySelector('#username').innerHTML;
     console.log("username:" + username );
     console.log("nickname:" + nickname );
 
@@ -97,10 +101,13 @@ function sendMessage(event) {
         // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
         // room send message
+
         var roomSelection = document.querySelector('#chatroomName').innerHTML;
         var chatMessageRoom = {
             sender: username,
             content: messageInput.value,
+            senderId : senderId.innerHTML,
+            channelId : channelId.innerHTML,
             type: 'CHAT'
         };
 
@@ -132,7 +139,7 @@ function onMessageReceived(payload) {
     if(message.type === 'JOIN') {
         // if a user joins
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined';
+        message.content = "@" + message.sender + ' joined';
 
         // change the number of number of connections.
         // TODO we want to something here and update the online numbers, but this is currently stateless
@@ -143,7 +150,7 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         // if a user leaves
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left';
+        message.content = "@" + message.sender + ' left';
 
         // TODO we want to something here and update the online numbers
         // const span = document.querySelector('#number-connected');
@@ -186,7 +193,7 @@ function onMessageReceived(payload) {
             //messageElement.appendChild(avatarElement);
 
             var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode(message.sender);
+            var usernameText = document.createTextNode("@" + message.sender);
         }
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);

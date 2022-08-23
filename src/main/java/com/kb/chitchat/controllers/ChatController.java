@@ -1,5 +1,6 @@
 package com.kb.chitchat.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -8,9 +9,22 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import com.kb.chitchat.models.ChatMessage;
+import com.kb.chitchat.models.PublicMessage;
+import com.kb.chitchat.services.PublicChannelService;
+import com.kb.chitchat.services.PublicMessageService;
+import com.kb.chitchat.services.UserService;
 
 @Controller
 public class ChatController {
+    @Autowired 
+    private UserService userService;
+
+    @Autowired
+    private PublicChannelService publicChannelService;
+
+    @Autowired
+    private PublicMessageService publicMessageService;
+
 
     // ! edit the mapping and routes to handle messages
     // every route is prefixed with /app, so we have /app/chat.sendMessage
@@ -25,6 +39,12 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage{roomSelection}")
     @SendTo("/topic/{roomSelection}")
     public ChatMessage sendMessageRoom(@Payload ChatMessage chatMessage, @DestinationVariable String roomSelection) { 
+        // System.out.println(chatMessage.toString());
+        PublicMessage publicMessage = new PublicMessage();
+        publicMessage.setPublicChannel(publicChannelService.findPublicChannel(Long.parseLong(chatMessage.getChannelId())));
+        publicMessage.setUser(userService.findUser(Long.parseLong(chatMessage.getSenderId())));
+        publicMessage.setContent(chatMessage.getContent());
+        publicMessageService.savePublicMessage(publicMessage);
         return chatMessage;
     }
 

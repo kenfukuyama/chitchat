@@ -59,7 +59,10 @@ public class ChatroomController {
         model.addAttribute("username", (String)session.getAttribute("username"));
         model.addAttribute("nickname", (String)session.getAttribute("nickname"));
         model.addAttribute("chatroomName", (String)session.getAttribute("chatroomName"));
-        model.addAttribute("channel", publicChannelService.findPublicChannelByName((String)session.getAttribute("chatroomName")));
+        // ! TODO: this does not work for private chat yet, we might redirect them to diffrent route.
+        PublicChannel channel = publicChannelService.findPublicChannelByName((String)session.getAttribute("chatroomName"));
+        model.addAttribute("channelId", channel.getId());
+        model.addAttribute("channel", channel);
         return "views/chatroom.jsp";
     } 
 
