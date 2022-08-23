@@ -1,4 +1,5 @@
 <%@tag description="base layout" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -33,10 +34,13 @@
     <!-- Live Search -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script defer src="/js/searchBar.js"></script>
+    
+    <!-- Tabs -->
+    <script defer type="text/javascript" src="/js/tabs.js"></script>
 </head>
 <body>
 <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm navbar-light fixed-top">
+    <nav class="navbar navbar-expand-sm fixed-top">
       <div class="container-fluid ps-2 pe-3 styled-text">
         <a href="/" class="navbar-brand text-white">
         <svg width="210" height="40" viewBox="0 0 272 47" fill="none" xmlns="http://www.w3.org/2000/svg" class="pt-2">
@@ -74,18 +78,23 @@
           <span class="navbar-toggler-icon"><i class="bi bi-list text-white h1 m-0"></i></span>
         </button>
 
-        <div class="collapse navbar-collapse ps-3 pe-2" id="navmenu">
+        <div class="collapse navbar-collapse ps-2 pe-2" id="navmenu">
           <ul class="navbar-nav ms-auto bg-sm-transparent">
             <li class="nav-item ps-2">
-              <a href="/chatrooms" class="nav-link text-white">Chatrooms</a>
+              <a href="/chatrooms" class="nav-link text-white"><i class="bi bi-people-fill nav-icon"></i> CHATROOMS</a>
             </li>
+            
             <li class="nav-item ps-2">
-                <a href="/accounts/login" class="nav-link text-white">Log In</a>
+            	 <c:choose>
+            		<c:when test="${id == null}">
+                		<a href="/accounts/login" class="nav-link text-white"><i class="bi bi-shield-lock-fill nav-icon"></i> LOG IN</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="/logout" class="nav-link text-white"><i class="bi bi-shield-lock-fill nav-icon"></i> LOGOUT</a>
+                	</c:otherwise>
+                </c:choose>
             </li>
-            <li class="nav-item ps-2">
-                <a href="/logout" class="nav-link text-danger">Logout</a>
-            </li>
-
+            
           </ul>
         </div>
       </div>

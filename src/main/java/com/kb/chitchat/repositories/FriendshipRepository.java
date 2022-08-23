@@ -9,4 +9,5 @@ import com.kb.chitchat.models.Friendship;
 public interface FriendshipRepository extends CrudRepository<Friendship, Long> {
 	List<Friendship> findAll();
 	Friendship findByUserIdAndFriendId(Long userId, Long friendId);
+	List<Friendship> findAllByUserId(Long userId);
 }

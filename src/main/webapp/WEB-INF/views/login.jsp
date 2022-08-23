@@ -7,7 +7,7 @@
 
 <title>Sign In • Chit Chat</title>
 <t:base>
-<div class="container g-5 d-flex vh-100 w-md-50 w-lg-32 justify-content-center flex-column fade-in">
+<div class="container g-5 d-flex vh-100 w-md-60 w-lg-40 justify-content-center flex-column fade-in">
 	<h6 class="display-6 styled-heading">Sign In</h6>
 
 	<form:form action="/login" method="post" modelAttribute="newLogin" class="styled-text">

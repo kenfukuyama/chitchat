@@ -49,7 +49,7 @@
                     </c:forEach>
                 </div>  
                 <c:if test="${userChannels.size()>0}">
-                <div class="form-group fixed-bottom mb-5">
+                <div class="form-group fixed-bottom mb-4">
                     <button type="submit" class="username-submit styled-button btn btn-lg w-md-21 w-lg-16 w-xl-14 w-xxl-12">Let's Chat <i class="bi-arrow-right-short"></i></button>
                 </div>
                 </c:if>

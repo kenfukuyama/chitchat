@@ -1,5 +1,7 @@
 package com.kb.chitchat.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,7 +31,11 @@ public class FriendshipController {
     @GetMapping("/users/friends")
     public String friendsPage(Model model, HttpSession session) {
         model.addAttribute("loggedInUser", userService.findUserById((Long) session.getAttribute("id")));
+        
         model.addAttribute("users", userService.allRegisteredUsers());
+        
+        List<Friendship> friendships = friendshipService.allFriendshipsByUserId((Long) session.getAttribute("id"));
+        model.addAttribute("friendships", friendships);
 
         return "views/friends.jsp";
 

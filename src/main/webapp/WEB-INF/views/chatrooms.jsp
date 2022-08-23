@@ -15,12 +15,12 @@
 
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
         <div class="container username-page-container text-center pt-5 vh-100 styled-text text-white">
-            <h2 class="mt-5">Select your room, ${id} ${username} ${nickname}</h2>
+            <h2 class="mt-5">Select your room, ${username}</h2>
 			<!-- TODO: fix the alignment of online number -->
             <p class="text-success"> <span  class="" style="">•</span> 1203 online</p>
 			<div class="d-flex justify-content-center">
             	<div class="input-group p-4 w-md-75 w-lg-50">
-                	<input type="text" class="form-control rounded live-search-box" placeholder="Search Channels" aria-label="Search Channels"
+                	<input type="text" class="form-control rounded live-search-box regular" placeholder="Search Channels" aria-label="Search Channels"
                    		aria-describedby="search-addon" />
                 	<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
             	</div>
@@ -54,7 +54,7 @@
 					</c:forEach>
 				</div>
 					
-                <div class="form-group fixed-bottom mb-5">
+                <div class="form-group fixed-bottom mb-4">
                     <button type="submit" class="chatrooms-submit styled-button btn btn-lg w-md-21 w-lg-16 w-xl-14 w-xxl-12">Let's Chat <i class="bi-arrow-right-short"></i></button>
                 </div>
     
