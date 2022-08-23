@@ -152,6 +152,7 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
+        messageElement.style['word-wrap']='break-word';
         //messageElement.style['list-style-type'] = message.sender[1];
  
         if (username == message.sender) {
@@ -199,7 +200,9 @@ function onMessageReceived(payload) {
     
     var textElement2 = document.createElement('p');
     var date = document.createTextNode(formatAMPM());
+   
     textElement2.style['color']='orange';
+    textElement2.style['font-size']='.8em';
     
     textElement.appendChild(messageText);
     textElement2.appendChild(date);

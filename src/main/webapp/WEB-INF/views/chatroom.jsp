@@ -18,7 +18,7 @@
     <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
     
-    		<div class="d-flex justify-content-center align-items-end gap-2 mb-2">
+    		<div class="d-flex justify-content-center align-items-center flex-column">
 				<c:choose>
 					<c:when test="${channel != null}">
 						<h2 id="chatroomNickname" class="text-center m-0">${channel.channelNickname}</h2> 
@@ -31,7 +31,7 @@
 
 				</c:choose>
         		
-        		<p class="text-center text-success m-0"><span id="number-connected">0</span> Online</p>
+        		<p class="text-success m-0"><span id="number-connected">0</span> Online</p>
         	</div>
             
    			<div class="connecting">Connecting...</div>

@@ -33,16 +33,27 @@ body {
 	src: url(/assets/fonts/AllianceNo1-ExtraBold.ttf);
 }
 
+@font-face {
+	font-family: "Alliance1SemiBold";
+	src: url(/assets/fonts/AllianceNo1-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'whitney';
+    src: url(/assets/fonts/whitney.ttf);
+}
+
 /**********************************************
 				   Navbar
 **********************************************/
 
 .navbar{
 	--bs-navbar-toggler-padding-x: 0;
+	background: black;
 }
 
 .navbar-nav{
-	background-color: #ffffff80;
+	background-color: black;
 	border-radius: 10px;
 }
 
@@ -52,6 +63,15 @@ body {
 
 .navbar-nav .nav-item:hover{
 	background-color: #2125297d;
+}
+
+.nav-link {
+	font-family: 'whitney';
+	font-size: 13px;
+}
+
+.nav-icon::before {
+	margin-bottom: 1px;
 }
 
 /**********************************************
@@ -74,7 +94,7 @@ body {
 }
 
 .styled-button{
-	font-family: "Alliance1Bold";
+	font-family: "Alliance1SemiBold";
 	color: black;
 }
 
@@ -333,6 +353,9 @@ a {
 	.w-md-75 {
 		width:75%!important;
 	}
+	.w-md-60 {
+		width:60%!important;
+	}
 	.w-md-50 {
 		width:50%!important;
 	}
@@ -369,6 +392,9 @@ a {
 	}
 	.w-lg-50 {
 		width:50%!important;
+	}
+	.w-lg-40 {
+		width:40%!important;
 	}
 	.w-lg-32 {
 		width:32%!important;

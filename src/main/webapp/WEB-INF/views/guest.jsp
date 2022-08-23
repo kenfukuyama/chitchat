@@ -19,12 +19,12 @@
 		<div class="mb-3">
 			<form:label for="username" path="username" class="form-label">Username:</form:label>
 			<small><form:errors path="username" class="text-danger"/></small>
-			<form:input type="text" class="form-control" path="username" />
+			<form:input type="text" class="form-control" path="username" autocomplete="off"/>
 		</div>
 		<div class="mb-3">
 			<form:label for="nickname" path="nickname" class="form-label">Nickname:</form:label>
 			<small><form:errors path="nickname" class="text-danger"/></small>
-			<form:input type="text" class="form-control" path="nickname" />
+			<form:input type="text" class="form-control" path="nickname" autocomplete="off"/>
 		</div>
         <div class="form-group">
             <button type="submit" class="mt-2 styled-button btn btn-light btn-lg">Next <i class="bi-arrow-right-short"></i></button>
