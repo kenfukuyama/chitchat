@@ -14,6 +14,9 @@
 
 	<span id="username" class="d-none">${username}</span>
 	<span id="nickname" class="d-none">${nickname}</span>
+
+	<span class="d-none" id="userId">${id}</span>
+	<span class="d-none" id="channelId">${channelId}</span>
 	
     <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
@@ -36,7 +39,55 @@
             
    			<div class="connecting">Connecting...</div>
     	        
-    		<ul id="messageArea"></ul>
+    		<ul id="messageArea">
+				<c:choose>
+					<c:when test="${messages != null}">
+						<c:forEach var="message" items="${messages}">
+							<!-- TODO: format it correclty and show 'me' if users sent it and remove date if it it sent today (check yesterday if you want) -->
+							<c:choose>
+								<c:when test="${message.user.username.equals(username)}">
+								<li class="chat-message sender">
+									<span>Me</span>
+									<p class="mb-0">${message.content}</p>
+									
+									<jsp:useBean id="now" class="java.util.Date"/>
+									<fmt:formatDate value="${now}" pattern="MMM dd" var="today" />
+									<fmt:formatDate value="${message.createdAt}" pattern="MMM dd" var="createdAt"/>
+									<c:choose>
+										<c:when test="${createdAt.equals(today)}">
+											<p class="timestamp"><fmt:formatDate pattern="h:mm a" value="${message.createdAt}"/></p>
+										</c:when>
+										<c:otherwise>
+											<p class="timestamp"><fmt:formatDate pattern="MMM dd h:mm a" value="${message.createdAt}"/></p>
+										</c:otherwise>
+									</c:choose>
+								</li>
+								</c:when>
+								<c:otherwise>
+								<li class="chat-message receiver">
+									<span>@${message.user.username}</span>
+									<p class="mb-0">${message.content}</p>
+									
+									<jsp:useBean id="now2" class="java.util.Date"/>
+									<fmt:formatDate value="${now2}" pattern="MMM dd" var="today2" />
+									<fmt:formatDate value="${message.createdAt}" pattern="MMM dd" var="createdAt2"/>
+									
+									<c:choose>
+										<c:when test="${createdAt2.equals(today2)}">
+											<p class="timestamp"><fmt:formatDate pattern="h:mm a" value="${message.createdAt}"/></p>
+										</c:when>
+										<c:otherwise>
+											<p class="timestamp"><fmt:formatDate pattern="MMM dd h:mm a" value="${message.createdAt}"/></p>
+										</c:otherwise>
+									</c:choose>
+								</li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+				
+			</ul>
             
     		<form id="messageForm" name="messageForm" nameForm="messageForm">
     			<div class="form-group mx-3">

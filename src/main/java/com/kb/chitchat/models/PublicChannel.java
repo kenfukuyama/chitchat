@@ -1,6 +1,7 @@
 package com.kb.chitchat.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -36,9 +39,21 @@ public class PublicChannel {
 
     private String isPublic;
 
+
+    // ! relationships
+    // its self to keep track to creator
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="creator_id")
     private User creator;
+
+    // public messages
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "public_messages", 
+        joinColumns = @JoinColumn(name = "public_channel_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> senders;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -55,6 +70,8 @@ public class PublicChannel {
     protected void onUpdate(){
     	this.updatedAt = new Date();
     }
+
+    public PublicChannel() {}
 
 	public Long getId() {
 		return id;
@@ -111,6 +128,15 @@ public class PublicChannel {
 
     public void setIsPublic(String isPublic) {
         this.isPublic = isPublic;
+    }
+
+
+    public List<User> getSenders() {
+        return this.senders;
+    }
+
+    public void setSenders(List<User> senders) {
+        this.senders = senders;
     }
 
 }

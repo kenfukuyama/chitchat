@@ -1,5 +1,8 @@
 package com.kb.chitchat.controllers;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,17 +17,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kb.chitchat.models.PublicChannel;
+import com.kb.chitchat.models.PublicMessage;
 import com.kb.chitchat.services.PublicChannelService;
+import com.kb.chitchat.services.PublicMessageService;
 import com.kb.chitchat.services.UserService;
 
 @Controller
 public class ChatroomController {
+    @Autowired
+    UserService userService;
 
     @Autowired
     PublicChannelService publicChannelService;
 
     @Autowired
-    UserService userService;
+    PublicMessageService publicMessageService;
 
     // ! Get Pages
     // chatrooms page
@@ -59,7 +66,16 @@ public class ChatroomController {
         model.addAttribute("username", (String)session.getAttribute("username"));
         model.addAttribute("nickname", (String)session.getAttribute("nickname"));
         model.addAttribute("chatroomName", (String)session.getAttribute("chatroomName"));
-        model.addAttribute("channel", publicChannelService.findPublicChannelByName((String)session.getAttribute("chatroomName")));
+        // ! TODO: this does not work for private chat yet, we might redirect them to diffrent route, it will crash the server.
+        PublicChannel channel = publicChannelService.findPublicChannelByName((String)session.getAttribute("chatroomName"));
+        model.addAttribute("channelId", channel.getId());
+        model.addAttribute("channel", channel);
+
+        // Recent 50 messages
+        List<PublicMessage> messages = publicMessageService.find50RecentPublicChannelMessages(channel.getId());
+        Collections.reverse(messages);
+        // System.out.println("messages:" + messages);
+        model.addAttribute("messages", messages);
         return "views/chatroom.jsp";
     } 
 

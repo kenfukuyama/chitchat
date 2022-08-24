@@ -1,7 +1,15 @@
-var e = document.querySelector('.channel');
-e.onmouseover = function() {
-  document.querySelector('.channel').innerText = document.querySelector('.channelNickname').innerText;
-}
-e.onmouseout = function() {
-  document.querySelector('.channel').innerText = '';
-}
+$('a[rel=popover]').popover().click(function(e) {
+  e.preventDefault();
+  var open = $(this).attr('data-easein');
+  $(this).next().velocity('transition.' + open);
+
+});
+
+// add the animation to the modal
+$(".modal").each(function(index) {
+  $(this).on('show.bs.modal', function(e) {
+    var open = $(this).attr('data-easein');
+    $('.modal-dialog').velocity('transition.' + open);
+
+  });
+});

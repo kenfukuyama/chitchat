@@ -88,6 +88,15 @@ public class User {
     private List<User> friendedUsers;
 
 
+	// public message
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "public_messages", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "public_channel_id")
+    )
+    private List<PublicChannel> publicChannels;
+
 	public User() {
 	}
 
@@ -187,6 +196,15 @@ public class User {
 
 	public void setFriendedUsers(List<User> friendedUsers) {
 		this.friendedUsers = friendedUsers;
+	}
+
+
+	public List<PublicChannel> getPublicChannels() {
+		return this.publicChannels;
+	}
+
+	public void setPublicChannels(List<PublicChannel> publicChannels) {
+		this.publicChannels = publicChannels;
 	}
 
 }

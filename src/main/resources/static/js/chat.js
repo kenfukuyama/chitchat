@@ -9,6 +9,10 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
+// id and channelId
+var senderId = document.querySelector('#userId');
+var channelId = document.querySelector('#channelId');
+
 var stompClient = null;
 var username = null;
 var nickname = null;
@@ -38,7 +42,7 @@ messageForm.addEventListener('submit', sendMessage, true)
 
 function connect() {
     nickname = document.querySelector('#nickname').innerHTML;
-    username = "@" + document.querySelector('#username').innerHTML;
+    username = document.querySelector('#username').innerHTML;
     console.log("username:" + username );
     console.log("nickname:" + nickname );
 
@@ -97,10 +101,13 @@ function sendMessage(event) {
         // stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 
         // room send message
+
         var roomSelection = document.querySelector('#chatroomName').innerHTML;
         var chatMessageRoom = {
             sender: username,
             content: messageInput.value,
+            senderId : senderId.innerHTML,
+            channelId : channelId.innerHTML,
             type: 'CHAT'
         };
 
@@ -132,7 +139,8 @@ function onMessageReceived(payload) {
     if(message.type === 'JOIN') {
         // if a user joins
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined';
+        message.content = "@" + message.sender + ' joined';
+        
 
         // change the number of number of connections.
         // TODO we want to something here and update the online numbers, but this is currently stateless
@@ -143,8 +151,8 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         // if a user leaves
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left';
-
+        message.content = "@" + message.sender + ' left';
+       
         // TODO we want to something here and update the online numbers
         // const span = document.querySelector('#number-connected');
         // span.innerHTML = --span.innerHTML;
@@ -152,19 +160,12 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
-        messageElement.style['word-wrap']='break-word';
         //messageElement.style['list-style-type'] = message.sender[1];
  
         if (username == message.sender) {
 	
             // if it is the user
-            messageElement.style['background-color'] = '#2f3134';
-            messageElement.style['color'] = 'white';
-            messageElement.style['text-align'] = 'right';
-            messageElement.style['padding-right'] = '15px';
-            messageElement.style['animation'] = 'fadeSent .5s';
-            //messageElement.style['direction'] = 'rtl';
-            
+            messageElement.classList.add('sender');
             
             // username and text element
             var usernameElement = document.createElement('span');
@@ -172,10 +173,7 @@ function onMessageReceived(payload) {
 
         }
         else {
-            messageElement.style['background-color'] = '#435f7a';
-            messageElement.style['padding-left'] = '15px';
-            messageElement.style['color'] = 'white';
-            messageElement.style['animation'] = 'fadeReceived .5s';
+            messageElement.classList.add('receiver');
              // avator pic and first initial
             //var avatarElement = document.createElement('i');
 
@@ -186,7 +184,7 @@ function onMessageReceived(payload) {
             //messageElement.appendChild(avatarElement);
 
             var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode(message.sender);
+            var usernameText = document.createTextNode("@" + message.sender);
         }
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
@@ -201,8 +199,7 @@ function onMessageReceived(payload) {
     var textElement2 = document.createElement('p');
     var date = document.createTextNode(formatAMPM());
    
-    textElement2.style['color']='gray';
-    textElement2.style['font-size']='.8em';
+   	textElement2.classList.add('timestamp');
     
     textElement.appendChild(messageText);
     textElement2.appendChild(date);
@@ -211,6 +208,12 @@ function onMessageReceived(payload) {
     messageElement.appendChild(textElement2);
 
     messageArea.appendChild(messageElement);
+    
+    if (message.type == 'CHAT'){
+    	let beat = new Audio('/assets/sfx/chat.mp3');
+    	beat.play();
+    }
+    
     messageArea.scrollTop = messageArea.scrollHeight;
 
     if (message.onlineNumber > 0) {
