@@ -140,6 +140,7 @@ function onMessageReceived(payload) {
         // if a user joins
         messageElement.classList.add('event-message');
         message.content = "@" + message.sender + ' joined';
+        
 
         // change the number of number of connections.
         // TODO we want to something here and update the online numbers, but this is currently stateless
@@ -151,7 +152,7 @@ function onMessageReceived(payload) {
         // if a user leaves
         messageElement.classList.add('event-message');
         message.content = "@" + message.sender + ' left';
-
+       
         // TODO we want to something here and update the online numbers
         // const span = document.querySelector('#number-connected');
         // span.innerHTML = --span.innerHTML;
@@ -159,19 +160,12 @@ function onMessageReceived(payload) {
     } else {
         // else display a message
         messageElement.classList.add('chat-message');
-        messageElement.style['word-wrap']='break-word';
         //messageElement.style['list-style-type'] = message.sender[1];
  
         if (username == message.sender) {
 	
             // if it is the user
-            messageElement.style['background-color'] = '#2f3134';
-            messageElement.style['color'] = 'white';
-            messageElement.style['text-align'] = 'right';
-            messageElement.style['padding-right'] = '15px';
-            messageElement.style['animation'] = 'fadeSent .5s';
-            //messageElement.style['direction'] = 'rtl';
-            
+            messageElement.classList.add('sender');
             
             // username and text element
             var usernameElement = document.createElement('span');
@@ -179,10 +173,7 @@ function onMessageReceived(payload) {
 
         }
         else {
-            messageElement.style['background-color'] = '#435f7a';
-            messageElement.style['padding-left'] = '15px';
-            messageElement.style['color'] = 'white';
-            messageElement.style['animation'] = 'fadeReceived .5s';
+            messageElement.classList.add('receiver');
              // avator pic and first initial
             //var avatarElement = document.createElement('i');
 
@@ -208,8 +199,7 @@ function onMessageReceived(payload) {
     var textElement2 = document.createElement('p');
     var date = document.createTextNode(formatAMPM());
    
-    textElement2.style['color']='orange';
-    textElement2.style['font-size']='.8em';
+   	textElement2.classList.add('timestamp');
     
     textElement.appendChild(messageText);
     textElement2.appendChild(date);
@@ -218,6 +208,12 @@ function onMessageReceived(payload) {
     messageElement.appendChild(textElement2);
 
     messageArea.appendChild(messageElement);
+    
+    if (message.type == 'CHAT'){
+    	let beat = new Audio('/assets/sfx/chat.mp3');
+    	beat.play();
+    }
+    
     messageArea.scrollTop = messageArea.scrollHeight;
 
     if (message.onlineNumber > 0) {

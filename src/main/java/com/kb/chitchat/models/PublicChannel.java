@@ -40,8 +40,6 @@ public class PublicChannel {
     private String isPublic;
 
 
-
-
     // ! relationships
     // its self to keep track to creator
     @ManyToOne(fetch=FetchType.LAZY)

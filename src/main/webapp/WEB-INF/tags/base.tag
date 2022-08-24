@@ -25,9 +25,6 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     
-    <!-- anime.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     
@@ -37,6 +34,11 @@
     
     <!-- Tabs -->
     <script defer type="text/javascript" src="/js/tabs.js"></script>
+    
+    <!-- Channel Previews -->
+    <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js" defer></script>
+    <script defer type="text/javascript" src="/js/preview.js"></script>
 </head>
 <body>
 <!-- Navbar -->

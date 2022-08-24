@@ -166,14 +166,17 @@ a {
     display: none;
 }
 
-.event-message {
-	color: grey;
+.event-message, .connecting {
+	color: orange;
 }
 
 .chat-message {
 	padding: 5px;
 	margin-bottom: 15px;
 	border-radius: 15px;
+	padding-left: 10px; 
+	overflow-wrap: break-word;
+	color: white;
 }
 
 #chat-page ul {
@@ -186,6 +189,7 @@ a {
 	
 #chat-page .chat-message span{
 	font-family: "Alliance1Bold";
+	color: white;
 }
 
 #chat-page .chat-message p {
@@ -195,6 +199,30 @@ a {
 
 #message, .username, .regular{
 	font-family: "Alliance1Regular";
+}
+
+.sender {
+	background-color: rgb(47, 49, 52); 
+	text-align: right; 
+	padding-right: 15px; 
+	animation: 0.5s ease 0s 1 normal none running fadeSent;
+}
+
+.receiver {
+	padding-left: 15px; 
+	background-color: rgb(67, 95, 122); 
+	color: white; 
+	animation: 0.5s ease 0s 1 normal none running fadeReceived;
+}
+
+.sender .timestamp{
+	color: gray;
+    font-size:.8em;
+}
+
+.receiver .timestamp{
+	color: black;
+	font-size: .8em;
 }
 
 /**********************************************
@@ -262,9 +290,9 @@ a {
 .category-image:hover{
     transform: scale(1.05);
     
-    -webkit-filter: brightness(1) grayscale(.1) opacity(.8);
-    -moz-filter: brightness(1) grayscale(.1) opacity(.8);
-    filter: brightness(1) grayscale(.1) opacity(.8);
+    -webkit-filter: brightness(1) grayscale(0) opacity(1);
+    -moz-filter: brightness(1) grayscale(0) opacity(1);
+    filter: brightness(1) grayscale(0) opacity(1);
 }
 
 .label-text:hover{
@@ -288,6 +316,43 @@ a {
 	background-color: #055160;
 }
 
+.modal-dialog {
+    position: absolute;
+    top: 28vh;
+    bottom: 28vh;
+    left: 5vw;
+    right: 5vw;
+}
+
+
+.modal-content{
+	background-color: #212529;
+	border: none;
+}
+
+.modal-header{
+	border-bottom: none;
+	background-color: black;
+	color: white;
+}
+
+.modal-body{
+	padding-bottom: 0;
+}
+
+.modal-body p{
+	word-wrap: break-word;
+	margin-bottom: 0;
+}
+
+.modal-footer{
+	border-top: none;
+}
+
+.btn-close{
+	background-color: white;
+	font-size: 14px;
+}
 
 /**********************************************
 		     End Chatrooms Page
@@ -343,6 +408,10 @@ a {
 
 /**********************************************
 		       End Friends Page
+**********************************************/
+
+/**********************************************
+		       User Channels Page
 **********************************************/
 
 
