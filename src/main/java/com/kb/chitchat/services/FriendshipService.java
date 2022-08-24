@@ -1,8 +1,11 @@
 package com.kb.chitchat.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ import com.kb.chitchat.repositories.FriendshipRepository;
 public class FriendshipService {
 	@Autowired 
 	private FriendshipRepository friendshipRepository;
+
+	private static final Logger logger = LoggerFactory.getLogger(FriendshipService.class);
+
 
 	// for many to many
 	// @Autowired
@@ -48,8 +54,45 @@ public class FriendshipService {
 		return friendshipRepository.findByUserIdAndFriendId(userId, friendId);
 	}
 
+	public Friendship findFriendshipBidirectional(Long userId, Long friendId) {
+		Friendship friending = friendshipRepository.findByUserIdAndFriendId(userId, friendId);
+        Friendship friended = friendshipRepository.findByUserIdAndFriendId(friendId, userId);
+
+		Friendship friendship = (friending != null)? friending : friended;
+		if (friendship != null) {
+			return friendship;
+		}
+		else {
+			logger.info("No friendship found but tried to get");
+			return null;
+		}
+	}
+
+	// find friendship in both directions
 	public List<Friendship> allFriendshipsByUserId(Long userId){
-		return friendshipRepository.findAllByUserId(userId);
+		// List<Friendship> friendships = friendshipRepository.findAllByUserId(userId);
+		// friendships.addAll(friendshipRepository.findAllByFriendId(userId));
+		// return friendships;
+		return friendshipRepository.findAllByUserIdOrFriendId(userId, userId);
+	}
+
+	// Find all approved friends
+	// public List<Friendship> allApprovedFriendshipsByUserId(Long userId){
+	// 	return friendshipRepository.findAllByApprovedAndUserIdOrFriendId(1, userId, userId);
+	// }
+
+	// Find all pending friends
+	public List<Friendship> allPendingFriendshipsByUserId(Long userId){
+		Optional<List<Friendship>> optionalFriendships = friendshipRepository.findPendingFriendship(userId);
+		if (optionalFriendships.isPresent()) { return optionalFriendships.get(); } 
+		else { System.out.println("null"); return new ArrayList<Friendship>();}
+	}
+
+	// Find all pending friends
+	public List<Friendship> allApprovedFriendshipsByUserId(Long userId){
+		Optional<List<Friendship>> optionalFriendships = friendshipRepository.findApprovedFriendship(userId);
+		if (optionalFriendships.isPresent()) { return optionalFriendships.get(); } 
+		else { System.out.println("null"); return new ArrayList<Friendship>();}
 	}
 
 }
