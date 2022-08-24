@@ -50,5 +50,10 @@ public class PublicMessageService {
 		else { System.out.println("null"); return null;}
 	}
 
+	public List<PublicMessage> find10RecentPublicChannelMessages(Long publicChannelId) {
+		Optional<List<PublicMessage>> optionalPublicMessages = publicmessageRepository.findRecent10MessagesByChannelId(publicChannelId);
+		if (optionalPublicMessages.isPresent()) { return optionalPublicMessages.get(); } 
+		else { System.out.println("null"); return null;}
+	}
 
 }

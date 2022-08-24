@@ -186,6 +186,18 @@ a {
     padding: 0 20px;
     height: 65vh;
 }
+
+ul#preview-page {
+	list-style-type: none;
+	margin: 0;
+	overflow-y:scroll;
+	height: 60vh;
+	padding: 0px 0px 0px 0px;
+}
+
+.chat-message {
+	list-style-type: none;
+}
 	
 #chat-page .chat-message span{
 	font-family: "Alliance1Bold";
@@ -234,21 +246,21 @@ a {
 **********************************************/
 
 
-.petsAnimals{background-image:url(/assets/images/publicChannels/animals.jpeg);}
-.healthNutrition{background-image:url(/assets/images/publicChannels/health.jpeg);}
-.anime{background-image:url(/assets/images/publicChannels/anime.png)}
-.foodRecipes{background-image:url(/assets/images/publicChannels/recipes.jpeg)}
-.videogames{background-image:url(/assets/images/publicChannels/videogames.webp)}
-.horticulture{background-image:url(/assets/images/publicChannels/horticulture.jpeg)}
-.music{background-image:url(/assets/images/publicChannels/music.webp)}
-.gayPride{background-image:url(/assets/images/publicChannels/gayPride.jpeg)}
-.photography{background-image:url(/assets/images/publicChannels/photography.jpeg)}
-.sports{background-image:url(/assets/images/publicChannels/sports.jpeg)}
-.comedy{background-image:url(/assets/images/publicChannels/comedy.avif)}
-.veterans{background-image:url(/assets/images/publicChannels/veterans.jpeg)}
-.crypto{background-image:url(/assets/images/publicChannels/crypto.webp)}
-.history{background-image:url(/assets/images/publicChannels/history.jpeg)}
-.parenthood{background-image:url(/assets/images/publicChannels/parenthood.jpeg)}
+.petsAnimals{background-image:url(/assets/images/publicChannels/petsAnimals.jpg);}
+.healthNutrition{background-image:url(/assets/images/publicChannels/healthNutrition.jpg);}
+.anime{background-image:url(/assets/images/publicChannels/anime.jpg)}
+.foodRecipes{background-image:url(/assets/images/publicChannels/foodRecipes.jpg)}
+.videogames{background-image:url(/assets/images/publicChannels/videogames.jpg)}
+.horticulture{background-image:url(/assets/images/publicChannels/horticulture.jpg)}
+.music{background-image:url(/assets/images/publicChannels/music.jpg)}
+.gayPride{background-image:url(/assets/images/publicChannels/gayPride.jpg)}
+.photography{background-image:url(/assets/images/publicChannels/photography.jpg)}
+.sports{background-image:url(/assets/images/publicChannels/sports.jpg)}
+.comedy{background-image:url(/assets/images/publicChannels/comedy.jpg)}
+.veterans{background-image:url(/assets/images/publicChannels/veterans.jpg)}
+.crypto{background-image:url(/assets/images/publicChannels/crypto.jpg)}
+.history{background-image:url(/assets/images/publicChannels/history.jpg)}
+.parenthood{background-image:url(/assets/images/publicChannels/parenthood.jpg)}
 
 .category-selector{
 	margin-bottom: 50px;
@@ -318,16 +330,17 @@ a {
 
 .modal-dialog {
     position: absolute;
-    top: 28vh;
-    bottom: 28vh;
-    left: 5vw;
-    right: 5vw;
+    top: 10vh;
+    left: 10vw;
+    width: 100vw;
 }
 
 
 .modal-content{
-	background-color: #212529;
+	background-color: #212529a3;
 	border: none;
+	height: 80vh;
+	width: 80vw;
 }
 
 .modal-header{
@@ -352,6 +365,19 @@ a {
 .btn-close{
 	background-color: white;
 	font-size: 14px;
+	position: absolute;
+	right: 15px;
+}
+
+.preview-title {
+	margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.frame {
+	height: inherit;
+	background: transparent no-repeat center;
+  	background-size: cover;
 }
 
 /**********************************************
@@ -414,6 +440,21 @@ a {
 		       User Channels Page
 **********************************************/
 
+/**********************************************
+		     End User Channels Page
+**********************************************/
+
+/**********************************************
+		          Dashboard
+**********************************************/
+
+.dashboard-container {
+	background-color: white;
+}
+
+/**********************************************
+		        End Dashboard
+**********************************************/
 
 /**********************************************
 		   Sizing Utility Classes

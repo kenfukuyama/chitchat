@@ -1,7 +1,9 @@
 package com.kb.chitchat.controllers;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -49,6 +51,25 @@ public class ChatroomController {
         model.addAttribute("user", userService.findUserById((Long)session.getAttribute("id")));
         // for channels
         model.addAttribute("publicChannels", publicChannelService.allPublicChannels());
+        
+        List<PublicChannel> channels = publicChannelService.allPublicChannels();
+        HashMap<PublicChannel, List<PublicMessage>> channelMap = new HashMap<PublicChannel, List<PublicMessage>>();
+        
+        for (int i = 0; i < channels.size(); i++) {
+        	
+        	List<PublicMessage> messages = publicMessageService.find10RecentPublicChannelMessages(channels.get(i).getId());
+        	Collections.reverse(messages);
+        	channelMap.put(channels.get(i), messages);
+        }
+        
+        Set<PublicChannel> myChannels = channelMap.keySet();
+        for (PublicChannel channel: myChannels) {
+        	System.out.println(channel.getChannelName());
+        	System.out.println(channel.getChannelNickname());
+        	System.out.println("");
+        }
+        
+        model.addAttribute("channelMap", channelMap);
 
         return "views/chatrooms.jsp";
     }
@@ -87,6 +108,7 @@ public class ChatroomController {
         model.addAttribute("userId", (Long)session.getAttribute("id"));
         // TODO: change to the channels created by the users
         model.addAttribute("userChannels", publicChannelService.AllPublicChannelsByCreator((Long)session.getAttribute("id")));
+        
         return "views/userChannels.jsp";
 
     }

@@ -37,45 +37,96 @@
             
             <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
                 <div class="row styled-text text-white mt-1">
-					<c:forEach var="channel" items="${publicChannels}">
+					<c:forEach var="thisChannel" items="${channelMap}">
 						<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
-							<p class="channelNickname">${channel.channelNickname}</p>
+							<p class="channelNickname">${thisChannel.key.channelNickname}</p>
 
 							<c:choose>
-								<c:when test="${channel == publicChannels[0]}">
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}" checked="checked">
+								<c:when test="${thisChannel.key == publicChannels[0]}">
+									<input type="radio" name="chatroomName" id="${thisChannel.key.channelName}" value="${thisChannel.key.channelName}" checked="checked">
 								</c:when>
 								<c:otherwise>
-									<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
+									<input type="radio" name="chatroomName" id="${thisChannel.key.channelName}" value="${thisChannel.key.channelName}">
 								</c:otherwise>
 							</c:choose>
-							<label class="category-image channel bg-primary ${channel.channelName}" for="${channel.channelName}" id="previewBtn" data-bs-toggle="modal" data-bs-target="#${channel.channelName.concat(channel.id)}"></label>  
+							<label class="category-image channel bg-primary ${thisChannel.key.channelName}" for="${thisChannel.key.channelName}" id="previewBtn" data-bs-toggle="modal" data-bs-target="#${thisChannel.key.channelName.concat(thisChannel.key.id)}"></label>  
 						</div>
   
-  						<div class="modal" id="${channel.channelName.concat(channel.id)}" data-easein="expandIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  						<div class="modal" id="${thisChannel.key.channelName.concat(thisChannel.key.id)}" data-easein="expandIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   							<div class="modal-dialog">
     							<div class="modal-content">
-
-      								<div class="modal-header">
-        								<h4 class="modal-title">${channel.channelNickname}</h4>&nbsp;&nbsp;<small><span class="text-success mb-0">56 people in this room</span></small>
-        								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      								</div>
-
+    							
       								<!-- Modal body -->
       								<div class="modal-body">
-      						
-        							<p>This is a description for ${channel.channelNickname}. letsdfsadfklsdjfasdlfkasdjflasdkfjasdlfasdjflasdkfjasdlfasdjflasdfjasdlfasdjflasdkfjasdlfajsdflasdfkajdslfkjadsflsadkfjsadlfjasdf</p>
-      								</div>
-
-      								<!-- Modal footer -->
-      								<div class="modal-footer d-flex">
       								
-        							<button type="submit" class="user-submit btn">Enter Room</button>
-      								<c:if test="${channel.creator.username.equals(username)}">
-      								<button type="submit" class="btn btn-info">Edit</button>
-      								<button type="submit" class="btn btn-danger">Delete</button>
-      								</c:if>
-      								</div>
+        								<div class="row">
+        									<div class="col-6 frame" style="background-image: url('/assets/images/publicChannels/${thisChannel.key.channelName}.jpg');">
+        									</div>
+        									<div class="col-6 text-start">
+        										<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        										<div class="d-flex align-items-center">
+        											<h1 class="display-4 p-0 preview-title">${thisChannel.key.channelNickname}</h1>&nbsp;&nbsp;<span class="text-success lead">55 Online</span>
+        										</div>
+        										<p class="mb-2">This is a detailed description of ${thisChannel.key.channelNickname}. What a great description. So good.</p>
+        										
+        										<div class="d-flex mb-2">
+      		
+        											<button type="submit" class="user-submit btn btn-lg">Enter Room</button>
+      												<c:if test="${thisChannel.key.creator.username.equals(username)}">
+      												<button type="submit" class="btn btn-info">Edit</button>
+      												<button type="submit" class="btn btn-danger">Delete</button>
+      												</c:if>
+      											</div>
+      											<ul id="preview-page">
+      											<c:forEach var="message" items="${thisChannel.value}">
+      												<c:choose>
+								<c:when test="${message.user.username.equals(username)}">
+								<li class="chat-message sender">
+									<span>Me</span>
+									<p class="mb-0">${message.content}</p>
+									
+									<jsp:useBean id="now" class="java.util.Date"/>
+									<fmt:formatDate value="${now}" pattern="MMM dd" var="today" />
+									<fmt:formatDate value="${message.createdAt}" pattern="MMM dd" var="createdAt"/>
+									<c:choose>
+										<c:when test="${createdAt.equals(today)}">
+											<p class="timestamp"><fmt:formatDate pattern="h:mm a" value="${message.createdAt}"/></p>
+										</c:when>
+										<c:otherwise>
+											<p class="timestamp"><fmt:formatDate pattern="MMM dd h:mm a" value="${message.createdAt}"/></p>
+										</c:otherwise>
+									</c:choose>
+								</li>
+								</c:when>
+								<c:otherwise>
+								<li class="chat-message receiver">
+									<span>@${message.user.username}</span>
+									<p class="mb-0">${message.content}</p>
+									
+									<jsp:useBean id="now2" class="java.util.Date"/>
+									<fmt:formatDate value="${now2}" pattern="MMM dd" var="today2" />
+									<fmt:formatDate value="${message.createdAt}" pattern="MMM dd" var="createdAt2"/>
+									
+									<c:choose>
+										<c:when test="${createdAt2.equals(today2)}">
+											<p class="timestamp"><fmt:formatDate pattern="h:mm a" value="${message.createdAt}"/></p>
+										</c:when>
+										<c:otherwise>
+											<p class="timestamp"><fmt:formatDate pattern="MMM dd h:mm a" value="${message.createdAt}"/></p>
+										</c:otherwise>
+									</c:choose>
+								</li>
+								</c:otherwise>
+							</c:choose>
+						
+      											</c:forEach>
+      											</ul>
+        									</div>
+        									
+        								</div>
+      								
+									</div>
+    
 
     								</div>
   								</div>
