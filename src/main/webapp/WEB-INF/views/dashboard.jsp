@@ -7,13 +7,13 @@
 
 <title>Dashboard</title>
 <t:base>
-<div class="container">
-	<div class="row vh-100">
-		<div class="col-4 align-middle">
-			<h3>SearchBar/Contacts/Groups</h3>
+<div class="container dashboard-container py-5">
+	<div class="row h-100 pt-5">
+		<div class="col-4">
+			<h3 class="text-dark">SearchBar/Contacts/Groups</h3>
 		</div>
 		<div class="col-8">
-			<h3>Currently Selected</h3>
+			<h3 class="text-dark">Currently Selected</h3>
 		</div>
 	</div>
 </div>

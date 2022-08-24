@@ -14,4 +14,7 @@ public interface PublicMessageRepository extends CrudRepository<PublicMessage, L
 
 	@Query(value = "SELECT * FROM schema_chitchat.public_messages WHERE public_channel_id = ?1 ORDER BY created_at DESC LIMIT 50;", nativeQuery = true)
 	Optional<List<PublicMessage>> findRecent50MessagesByChannelId(Long channedlId);
+	
+	@Query(value = "SELECT * FROM schema_chitchat.public_messages WHERE public_channel_id = ?1 ORDER BY created_at DESC LIMIT 10;", nativeQuery = true)
+	Optional<List<PublicMessage>> findRecent10MessagesByChannelId(Long channedlId);
 }
