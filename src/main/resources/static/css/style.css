@@ -448,8 +448,26 @@ ul#preview-page {
 		          Dashboard
 **********************************************/
 
+.dashboard-container .row {
+	height: inherit;
+}
+
 .dashboard-container {
 	background-color: white;
+	height: 80vh;
+	margin-top: 5%;
+}
+
+.dashboard-column{
+	height: inherit;
+}
+
+.dashboard-container #chat-page{
+	height: inherit;
+}
+
+.dash-container #messageArea {
+	height: inherit;
 }
 
 /**********************************************

@@ -62,6 +62,7 @@ public class ChatroomController {
             Collections.reverse(messages);
             channelMap.put(channels.get(i), messages);
         }
+
         model.addAttribute("channelMap", channelMap);
 
         return "views/chatrooms.jsp";

@@ -69,7 +69,7 @@
         										</div>
         										<p class="mb-2">This is a detailed description of ${thisChannel.key.channelNickname}. What a great description. So good.</p>
         										
-        										<div class="d-flex mb-2">
+        										<div class="d-flex mb-3">
       		
         											<button type="submit" class="user-submit btn btn-lg">Enter Room</button>
       												<c:if test="${thisChannel.key.creator.username.equals(username)}">
