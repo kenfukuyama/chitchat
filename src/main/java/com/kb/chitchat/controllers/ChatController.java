@@ -48,6 +48,18 @@ public class ChatController {
         return chatMessage;
     }
 
+    // routes for private messages
+    @MessageMapping("/chat.sendMessageDM{roomSelection}")
+    @SendTo("/topic/{roomSelection}")
+    public ChatMessage sendDM(@Payload ChatMessage chatMessage, @DestinationVariable String roomSelection) { 
+        // PublicMessage publicMessage = new PublicMessage();
+        // publicMessage.setPublicChannel(publicChannelService.findPublicChannel(Long.parseLong(chatMessage.getChannelId())));
+        // publicMessage.setUser(userService.findUser(Long.parseLong(chatMessage.getSenderId())));
+        // publicMessage.setContent(chatMessage.getContent());
+        // publicMessageService.savePublicMessage(publicMessage);
+        return chatMessage;
+    }
+
 
     // this route handles adding user
     @MessageMapping("/chat.addUser{roomSelection}")

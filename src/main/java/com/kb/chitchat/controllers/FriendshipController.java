@@ -44,7 +44,7 @@ public class FriendshipController {
         // System.out.println("approvedFriendships: " + approvedFriendships);
         List<User> approvedFriends = new ArrayList<User>();
         for (Friendship approvedFriendship : approvedFriendships ) {
-            if (approvedFriendship.getUser().getId() == (Long) session.getAttribute("id")) {
+            if (approvedFriendship.getUser().getId().equals((Long) session.getAttribute("id"))) {
                 approvedFriends.add(userService.findUser(approvedFriendship.getFriend().getId()));
             }
             else {
@@ -119,55 +119,77 @@ public class FriendshipController {
     }
 
 
+
     // Entering the private chat
     @PostMapping("/chatrooms/private/enter") 
-    public String chatroomPrivateEnter(@RequestParam("loggedInUserId") Long loggedInUserId,  @RequestParam("userId") Long userId, HttpSession session, Model model) {
+    public String chatroomPrivateEnter(@RequestParam("loggedInUserId") Long loggedInUserId,  @RequestParam("userId") Long userId, HttpSession session) {
+        // // TODO: refactor this so it finds the frineds quickly without two lines
+        // Friendship friending = friendshipService.findFriendship(loggedInUserId, userId);
+        // Friendship friended = friendshipService.findFriendship(userId, loggedInUserId);
+
+        // if (friending != null) {
+        //     session.setAttribute("chatroomName", friending.getName());
+        //     return "redirect:/chatrooms/" + friending.getName();
+        // }
+        // else if (friended != null) {
+        //     session.setAttribute("chatroomName", friended.getName());
+        //     return "redirect:/chatrooms/" + friended.getName();
+        // }
+        // else {
+        //     logger.info("No friendship found but tried to chat");
+        //     return "redirect:/chatrooms/" + "nowhere";
+        // }
+
         System.out.println("loggedInUserId: " + loggedInUserId);
         System.out.println("userId: " + userId);
 
-        // TODO: refactor this so it finds the frineds quickly without two lines
-        Friendship friending = friendshipService.findFriendship(loggedInUserId, userId);
-        Friendship friended = friendshipService.findFriendship(userId, loggedInUserId);
+        Friendship friendship = friendshipService.findFriendshipBidirectional(loggedInUserId, userId);
+        session.setAttribute("selectedFriendshipId", friendship.getId());
 
-        if (friending != null) {
-            session.setAttribute("chatroomName", friending.getName());
-            return "redirect:/chatrooms/" + friending.getName();
-        }
-        else if (friended != null) {
-            session.setAttribute("chatroomName", friended.getName());
-            return "redirect:/chatrooms/" + friended.getName();
-        }
-        else {
-            logger.info("No friendship found but tried to chat");
-            return "redirect:/chatrooms/" + "nowhere";
-        }
+        return "redirect:/users/dashboard";
         
     }
 
     @GetMapping("/users/dashboard")
     public String userDashboard(Model model, HttpSession session) {
+        // models for private messages later
+        model.addAttribute("id", (Long)session.getAttribute("id"));
+        model.addAttribute("username", (String)session.getAttribute("username"));
+        model.addAttribute("nickname", (String)session.getAttribute("nickname"));
+
     	model.addAttribute("loggedInUser", userService.findUserById((Long) session.getAttribute("id")));
         // # all users
-        model.addAttribute("users", userService.allRegisteredUsers());
-        
+        model.addAttribute("users", userService.allRegisteredUsers());        
 
         // # all friends
         // List<Friendship> approvedFriendships = friendshipService.allFriendshipsByUserId((Long) session.getAttribute("id"));
         List<Friendship> approvedFriendships = friendshipService.allApprovedFriendshipsByUserId((Long) session.getAttribute("id"));
         model.addAttribute("approvedFriendships", approvedFriendships);
-        // System.out.println("approvedFriendships: " + approvedFriendships);
+        System.out.println("approvedFriendships: " + approvedFriendships);
         List<User> approvedFriends = new ArrayList<User>();
         for (Friendship approvedFriendship : approvedFriendships ) {
-            if (approvedFriendship.getUser().getId() == (Long) session.getAttribute("id")) {
+            if (approvedFriendship.getUser().getId().equals((Long) session.getAttribute("id"))) {
+                System.out.println("you friended them");
                 approvedFriends.add(userService.findUser(approvedFriendship.getFriend().getId()));
             }
             else {
+                System.out.println("they friended you");
                 approvedFriends.add(userService.findUser(approvedFriendship.getUser().getId()));
             }
         }
         model.addAttribute("approvedFriends", approvedFriends);
-        // System.out.println(approvedFriends);
+        System.out.println(approvedFriends);
 
+
+        // ! TODO: friendship if it selected otherwise set to person with the most recent message
+        // ! if not friends  or if there is not recent message  show something eles
+        if (session.getAttribute("selectedFriendshipId") != null) {
+            model.addAttribute("selectedFriendship", friendshipService.findFriendship((Long) session.getAttribute("selectedFriendshipId")));
+            System.out.println("frieshdp selected");
+        }
+        else {
+            System.out.println("no friendship selected");
+        }
         
         return "views/dashboard.jsp";
     }
