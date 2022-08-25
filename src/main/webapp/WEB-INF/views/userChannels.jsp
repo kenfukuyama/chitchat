@@ -72,7 +72,36 @@
 											<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
 										</c:otherwise>
 									</c:choose>
-                            		<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>                       
+                            		<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}" id="previewBtn" data-bs-toggle="modal" data-bs-target="#${channel.channelName.concat(channel.id)}"></label>   
+                            		
+                            		<div class="modal" id="${channel.channelName.concat(channel.id)}" data-easein="expandIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            			<div class="modal-dialog">
+                            				<div class="modal-content">
+                            					<div class="modal-body">
+                            						<div class="row">
+                            							<div class="col-6 frame" style="background-image: url('/assets/images/publicChannels/${thisChannel.key.channelName}.jpg');"></div>
+                            							<div class="col-6 text-start">
+                            								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        													<div class="d-flex align-items-center">
+        														<h1 class="display-4 p-0 preview-title">${channel.channelNickname}</h1>&nbsp;&nbsp;<span class="text-success lead">55 Online</span>
+        													</div>
+        													<p class="mb-2">This is a detailed description of ${channel.channelNickname}. What a great description. So good.</p>
+        										
+        													<div class="d-flex mb-3">
+        														<button type="submit" class="user-submit btn btn-lg">Enter Room</button>
+      															<c:if test="${channel.creator.username.equals(username)}">
+      																<button type="submit" class="btn btn-info">Edit</button>
+      																<button type="submit" class="btn btn-danger">Delete</button>
+      															</c:if>
+      												
+      														</div>
+                            								
+                            							</div>
+                            						</div>
+                            					</div>
+                            				</div>
+                            			</div>                  
+                        			</div>
                         		</div>
                     		</c:forEach>
                 		</div>  

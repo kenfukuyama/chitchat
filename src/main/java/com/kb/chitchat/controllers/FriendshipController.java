@@ -144,7 +144,33 @@ public class FriendshipController {
         
     }
 
+    @GetMapping("/users/dashboard")
+    public String userDashboard(Model model, HttpSession session) {
+    	model.addAttribute("loggedInUser", userService.findUserById((Long) session.getAttribute("id")));
+        // # all users
+        model.addAttribute("users", userService.allRegisteredUsers());
+        
 
+        // # all friends
+        // List<Friendship> approvedFriendships = friendshipService.allFriendshipsByUserId((Long) session.getAttribute("id"));
+        List<Friendship> approvedFriendships = friendshipService.allApprovedFriendshipsByUserId((Long) session.getAttribute("id"));
+        model.addAttribute("approvedFriendships", approvedFriendships);
+        // System.out.println("approvedFriendships: " + approvedFriendships);
+        List<User> approvedFriends = new ArrayList<User>();
+        for (Friendship approvedFriendship : approvedFriendships ) {
+            if (approvedFriendship.getUser().getId() == (Long) session.getAttribute("id")) {
+                approvedFriends.add(userService.findUser(approvedFriendship.getFriend().getId()));
+            }
+            else {
+                approvedFriends.add(userService.findUser(approvedFriendship.getUser().getId()));
+            }
+        }
+        model.addAttribute("approvedFriends", approvedFriends);
+        // System.out.println(approvedFriends);
+
+        
+        return "views/dashboard.jsp";
+    }
 
 
 

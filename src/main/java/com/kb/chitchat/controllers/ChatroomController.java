@@ -62,12 +62,6 @@ public class ChatroomController {
         	channelMap.put(channels.get(i), messages);
         }
         
-        Set<PublicChannel> myChannels = channelMap.keySet();
-        for (PublicChannel channel: myChannels) {
-        	System.out.println(channel.getChannelName());
-        	System.out.println(channel.getChannelNickname());
-        	System.out.println("");
-        }
         
         model.addAttribute("channelMap", channelMap);
 
