@@ -10,7 +10,8 @@
 <div id="username-page" class="fade-in d-flex align-items-center styled-text text-white">
     <div class="container username-page-container text-center pt-5 pb-3 vh-100">
         <div class="row mt-5 d-flex justify-content-center">
-        		<h3 class="mb-0">Create New Room</h3>
+        		<h3 class="mb-2">Create New Room</h3>
+				<hr/>
         		<form:form action="/channels/new" method="post" modelAttribute="channel" class="p-4 w-md-75 w-lg-50">
             		<form:input type="hidden" path="creator" value="${userId}"></form:input>
            		<div class="mb-3">
@@ -18,10 +19,17 @@
                     <form:input path="channelName" type="text" class="form-control" placeholder="channelName" autocomplete="off"/>
                     <small><form:errors  class="text-danger" path="channelName" /></small>
                 </div>
+
                 <div class="mb-3">
                     <form:label path="channelNickname" class="form-label mb-1">Channel Nickname </form:label>
                     <form:input path="channelNickname" type="text" class="form-control" placeholder="channelNickname" autocomplete="off"/>
                     <small><form:errors  class="text-danger" path="channelNickname" /></small>
+                </div>
+				
+				<div class="mb-3">
+                    <form:label path="description" class="form-label mb-1">Description (30 to 100 characters) </form:label>
+                    <form:textarea path="description" type="text" class="form-control" placeholder="description" autocomplete="off"/>
+                    <small><form:errors  class="text-danger" path="description" /></small>
                 </div>
                	<div class="d-flex justify-content-between">
                		<div class="d-flex align-items-start">
@@ -41,7 +49,8 @@
                
         		</form:form>
     
-            <h3>Your Chatrooms</h3>
+				<h3 class="mt-4">Your Chatrooms</h3>
+				<hr/>
             
             <div class="d-flex justify-content-center">
             	<div class="input-group px-4 pb-4 pt-3 w-md-75 w-lg-50">
@@ -59,66 +68,79 @@
             
             	<div class="tab-body">
 					<div class="publicRoom active">
-						<form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
-                		<div class="row styled-text text-white mt-1">
-                    		<c:forEach var="channel" items="${userChannels}">
-                        		<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
-                            		<p>${channel.channelNickname}</p>
-                            		<c:choose>
-										<c:when test="${channel == userChannels[0]}">
-											<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelNickname}" checked="checked">
-										</c:when>
-										<c:otherwise>
-											<input type="radio" name="chatroomName" id="${channel.channelName}" value="${channel.channelName}">
-										</c:otherwise>
-									</c:choose>
-                            		<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>                       
-                        		</div>
-                    		</c:forEach>
-                		</div>  
-            		</form>
+						<!-- <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection"> -->
+						<div class="row styled-text text-white mt-1">
+							<c:forEach var="channel" items="${userChannels}">
+								<c:choose>
+									<c:when test='${channel.isPublic != "0"}'>
+										<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
+											<p>${channel.channelNickname}</p>
+											<c:choose>
+												<c:when test="${channel == userChannels[0]}">
+													<input type="radio" name="chatroomName" id="${channel.channelName}"
+														value="${channel.channelNickname}" checked="checked">
+												</c:when>
+												<c:otherwise>
+													<input type="radio" name="chatroomName" id="${channel.channelName}"
+														value="${channel.channelName}">
+												</c:otherwise>
+											</c:choose>
+											<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>
+											<div class="d-flex justify-content-center gap-2 mt-1">
+												<div><a href="/channels/${channel.channelName}/edit" class="btn btn-info">Edit</a></div>
+												<div class="btn btn-danger">
+													<form action="/channels/${channel.id}" method="post">
+														<input type="hidden" name="_method" value="delete">
+														<input class="btn" type="submit" value="Delete">
+													</form>
+												</div>
+											</div>
+										</div>
+						
+									</c:when>
+								</c:choose>
+						
+							</c:forEach>
+						</div>
+						<!-- </form> -->
 				</div>
 				
 				<div class="privateRoom">
-					<div class="d-flex justify-content-center">
-							<ul class="list-group users w-100 w-md-75 w-lg-50">
-							<%-- <c:forEach var="user" items="${users}">
-								<c:choose>
-									<c:when test="${user.id != loggedInUser.id}">
-										<li class="list-group-item live-search-list rounded mb-1">
-                            				<div class="d-flex justify-content-between align-items-center">
-                                				<div class="username ps-1">${user.nickname} (<small><em>@${user.username}</em></small>)</div>
-                               	<c:choose>
-                                    <c:when test="${loggedInUser.friendingUsers.contains(user) || loggedInUser.friendedUsers.contains(user)}">
-                                        <div class="d-flex justify-content-end align-items-center gap-1">
-                                            <form action="/chatrooms/private/enter" method="post" name="privateChatForm" class="chatroomSelection">
-                                                <input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
-                                                <input type="hidden" name="userId" value="${user.id}">
-                                                <button type="submit" class="user-submit btn">Chat</button>
-                                            </form>
-                                            <form action="/users/removeConnect" method="post">
-                                                <input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
-                                                <input type="hidden" name="userId" value="${user.id}">
-                                                <input class="btn btn-secondary" type="submit" value="Undo">
-                                            </form>
-                                        </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <form action="/users/addConnect" method="post">
-                                            <input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
-                                            <input type="hidden" name="userId" value="${user.id}">
-                                            <input class="user-submit btn" type="submit" value="Connect">
-                                        </form>
-                                    </c:otherwise>
-                                </c:choose>
-                                </div>
-                            </li>
-
-                        </c:when>
-                    </c:choose>
-                    </c:forEach> --%>
-					</ul>	
-					</div>
+						<!-- <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection"> -->
+							<div class="row styled-text text-white mt-1">
+								<c:forEach var="channel" items="${userChannels}">
+									<c:choose>
+										<c:when test='${channel.isPublic == "0"}'>
+											<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
+												<p>${channel.channelNickname}</p>
+												<c:choose>
+													<c:when test="${channel == userChannels[0]}">
+														<input type="radio" name="chatroomName" id="${channel.channelName}"
+															value="${channel.channelNickname}" checked="checked">
+													</c:when>
+													<c:otherwise>
+														<input type="radio" name="chatroomName" id="${channel.channelName}"
+															value="${channel.channelName}">
+													</c:otherwise>
+												</c:choose>
+												<label class="category-image bg-info ${channel.channelName}" for="${channel.channelName}"></label>
+												<div class="d-flex justify-content-center gap-2 mt-1">
+													<div><a href="/channels/${channel.channelName}/edit" class="btn btn-info">Edit</a></div>
+													<div class="btn btn-danger">
+														<form action="/channels/${channel.id}" method="post">
+															<input type="hidden" name="_method" value="delete">
+															<input class="btn" type="submit" value="Delete">
+														</form>
+													</div>
+												</div>
+											</div>
+							
+										</c:when>
+									</c:choose>
+							
+								</c:forEach>
+							</div>
+							<!-- </form> -->
 				</div>
            </div>
             

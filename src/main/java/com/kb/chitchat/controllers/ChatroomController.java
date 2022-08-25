@@ -3,7 +3,6 @@ package com.kb.chitchat.controllers;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kb.chitchat.models.PublicChannel;
@@ -56,19 +57,11 @@ public class ChatroomController {
         HashMap<PublicChannel, List<PublicMessage>> channelMap = new HashMap<PublicChannel, List<PublicMessage>>();
         
         for (int i = 0; i < channels.size(); i++) {
-        	
-        	List<PublicMessage> messages = publicMessageService.find10RecentPublicChannelMessages(channels.get(i).getId());
-        	Collections.reverse(messages);
-        	channelMap.put(channels.get(i), messages);
+            List<PublicMessage> messages = publicMessageService
+                    .find10RecentPublicChannelMessages(channels.get(i).getId());
+            Collections.reverse(messages);
+            channelMap.put(channels.get(i), messages);
         }
-        
-        Set<PublicChannel> myChannels = channelMap.keySet();
-        for (PublicChannel channel: myChannels) {
-        	System.out.println(channel.getChannelName());
-        	System.out.println(channel.getChannelNickname());
-        	System.out.println("");
-        }
-        
         model.addAttribute("channelMap", channelMap);
 
         return "views/chatrooms.jsp";
@@ -147,6 +140,66 @@ public class ChatroomController {
         return "redirect:/users/chatrooms";
 
     }
+
+    // ! Edit =================================================================
+    // ! Edit publicchannel page
+    @GetMapping("/channels/{name}/edit")
+    public String editPublicChannel(@PathVariable("name") String name, Model model, HttpSession session) {
+    	// validation for logged in user
+    	Long userId = (Long) session.getAttribute("id");   
+    	Long publicchannelUserId = publicChannelService.findPublicChannelByName(name).getCreator().getId();
+    	
+    	// put user back if not logged in
+    	if (userId == null) {
+    		return "redirect:/";
+    	} 
+    	
+    	if (!userId.equals(publicchannelUserId)) {
+    		return "redirect:/";
+    	}
+    	
+    	model.addAttribute("channel", publicChannelService.findPublicChannelByName(name));
+    	return "views/editPublicChannel.jsp";
+
+    }
+    
+    
+    // Edit put request
+    @RequestMapping(value="/channels/{id}", method=RequestMethod.PUT)
+    public String updatePublicChannel(@Valid @ModelAttribute("channel") PublicChannel channel, BindingResult result, 
+    		@PathVariable("id") Long id,  @RequestParam("privacySwitch") String privacySwitch) {
+    	
+
+        PublicChannel channelTemp = publicChannelService.findPublicChannelByName(channel.getChannelName());
+        if (channelTemp != null && channelTemp.getId() != channel.getId()) {
+            // not unique
+            result.rejectValue("channelName", "nonUnique", "Name is taken, please try again");
+        }
+
+        if (result.hasErrors()) {
+            return  "views/editPublicChannel.jsp";
+        } else {
+              
+            if (privacySwitch.equals(",0")) {
+                channel.setIsPublic("0");
+            }
+            publicChannelService.savePublicChannel(channel);
+            return "redirect:/users/chatrooms";
+        }
+        
+        
+        
+    }
+    
+    
+    // Delete Route ============================================================
+    // basic delete
+    @RequestMapping(value="/channels/{id}", method=RequestMethod.DELETE)
+    public String deletePublicChannel(@PathVariable("id") Long id) {
+    	publicChannelService.deletePublicChannel(publicChannelService.findPublicChannel(id));
+    	return "redirect:/users/chatrooms";
+    }
+    
 
 
 
