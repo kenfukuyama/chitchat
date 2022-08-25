@@ -39,6 +39,9 @@ public class PublicChannel {
 
     private String isPublic;
 
+    @Size(min=30, max=100, message="Channel Nickname must be 30 to 100 characters")
+    private String description;
+
 
     // ! relationships
     // its self to keep track to creator
@@ -138,5 +141,15 @@ public class PublicChannel {
     public void setSenders(List<User> senders) {
         this.senders = senders;
     }
+
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 }
