@@ -55,6 +55,7 @@ body {
 .navbar-nav{
 	background-color: black;
 	border-radius: 10px;
+	padding-left: 5px;
 }
 
 .navbar-nav .nav-item{
@@ -72,6 +73,14 @@ body {
 
 .nav-icon::before {
 	margin-bottom: 1px;
+}
+
+.navbar-brand{
+	margin-right: 0;
+}
+
+.navbar-collapse .collapse .show  {
+	padding-left: 0.5rem;
 }
 /**********************************************
 				 End Navbar
@@ -182,12 +191,15 @@ a {
 	color: white;
 }
 
-#chat-page ul {
+#chat-page .messageAreaPublic, #chat-page .messageAreaPrivate {
 	list-style-type: none;
     margin: 0;
    	overflow-y: scroll;
-    padding: 0 20px;
-    height: 80vh;
+}
+
+#chat-page .messageAreaPublic {
+	padding: 0 20px;
+    height: 68vh;
 }
 
 .chat-message {
@@ -360,7 +372,9 @@ a {
 .modal-body p{
 	word-wrap: break-word;
 	margin-bottom: 0;
+    font-weight: 300;
 }
+
 
 .modal-footer{
 	border-top: none;
@@ -370,8 +384,8 @@ a {
 	background-color: white;
 	font-size: 14px;
 	position: absolute;
-	right: 5px;
-	top: 5px;
+	right: 10px;
+	top: 10px;
 }
 
 .preview-title {
@@ -380,8 +394,8 @@ a {
 }
 
 .frame {
-	background: no-repeat;
-  	background-size: contain;
+	background: no-repeat center center;
+  	background-size: cover;
   	height: 100%;
 }
 
@@ -477,27 +491,87 @@ body.modal-open #username-page, body.modal-open .navbar{
 		          Dashboard
 **********************************************/
 
-.dashboard-container .row {
-	height: inherit;
-}
-
 .dashboard-container {
-	background-color: white;
 	height: 80vh;
-	margin-top: 5%;
+	padding: 0 1.8rem;
 }
 
-.dashboard-column{
-	height: inherit;
+#chat-page .messageAreaPrivate {
+	padding: 0 20px;
+    height: 68vh;
 }
 
-.dashboard-container #chat-page{
-	height: inherit;
+.chat-container h4 {
+	margin-top: 35%;
 }
 
-.dash-container #messageArea {
-	height: inherit;
+.dashboard-left {
+	background-color: white;
 }
+
+.dashboard-left, .dashboard-right {
+	padding-right: 0;
+    padding-left: 0;
+    min-height: 85vh;
+    max-height: 85vh;
+}
+
+.dashboard-left {
+	overflow-y: scroll;
+}
+
+.dashboard-right {
+	overflow-y: hidden;
+}
+
+.dashboard-contacts {
+	list-style-type: none;
+}
+
+.convo {
+	padding: 0 1.5rem;
+}
+
+.convo:hover {
+	 -webkit-filter: brightness(.8) grayscale(0) opacity(1);
+    -moz-filter: brightness(.8) grayscale(0) opacity(1);
+    filter: brightness(.8) grayscale(0) opacity(1);
+    
+    cursor: pointer;
+}
+
+.convo:nth-child(odd){
+	background-color: #e6eaea;
+}
+
+.convo:nth-child(even){
+	background-color: white;
+}
+
+.dashboard-contact-info {
+	word-wrap: break-word;
+}
+
+.dashboard-header {
+	background-color: white;
+	color: black;
+	font-weight: 300;
+}
+
+.started-convo {
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+.new-convo {
+	padding-top: 20px;
+    padding-bottom: 20px!important;
+}
+
+.dash {
+	margin-bottom: 0;
+}
+
 
 /**********************************************
 		        End Dashboard

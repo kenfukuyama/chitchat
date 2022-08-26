@@ -16,7 +16,6 @@
     <div id="username-page" class="fade-in d-flex align-items-center text-white">
         <div class="container username-page-container text-center pt-5 vh-100 styled-text text-white">
             <h2 class="mt-5">Select your room, ${username}</h2>
-			<!-- TODO: fix the alignment of online number -->
             <p class="text-success"> <span class=""></span> 1203 online</p>
 			<div class="d-flex justify-content-center">
             	<div class="input-group search-bar p-4 w-md-75 w-lg-50">
@@ -40,22 +39,25 @@
             
             <form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
                 <div class="row styled-text text-white mt-1">
+                	<c:set var="count" value="0" scope="page"/>
 					<c:forEach var="thisChannel" items="${channelMap}">
+						<c:if test="${thisChannel.key.isPublic != 0}">
 						<div class="col-sm-6 col-md-4 col-lg-3 category-selector live-search-list">
 							<p class="channelNickname">${thisChannel.key.channelNickname}</p>
 
 							<c:choose>
-								<c:when test="${thisChannel.key == publicChannels[0]}">
+								<c:when test="${count == 0}">
 									<input type="radio" name="chatroomName" id="${thisChannel.key.channelName}" value="${thisChannel.key.channelName}" checked="checked">
 								</c:when>
 								<c:otherwise>
 									<input type="radio" name="chatroomName" id="${thisChannel.key.channelName}" value="${thisChannel.key.channelName}">
 								</c:otherwise>
 							</c:choose>
+							<c:set var="count" value="${count+1}" scope="page"/>
 							<label class="category-image channel bg-primary ${thisChannel.key.channelName}" for="${thisChannel.key.channelName}" id="previewBtn" data-bs-toggle="modal" data-bs-target="#${thisChannel.key.channelName.concat(thisChannel.key.id)}"></label>  
 						</div>
+						</c:if>
 					</c:forEach>
-				
 				</div>
 				
 					
@@ -96,7 +98,7 @@
       							</div>	
       						</div>
       											
-        					<p class="mb-2 ps-1 text-white">This is a detailed description of ${thisChannel.key.channelNickname}. What a great description. So good.</p>
+        					<p class="mb-2 ps-1 text-white">${thisChannel.key.description}</p>
         										
       						<div class="frame d-none d-md-block" style="background-image: url('/assets/images/publicChannels/${thisChannel.key.channelName}.jpg');">
       						</div>	
@@ -128,7 +130,7 @@
 											</c:when>
 											<c:otherwise>
 												<li class="chat-message receiver">
-													<span>${message.user.username}</span>
+													<span>@${message.user.username}</span>
 													<p class="mb-0">${message.content}</p>
 													<jsp:useBean id="now2" class="java.util.Date"/>
 													<fmt:formatDate value="${now2}" pattern="MMM dd" var="today2" />
