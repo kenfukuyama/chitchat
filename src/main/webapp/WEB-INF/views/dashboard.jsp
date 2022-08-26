@@ -8,7 +8,7 @@
 <title>Dashboard</title>
 <t:base>
 <script defer type="text/javascript" src="/js/dm.js"></script>
-<div class="container dashboard-container">
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
 	<!-- hidden variables -->
 	<span id="username" class="d-none">${username}</span>
 	<span id="nickname" class="d-none">${nickname}</span>
@@ -18,93 +18,107 @@
 
 	<jsp:useBean id="now" class="java.util.Date"/>
 
+	<div class="container-fluid dashboard-container fade-in">
 	<div class="row">
-		<div class="col-5 pt-5">
-			<h3 class="text-dark text-center">${nickname}  (<small><em>@${username}</em></small>) <br> Your Messages</h3>
-
+		<div class="col-5 dashboard-left">
+			<h3 class="text-center p-3 dashboard-header">${nickname}&nbsp;(<small>@${username}</small>) <br> Your Messages</h3>
+	
 			<div class="d-flex justify-content-center">
-				<div class="input-group p-1 w-md-75 w-lg-50">
-					<input type="text" class="form-control rounded live-search-box regular"
-						placeholder="Search Contacts" aria-label="Search Contacts" aria-describedby="search-addon" />
-					<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
-					<!-- friend with messages -------------------------------------------------- -->
-					<ul class="list-group">
-						<c:forEach var="i" items="${friendsWithMessagesSizeArr}">
-							<li class="list-group-item d-flex align-items-center justify-content-around">
-								<div>
-									<strong>${friendsWithMessages[i].nickname}
-										(<small><em>@${friendsWithMessages[i].username}</em></small>) </strong> <br>
-									${recentMessages[i].content}
+            	<div class="input-group search-bar px-4 pb-4 w-100">
+                	<input type="text" class="form-control rounded live-search-box regular" placeholder="Search Messages" aria-label="Search Messages"
+                   		aria-describedby="search-addon" />
+                	<button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            	</div>
+            </div>
+            
+             <div class="tab-form">
+                <div class="tab-header mb-4">
+                    <div class="active">Current Chats</div>
+                    <div>Start New Chat</div>
+                </div>
+                
+                 <div class="tab-body">
+                    <div class="currentChats active">
+	
+						<ul class="dashboard-contacts ps-0">
+							<c:forEach var="i" items="${friendsWithMessagesSizeArr}">
+								<li class="live-search-list convo started-convo">
+									<div class="d-flex align-items-center dashboard-contact justify-content-between">
+										<div class="w-75">
+											<strong>${friendsWithMessages[i].nickname} (<small><em>@${friendsWithMessages[i].username}</em></small>)</strong><br/>
+												<span class="dashboard-contact-info">${recentMessages[i].content}</span>
 					
-									<fmt:formatDate value="${now}" pattern="MMM dd" var="today" />
-									<fmt:formatDate value="${recentMessages[i].createdAt}" pattern="MMM dd" var="createdAt" />
-									<c:choose>
-										<c:when test="${createdAt.equals(today)}">
-											<p class="timestamp">
-												<fmt:formatDate pattern="h:mm a" value="${recentMessages[i].createdAt}" />
-											</p>
-										</c:when>
-										<c:otherwise>
-											<p class="timestamp">
-												<fmt:formatDate pattern="MMM dd h:mm a" value="${recentMessages[i].createdAt}" />
-											</p>
-										</c:otherwise>
-									</c:choose>
-								</div>
-					
-								<form action="/chatrooms/private/enter" method="post" name="privateChatForm" class="chatroomSelection">
-									<input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
-									<input type="hidden" name="userId" value="${friendsWithMessages[i].id}">
-									<button type="submit" class="user-submit btn">Chat</button>
-								</form>
-							</li>
-						</c:forEach>
-					</ul>
-					<!-- friend without any messages yet -------------------------------------------------- -->
-					<h4 class="mt-3">Start a new chat</h4>
-					<hr/>
-					<ul class="list-group">
+												<fmt:formatDate value="${now}" pattern="MMM dd" var="today" />
+												<fmt:formatDate value="${recentMessages[i].createdAt}" pattern="MMM dd" var="createdAt" />
+												<c:choose>
+													<c:when test="${createdAt.equals(today)}">
+														<p class="timestamp dash">
+															<small><fmt:formatDate pattern="h:mm a" value="${recentMessages[i].createdAt}" /></small>
+														</p>
+													</c:when>
+													<c:otherwise>
+														<p class="timestamp dash">
+															<small><fmt:formatDate pattern="MMM dd h:mm a" value="${recentMessages[i].createdAt}" /></small>
+														</p>
+													</c:otherwise>
+												</c:choose>
+										</div>
 						
-						<c:forEach var="friend" items="${friendWithOutMessages}">
-							<li class="list-group-item d-flex align-items-center justify-content-around"><div>
-								<strong>${friend.nickname}
-										(<small><em>@${friend.username}</em></small>) </strong>
-							</div>
+					
+										<form action="/chatrooms/private/enter" method="post" name="privateChatForm" class="chatroomSelection">
+											<input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
+											<input type="hidden" name="userId" value="${friendsWithMessages[i].id}">
+											<button type="submit" class="user-submit btn btn-lg"><i class="bi bi-chat"></i></button>
+										</form>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="newChat">
+						<ul class="dashboard-contacts ps-0">
+							<c:forEach var="friend" items="${friendWithOutMessages}">
+								<li class="live-search-list convo new-convo">
+									<div class="d-flex align-items-center dashboard-contact justify-content-between">
+										<div>
+											<strong>${friend.nickname} (<small><em>@${friend.username}</em></small>) </strong>
+										</div>
 
-							<form action="/chatrooms/private/enter" method="post" name="privateChatForm" class="chatroomSelection">
-								<input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
-								<input type="hidden" name="userId" value="${friend.id}">
-								<button type="submit" class="user-submit btn">Start Chatting</button>
-							</form>
-							</li>
-						</c:forEach>
-					</ul>
-
+										<form action="/chatrooms/private/enter" method="post" name="privateChatForm" class="chatroomSelection mb-0">
+											<input type="hidden" name="loggedInUserId" value="${loggedInUser.id}">
+											<input type="hidden" name="userId" value="${friend.id}">
+											<button type="submit" class="user-submit btn">Start Chatting</button>
+										</form>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					
+					</div>
 				</div>
 			</div>
+			
 		</div>
 
 		<!-- Chatting page  -->
-		<div class="col-7 text-center bg-dark dashboard-column">
-			<div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
-				<div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
-			
-
+		<div class="col-7 text-center bg-dark dashboard-right">
+			<div id="chat-page" class="d-flex align-items-center justify-content-center w-100 styled-text text-white">
+				<div class="chat-container w-100">
 						
-					<c:choose >
+					<c:choose>
 						<c:when test="${selectedFriendship == null}">
-							<h5>Select Friends to Start Chatting</h5>
+							<h4 class="fade-in"><strong>Select Friends to Start Chatting</strong></h4>
 						</c:when>
 						<c:otherwise>
 							<div class="d-flex justify-content-center align-items-center flex-column">
 								<!-- TODO: change it so that it shows the other person's nickname and username -->
-								<h2 id="chatroomName" class="d-none text-center m-0">${selectedFriendship.name}</h2>
+								<h2 id="chatroomName" class="d-none text-center">${selectedFriendship.name}</h2>
 								<c:choose>
 									<c:when test="${selectedFriendship.user.id == id}">
-										<h2 id="chatroomNickname" class="text-center m-0">${selectedFriendship.friend.nickname} (<em>@${selectedFriendship.friend.username}</em>) </h2>
+										<h2 id="chatroomNickname" class="text-center mt-3">${selectedFriendship.friend.nickname} (<em>@${selectedFriendship.friend.username}</em>) </h2>
 									</c:when>
 									<c:otherwise>
-										<h2 id="chatroomNickname" class="text-center m-0">${selectedFriendship.user.nickname} (<em>@${selectedFriendship.user.username}</em>) </h2>
+										<h2 id="chatroomNickname" class="text-center mt-3">${selectedFriendship.user.nickname} (<em>@${selectedFriendship.user.username}</em>) </h2>
 									</c:otherwise>
 								</c:choose>
 								<p class="text-success m-0 d-none"><span id="number-connected">0</span> Online</p>
@@ -112,7 +126,7 @@
 							
 							<div class="connecting">Connecting...</div>
 
-							<ul id="messageArea">
+							<ul id="messageArea" class="messageAreaPrivate">
 								<c:choose>
 									<c:when test="${messages != null}">
 										<c:forEach var="message" items="${messages}">
@@ -141,7 +155,7 @@
 												</c:when>
 												<c:otherwise>
 													<li class="chat-message receiver">
-														<span>@${message.sender.username}</span>
+														<span>${message.sender.nickname}</span>
 														<p class="mb-0">${message.content}</p>
 							
 														<jsp:useBean id="now2" class="java.util.Date" />
@@ -191,10 +205,11 @@
 					
 				</div>
 			</div>
-
+			</div>
 
 		</div>
 	</div>
+</div>
 </div>
 </t:base>
 	

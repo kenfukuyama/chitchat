@@ -21,6 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="private_messages")
 public class PrivateMessage implements Comparable<PrivateMessage>{
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

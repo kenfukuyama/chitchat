@@ -39,7 +39,7 @@
             
    			<div class="connecting">Connecting...</div>
     	        
-    		<ul id="messageArea">
+    		<ul id="messageArea" class="messageAreaPublic">
 				<c:choose>
 					<c:when test="${messages != null}">
 						<c:forEach var="message" items="${messages}">
@@ -65,7 +65,7 @@
 								</c:when>
 								<c:otherwise>
 								<li class="chat-message receiver">
-									<span>${message.user.username}</span>
+									<span>@${message.user.username}</span>
 									<p class="mb-0">${message.content}</p>
 									
 									<jsp:useBean id="now2" class="java.util.Date"/>

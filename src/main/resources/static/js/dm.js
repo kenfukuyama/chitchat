@@ -108,6 +108,7 @@ function sendMessage(event) {
             content: messageInput.value,
             senderId : senderId.innerHTML,
             channelId : channelId.innerHTML,
+            senderNickname: nickname,
             type: 'CHAT'
         };
 
@@ -134,7 +135,7 @@ function onMessageReceived(payload) {
 
     // create list element
     var messageElement = document.createElement('li');
-    messageElement.style['padding-left'] = '10px';
+    messageElement.style['padding-left'] = '15px';
 
     if(message.type === 'JOIN') {
         // if a user joins
@@ -184,7 +185,7 @@ function onMessageReceived(payload) {
             //messageElement.appendChild(avatarElement);
 
             var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode("@" + message.sender);
+            var usernameText = document.createTextNode(message.senderNickname);
         }
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);

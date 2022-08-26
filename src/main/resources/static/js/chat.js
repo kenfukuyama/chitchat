@@ -209,7 +209,7 @@ function onMessageReceived(payload) {
 
     messageArea.appendChild(messageElement);
     
-    if (message.type == 'CHAT' && username == message.receiver){
+    if (message.type == 'CHAT' && username != message.sender){
     	let beat = new Audio('/assets/sfx/chat.mp3');
     	beat.play();
     }
