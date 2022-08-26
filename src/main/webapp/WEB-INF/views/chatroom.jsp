@@ -18,10 +18,10 @@
 	<span class="d-none" id="userId">${id}</span>
 	<span class="d-none" id="channelId">${channelId}</span>
 	
-    <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
+    <div id="chat-page" class="fade-in d-flex align-items-end justify-content-center vh-100 w-100 styled-text text-white">
         <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
     
-    		<div class="d-flex justify-content-center align-items-center flex-column">
+    		<div class="d-none d-sm-flex justify-content-center align-items-center flex-column">
 				<c:choose>
 					<c:when test="${channel != null}">
 						<h2 id="chatroomNickname" class="text-center m-0">${channel.channelNickname}</h2> 
@@ -34,7 +34,7 @@
 
 				</c:choose>
         		
-        		<p class="text-success m-0"><span id="number-connected">0</span> Online</p>
+        		<p class="text-success mb-1"><span id="number-connected">0</span> Online</p>
         	</div>
             
    			<div class="connecting">Connecting...</div>
@@ -65,7 +65,7 @@
 								</c:when>
 								<c:otherwise>
 								<li class="chat-message receiver">
-									<span>@${message.user.username}</span>
+									<span>${message.user.username}</span>
 									<p class="mb-0">${message.content}</p>
 									
 									<jsp:useBean id="now2" class="java.util.Date"/>

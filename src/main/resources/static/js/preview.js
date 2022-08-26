@@ -13,3 +13,4 @@ $(".modal").each(function(index) {
 
   });
 });
+
