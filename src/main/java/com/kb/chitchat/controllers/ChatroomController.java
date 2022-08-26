@@ -64,7 +64,6 @@ public class ChatroomController {
         }
 
         model.addAttribute("channelMap", channelMap);
-
         return "views/chatrooms.jsp";
     }
 
