@@ -9,7 +9,10 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import com.kb.chitchat.models.ChatMessage;
+import com.kb.chitchat.models.PrivateMessage;
 import com.kb.chitchat.models.PublicMessage;
+import com.kb.chitchat.services.FriendshipService;
+import com.kb.chitchat.services.PrivateMessageService;
 import com.kb.chitchat.services.PublicChannelService;
 import com.kb.chitchat.services.PublicMessageService;
 import com.kb.chitchat.services.UserService;
@@ -24,6 +27,12 @@ public class ChatController {
 
     @Autowired
     private PublicMessageService publicMessageService;
+
+    @Autowired
+    private FriendshipService friendshipService;
+
+    @Autowired
+    private PrivateMessageService privateMessageService;
 
 
     // ! edit the mapping and routes to handle messages
@@ -52,14 +61,14 @@ public class ChatController {
     @MessageMapping("/chat.sendMessageDM{roomSelection}")
     @SendTo("/topic/{roomSelection}")
     public ChatMessage sendDM(@Payload ChatMessage chatMessage, @DestinationVariable String roomSelection) { 
-        // PublicMessage publicMessage = new PublicMessage();
-        // publicMessage.setPublicChannel(publicChannelService.findPublicChannel(Long.parseLong(chatMessage.getChannelId())));
-        // publicMessage.setUser(userService.findUser(Long.parseLong(chatMessage.getSenderId())));
-        // publicMessage.setContent(chatMessage.getContent());
-        // publicMessageService.savePublicMessage(publicMessage);
+        PrivateMessage privateMessage = new PrivateMessage();
+        privateMessage.setFriendship(friendshipService.findFriendship(Long.parseLong(chatMessage.getChannelId())));
+        privateMessage.setSender(userService.findUser(Long.parseLong(chatMessage.getSenderId())));
+        privateMessage.setContent(chatMessage.getContent());
+        privateMessage.setIsRead(0);
+        privateMessageService.savePrivateMessage(privateMessage);
         return chatMessage;
     }
-
 
     // this route handles adding user
     @MessageMapping("/chat.addUser{roomSelection}")

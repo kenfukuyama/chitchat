@@ -92,6 +92,7 @@
                 		<a href="/accounts/login" class="nav-link text-white"><i class="bi bi-shield-lock-fill nav-icon"></i> LOG IN</a>
                 	</c:when>
                 	<c:otherwise>
+                    <a class="styled-button btn btn-light" href="/users/dashboard">Messages</a>
                 		<a href="/logout" class="nav-link text-white"><i class="bi bi-shield-lock-fill nav-icon"></i> LOGOUT</a>
                 	</c:otherwise>
                 </c:choose>

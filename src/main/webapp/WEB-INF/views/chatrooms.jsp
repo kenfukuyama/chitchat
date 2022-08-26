@@ -30,6 +30,7 @@
                 <c:when test="${user.registered == 1}">
                     <div class="d-flex justify-content-center align-items-center gap-3 mb-5">
                         <a class="styled-button btn btn-light" href="/users/friends">Friends</a>
+						<a class="styled-button btn btn-light" href="/users/dashboard">Messages</a>
                         <a class="styled-button btn btn-light" href="/users/chatrooms">My Rooms</a>
                     </div>
                 </c:when>

@@ -1,6 +1,7 @@
 package com.kb.chitchat.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -51,6 +54,7 @@ public class Friendship {
         this.updatedAt = new Date();
     }
 
+    // ! Relationship
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -58,6 +62,16 @@ public class Friendship {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "friend_id")
     private User friend;
+
+
+    // private message
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "private_messages", 
+        joinColumns = @JoinColumn(name = "friendship_id"), 
+        inverseJoinColumns = @JoinColumn(name = "sender_id")
+    )
+    private List<User> senders;
 
     // empty public constructor
     public Friendship() {
@@ -126,4 +140,16 @@ public class Friendship {
     public void setApproved(Integer approved) {
         this.approved = approved;
     }
+
+
+    public List<User> getSenders() {
+        return this.senders;
+    }
+
+    public void setSenders(List<User> senders) {
+        this.senders = senders;
+    }
+
+
+
 }
