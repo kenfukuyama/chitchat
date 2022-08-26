@@ -73,7 +73,6 @@ body {
 .nav-icon::before {
 	margin-bottom: 1px;
 }
-
 /**********************************************
 				 End Navbar
 **********************************************/
@@ -167,7 +166,11 @@ a {
 }
 
 .event-message, .connecting {
-	color: orange;
+	color: gray;
+}
+
+.event-message .timestamp {
+	font-size: .8em;
 }
 
 .chat-message {
@@ -184,24 +187,16 @@ a {
     margin: 0;
    	overflow-y: scroll;
     padding: 0 20px;
-    height: 65vh;
-}
-
-ul#preview-page {
-	list-style-type: none;
-	margin: 0;
-	overflow-y:scroll;
-	height: 60vh;
-	padding: 0px 0px 0px 0px;
+    height: 80vh;
 }
 
 .chat-message {
 	list-style-type: none;
 }
 	
-#chat-page .chat-message span{
-	font-family: "Alliance1Bold";
-	color: white;
+.chat-message span{
+	font-family: "Alliance1SemiBold";
+	color: orange;
 }
 
 #chat-page .chat-message p {
@@ -225,16 +220,21 @@ ul#preview-page {
 	background-color: rgb(67, 95, 122); 
 	color: white; 
 	animation: 0.5s ease 0s 1 normal none running fadeReceived;
+	text-align: start;
 }
 
 .sender .timestamp{
-	color: gray;
+	color: white;
     font-size:.8em;
 }
 
 .receiver .timestamp{
-	color: black;
+	color: white;
 	font-size: .8em;
+}
+
+.chat-container {
+	padding-bottom: 20px;
 }
 
 /**********************************************
@@ -328,19 +328,23 @@ ul#preview-page {
 	background-color: #055160;
 }
 
-.modal-dialog {
-    position: absolute;
-    top: 10vh;
-    left: 10vw;
-    width: 100vw;
+.modal {
+	height: 100vh;
 }
 
+.modal-dialog {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    width: 100vw;
+    margin: 0;
+}
 
 .modal-content{
 	background-color: #212529a3;
 	border: none;
-	height: 80vh;
-	width: 80vw;
+	height: 90vh;
+	width: 90vw;
 }
 
 .modal-header{
@@ -350,7 +354,7 @@ ul#preview-page {
 }
 
 .modal-body{
-	padding-bottom: 0;
+	height: 80vh;
 }
 
 .modal-body p{
@@ -366,7 +370,8 @@ ul#preview-page {
 	background-color: white;
 	font-size: 14px;
 	position: absolute;
-	right: 15px;
+	right: 5px;
+	top: 5px;
 }
 
 .preview-title {
@@ -375,9 +380,33 @@ ul#preview-page {
 }
 
 .frame {
-	height: inherit;
-	background: transparent no-repeat center;
-  	background-size: cover;
+	background: no-repeat;
+  	background-size: contain;
+  	height: 100%;
+}
+
+.modal-content-row{
+	height: 100%;
+	overflow: hidden;
+}
+
+ul.preview-page{
+	height: 80vh;
+	list-style-type: none;
+	padding: 0;
+}
+
+.preview-right {
+	overflow-y: scroll;
+}
+
+body.modal-open #username-page, body.modal-open .navbar{
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    opacity: .5;
 }
 
 /**********************************************
@@ -511,6 +540,11 @@ ul#preview-page {
 	.navbar-nav .nav-item:hover{
 		background-color: transparent;
 	}
+	
+	.modal {
+    --bs-modal-margin: 0;
+    --bs-modal-box-shadow: 0 0.5rem 1remrgba(0, 0, 0, 0.15);
+}
 }
 
 /* Medium devices (tablets, 768px and up)*/

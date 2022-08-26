@@ -62,11 +62,7 @@ public class ChatroomController {
             Collections.reverse(messages);
             channelMap.put(channels.get(i), messages);
         }
-<<<<<<< HEAD
-        
-        
-=======
->>>>>>> caa441f006e5d5a1a381fdccb7cffe10e9030668
+
         model.addAttribute("channelMap", channelMap);
 
         return "views/chatrooms.jsp";

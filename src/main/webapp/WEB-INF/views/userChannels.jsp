@@ -91,8 +91,8 @@
                             							<div class="col-6 frame" style="background-image: url('/assets/images/publicChannels/${thisChannel.key.channelName}.jpg');"></div>
                             							<div class="col-6 text-start">
                             								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        													<div class="d-flex align-items-center">
-        														<h1 class="display-4 p-0 preview-title">${channel.channelNickname}</h1>&nbsp;&nbsp;<span class="text-success lead">55 Online</span>
+        													<div class="d-sm-flex align-items-center">
+        														<h1 class="display-4 p-0 preview-title">${channel.channelNickname}</h1>&nbsp;&nbsp;<span class="text-success lead fw-bold">55 Online</span>
         													</div>
         													<p class="mb-2">This is a detailed description of ${channel.channelNickname}. What a great description. So good.</p>
         										
