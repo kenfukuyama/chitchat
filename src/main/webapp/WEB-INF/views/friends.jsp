@@ -10,7 +10,7 @@
 <div id="username-page" class="fade-in d-flex align-items-center styled-text text-white">
     <div class="container username-page-container text-center pt-5 pb-3 vh-100">
         <div class="row pt-5">
-            <h3>${loggedInUser.id}, @${loggedInUser.username}, ${loggedInUser.nickname}</h3>
+            <h3>${loggedInUser.nickname} (<small><em>@${loggedInUser.username}</em></small>)</h3>
             
             <h4>Add Friends</h4>
 
@@ -166,7 +166,7 @@
                                 </c:forEach>
 
                                 <!-- For all Pending Requests -->
-                                Your Pending Reuquests
+                                Your Pending Requests
                                 <hr />
                                 <!-- TODO: show the number of pending requests and none if there is none-->
                                 <c:forEach var="friendship" items="${pendingFriendships}">

@@ -89,9 +89,13 @@
             <li class="nav-item ps-2">
               	<a href="/chatrooms" class="nav-link text-white"><i class="bi bi-door-open-fill nav-icon"></i> CHATROOMS</a>
             </li>
-            
+
+             <li class="nav-item ps-2">
+              	<a href="/users/friends" class="nav-link text-white"><i class="bi bi-people-fill nav-icon"></i> FRIENDS</a>
+            </li>
+
             <li class="nav-item ps-2">
-            	<a href="/users/dashboard" class="nav-link text-white"><i class="bi bi-people-fill nav-icon"></i> MESSAGES</a>
+            	<a href="/users/dashboard" class="nav-link text-white"><i class="bi bi-chat-dots-fill nav-icon"></i> MESSAGES</a>
             </li>	
             </c:if>
             
