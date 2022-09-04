@@ -8,11 +8,11 @@
 		<version>2.7.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kenfukuyama.helloworld</groupId>
-	<artifactId>sockety</artifactId>
+	<groupId>com.kb.chitchat</groupId>
+	<artifactId>chitchat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sockety</name>
-	<description>chat application using websockets</description>
+	<name>chitchat</name>
+	<description>Chat application using websockets</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

@@ -18,8 +18,8 @@
 	<span class="d-none" id="userId">${id}</span>
 	<span class="d-none" id="channelId">${channelId}</span>
 	
-    <div id="chat-page" class="fade-in d-flex align-items-end justify-content-center vh-100 w-100 styled-text text-white">
-        <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50">
+    <div id="chat-page" class="fade-in d-flex align-items-center justify-content-center vh-100 w-100 styled-text text-white">
+        <div class="chat-container w-100 w-sm-75 w-lg-62 w-xxl-50 mt-5">
     
     		<div class="d-none d-sm-flex justify-content-center align-items-center flex-column">
 				<c:choose>
@@ -28,7 +28,6 @@
 						<span id="chatroomName" class="hidden">${channel.channelName}</span>
 					</c:when>
 					<c:otherwise>
-						<!-- TODO: change it so that it shows the other person's nickname and username -->
 						<h2 id="chatroomName" class="text-center m-0">${chatroomName}</h2> 
 					</c:otherwise>
 
@@ -43,7 +42,6 @@
 				<c:choose>
 					<c:when test="${messages != null}">
 						<c:forEach var="message" items="${messages}">
-							<!-- TODO: format it correclty and show 'me' if users sent it and remove date if it it sent today (check yesterday if you want) -->
 							<c:choose>
 								<c:when test="${message.user.username.equals(username)}">
 								<li class="chat-message sender">
@@ -65,7 +63,7 @@
 								</c:when>
 								<c:otherwise>
 								<li class="chat-message receiver">
-									<span>@${message.user.username}</span>
+									<span>${message.user.username}</span>
 									<p class="mb-0">${message.content}</p>
 									
 									<jsp:useBean id="now2" class="java.util.Date"/>

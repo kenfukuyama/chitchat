@@ -220,6 +220,10 @@ a {
 	font-family: "Alliance1Regular";
 }
 
+.sender, .receiver {
+	padding-bottom: 7px;
+}
+
 .sender {
 	background-color: rgb(47, 49, 52); 
 	text-align: right; 

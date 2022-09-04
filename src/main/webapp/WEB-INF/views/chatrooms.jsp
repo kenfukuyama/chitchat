@@ -88,7 +88,7 @@
         					</div>
         										
         					<div class="d-flex justify-content-between align-items-center mb-2">
-        						<span class="text-success ps-1 lead">55 Online</span>
+        						<span class="text-success ps-1 lead">73 Online</span>
       							<div class="d-flex">
       								<form action="/chatrooms/enter" method="post" name="chatroomNameForm" class="chatroomSelection">
       									<input type="hidden" name="chatroomName" id="${thisChannel.key.channelName}" value="${thisChannel.key.channelName}">
@@ -130,7 +130,7 @@
 											</c:when>
 											<c:otherwise>
 												<li class="chat-message receiver">
-													<span>@${message.user.username}</span>
+													<span>${message.user.username}</span>
 													<p class="mb-0">${message.content}</p>
 													<jsp:useBean id="now2" class="java.util.Date"/>
 													<fmt:formatDate value="${now2}" pattern="MMM dd" var="today2" />
