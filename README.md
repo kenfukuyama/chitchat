@@ -20,6 +20,14 @@ Users signed up with an email may also connect with other users via friend reque
 
 ![FriendsGif](chitchat-friendlist.gif)
 
-Once a friend request has been approved, you are able to privately message with that user! The messages/DM page provides the user a way to manage their private messages with all of their friends. The "Current Chats" will display the most recent message from each conversation. 
+Once a friend request has been approved, you are able to privately message with that user! The messages/DM page provides the user a way to manage their private messages with all of their friends. The dashboard displays the newest messages in descending order for easy access to their close friends.
 
 ![PrivateMessages](chitchat-dms.gif)
+
+<hr/>
+<p align="right">
+  MIT License - Copyright © 2022 Ken Fukuyama & Brandon Taylor 
+</p>
+
+
+
