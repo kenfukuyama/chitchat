@@ -1,4 +1,4 @@
-<h2 align="center">Chit Chat</h2>
+<h1 align="center">Chit Chat</h1>
 
 A full-stack instant-messaging application created with Java Spring Boot, WebSocket, and MySQL.
 
