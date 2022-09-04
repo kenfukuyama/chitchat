@@ -135,11 +135,12 @@ function onMessageReceived(payload) {
     // create list element
     var messageElement = document.createElement('li');
     messageElement.style['padding-left'] = '15px';
+    messageElement.style['padding-right'] = '15px';
 
     if(message.type === 'JOIN') {
         // if a user joins
         messageElement.classList.add('event-message');
-        message.content = "@" + message.sender + ' joined';
+        message.content = message.sender + ' joined';
         
 
         // change the number of number of connections.
@@ -151,7 +152,7 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         // if a user leaves
         messageElement.classList.add('event-message');
-        message.content = "@" + message.sender + ' left';
+        message.content = message.sender + ' left';
        
         // TODO we want to something here and update the online numbers
         // const span = document.querySelector('#number-connected');
@@ -184,7 +185,7 @@ function onMessageReceived(payload) {
             //messageElement.appendChild(avatarElement);
 
             var usernameElement = document.createElement('span');
-            var usernameText = document.createTextNode("@" + message.sender);
+            var usernameText = document.createTextNode(message.sender);
         }
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
