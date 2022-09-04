@@ -1,4 +1,4 @@
-### Chit Chat
+# Chit Chat
 
 A full-stack instant-messaging application created with Java Spring Boot, WebSocket, and MySQL.
 
