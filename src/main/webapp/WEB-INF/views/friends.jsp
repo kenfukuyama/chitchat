@@ -10,7 +10,13 @@
 <div id="username-page" class="fade-in d-flex align-items-center styled-text text-white">
     <div class="container username-page-container text-center pt-5 pb-3 vh-100">
         <div class="row pt-5">
+<<<<<<< HEAD
             <h3>Add Friends</h3>
+=======
+            <h3>${loggedInUser.nickname} (<small><em>@${loggedInUser.username}</em></small>)</h3>
+            
+            <h4>Add Friends</h4>
+>>>>>>> 4498dff9988a6c47a65a0fa7d900c795f6aa7921
 
             <div class="d-flex justify-content-center">
             	<div class="input-group px-4 pb-4 pt-3 w-md-75 w-lg-50">
@@ -164,7 +170,11 @@
                                 </c:forEach>
 
                                 <!-- For all Pending Requests -->
+<<<<<<< HEAD
                                 <span class="mt-2">Your Pending Requests</span>
+=======
+                                Your Pending Requests
+>>>>>>> 4498dff9988a6c47a65a0fa7d900c795f6aa7921
                                 <hr />
                                 <!-- TODO: show the number of pending requests and none if there is none-->
                                 <c:forEach var="friendship" items="${pendingFriendships}">

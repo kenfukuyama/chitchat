@@ -135,7 +135,10 @@ function onMessageReceived(payload) {
     // create list element
     var messageElement = document.createElement('li');
     messageElement.style['padding-left'] = '15px';
+<<<<<<< HEAD
     messageElement.style['padding-right'] = '15px';
+=======
+>>>>>>> 4498dff9988a6c47a65a0fa7d900c795f6aa7921
 
     if(message.type === 'JOIN') {
         // if a user joins
